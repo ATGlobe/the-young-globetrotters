@@ -72,28 +72,30 @@ export default function Home() {
                 opacity: 1, 
                 scale: 1, 
                 x: 0,
-                y: [0, -20, 0]
+                y: [0, -15, 0]
               }}
               transition={{ 
                 opacity: { duration: 0.8, delay: 0.2 },
                 scale: { duration: 0.8, delay: 0.2 },
                 x: { duration: 0.8, delay: 0.2 },
                 y: {
-                  duration: 2,
+                  duration: 3,
                   repeat: Infinity,
                   repeatType: "reverse",
                   ease: "easeInOut"
                 }
               }}
-              className="relative"
+              className="relative flex justify-center lg:justify-end"
             >
-              <img 
-                src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/personaggi.png" 
-                alt="Axel, Tino, Chef, Professor Owl, and Foxy" 
-                className="w-full h-auto drop-shadow-2xl"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute -bottom-12 -right-12 w-64 h-64 bg-blue-400 rounded-full blur-[120px] opacity-20" />
+              <div className="w-full max-w-[320px] lg:max-w-[540px] mt-12 lg:mt-0">
+                <img 
+                  src="https://drive.google.com/uc?export=view&id=1xMHWY9E4gBAEftORS9lu3C1Jd4xrSj_g" 
+                  alt="Foxy on a blue airplane" 
+                  className="w-full h-auto object-contain shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[40px]"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-blue-400 rounded-full blur-[140px] opacity-25 pointer-events-none" />
             </motion.div>
           </div>
         </div>
@@ -143,16 +145,18 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <div className="relative">
-              <div className="aspect-[4/3] rounded-[40px] overflow-hidden shadow-2xl shadow-blue-100 border-8 border-white">
-                <img 
-                  src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/personaggi.png" 
-                  alt="Axel & Tino Characters" 
-                  className="w-full h-full object-contain bg-blue-50/30"
-                  referrerPolicy="no-referrer"
-                />
+            <div className="relative flex justify-center lg:justify-end">
+              <div className="w-full max-w-[280px] lg:max-w-[420px] mt-8 lg:mt-0">
+                <div className="rounded-[40px] overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.06)] border-8 border-white bg-blue-50/30">
+                  <img 
+                    src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/personaggi.png" 
+                    alt="Axel & Tino Characters" 
+                    className="w-full h-auto object-contain"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-xl border border-blue-50 max-w-[240px]">
+              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-xl border border-blue-50 max-w-[240px] hidden lg:block">
                 <p className="text-sm font-medium text-slate-600 italic">
                   "Our mission is to inspire the next generation of global citizens."
                 </p>
