@@ -11,7 +11,7 @@ export const CHARACTERS: Character[] = [
     longDescription: 'Axel is the leader of the group. As a Top Gun pilot for the Navy, his mission is to ensure everyone\'s safety during their travels. He is brave, disciplined, and always wears his precious winged aviation pin, a symbol of his honor that Foxy is always trying to steal.',
     icon: 'Plane',
     color: 'bg-blue-500',
-    image: '/assets/characters/axel.png'
+    image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Axel__10_-removebg-preview.png'
   },
   {
     id: 'tino',
@@ -21,7 +21,7 @@ export const CHARACTERS: Character[] = [
     longDescription: 'Tino is Axel\'s younger brother. Unlike his brother, Tino is a dreamer and a great explorer of flavors. His curiosity leads him into every alleyway in search of local stories and delicious snacks from the cities they visit.',
     icon: 'Search',
     color: 'bg-yellow-500',
-    image: '/assets/characters/tino.png'
+    image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Generated_Image_February_09__2026_-_12_51AM-removebg-preview.png'
   },
   {
     id: 'chef',
@@ -31,7 +31,7 @@ export const CHARACTERS: Character[] = [
     longDescription: 'Chef is the team\'s culinary master. In every city they visit, Chef finds the best ingredients and teaches young readers how to prepare a typical local dish, blending culture and taste.',
     icon: 'Utensils',
     color: 'bg-red-500',
-    image: '/assets/characters/chef.png'
+    image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Progetto_senza_titolo__1_-removebg-preview.png'
   },
   {
     id: 'professor-owl',
@@ -41,7 +41,7 @@ export const CHARACTERS: Character[] = [
     longDescription: 'Professor Owl is the group\'s memory and mentor. With his glasses and his big book, he explains to the kids the origins of the cities, the secrets of the monuments, and the wonders of nature they encounter along the way.',
     icon: 'BookOpen',
     color: 'bg-purple-500',
-    image: '/assets/characters/professor-owl.png'
+    image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png'
   },
   {
     id: 'foxy',
@@ -51,7 +51,7 @@ export const CHARACTERS: Character[] = [
     longDescription: 'Foxy is an extremely ingenious but unlucky fox. In every episode, he masterminds complicated plans and uses absurd vehicles or disguises to try and steal Axel\'s pin, but he never succeeds.',
     icon: 'Ghost',
     color: 'bg-orange-500',
-    image: '/assets/characters/foxy.png'
+    image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Foxy_2-removebg-preview.png'
   }
 ];
 
@@ -62,16 +62,13 @@ export const VOLUMES: Volume[] = [
     city: "Rome",
     country: "Italy",
     coordinates: [12.4964, 41.9028],
-    cover: "/assets/covers/vol-1-rome.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/vol.1%20Rome.jpg",
     description: "Discover the Colosseum and the secrets of ancient gladiators with Axel and Tino.",
     recipeName: "Pasta alla Carbonara",
     historySnippet: "The Roman Empire and the foundation of the eternal city by Romulus and Remus.",
     curiosity: "About 3,000 euros are thrown into the Trevi Fountain every single day!",
     buyLink: "https://tuosito.com/rome",
-    isLatest: true,
-    isNew: true,
-    monumentImage: "/assets/monuments/rome-colosseum.png",
-    kitchenImage: "/assets/kitchen/rome-carbonara.png"
+    isLatest: true
   },
   {
     id: 2,
@@ -79,16 +76,13 @@ export const VOLUMES: Volume[] = [
     city: "Paris",
     country: "France",
     coordinates: [2.3522, 48.8566],
-    cover: "/assets/covers/vol-2-paris.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.2%20Paris.jpg",
     description: "An adventure between the Eiffel Tower and the scent of freshly baked croissants.",
     recipeName: "Crepes Suzette",
     historySnippet: "The story of the Eiffel Tower's construction for the 1889 World's Fair.",
     curiosity: "Did you know there is a smaller Statue of Liberty in Paris, just like the one in NYC?",
     buyLink: "https://tuosito.com/paris",
-    isLatest: true,
-    isNew: true,
-    monumentImage: "/assets/monuments/paris-eiffel.png",
-    kitchenImage: "/assets/kitchen/paris-crepes.png"
+    isLatest: true
   },
   {
     id: 3,
@@ -96,16 +90,13 @@ export const VOLUMES: Volume[] = [
     city: "London",
     country: "United Kingdom",
     coordinates: [-0.1276, 51.5074],
-    cover: "/assets/covers/vol-3-london.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.3%20London.jpg",
     description: "Solve a mystery between Big Ben and the Tower Bridge.",
     recipeName: "Scones with Jam",
     historySnippet: "The history of the Queen and the famous red double-decker buses.",
     curiosity: "Big Ben is actually the name of the bell, not the tower itself!",
     buyLink: "https://tuosito.com/london",
-    isLatest: true,
-    isNew: true,
-    monumentImage: "/assets/monuments/london-big-ben.png",
-    kitchenImage: "/assets/kitchen/london-scones.png"
+    isLatest: true
   },
   {
     id: 4,
@@ -113,14 +104,12 @@ export const VOLUMES: Volume[] = [
     city: "Barcelona",
     country: "Spain",
     coordinates: [2.1734, 41.3851],
-    cover: "/assets/covers/vol-4-barcelona.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.4%20Barcelona.jpg",
     description: "Explore the colorful world of Gaudí and the lively Las Ramblas.",
     recipeName: "Spanish Paella",
     historySnippet: "The unique architecture of the Sagrada Família and the history of Catalonia.",
     curiosity: "Barcelona has 9 UNESCO World Heritage sites!",
-    buyLink: "https://tuosito.com/barcelona",
-    monumentImage: "/assets/monuments/barcelona-sagrada-familia.png",
-    kitchenImage: "/assets/kitchen/barcelona-paella.png"
+    buyLink: "https://tuosito.com/barcelona"
   },
   {
     id: 5,
@@ -128,14 +117,12 @@ export const VOLUMES: Volume[] = [
     city: "Amsterdam",
     country: "Netherlands",
     coordinates: [4.8952, 52.3702],
-    cover: "/assets/covers/vol-5-amsterdam.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.5%20Amsterdam.jpg",
     description: "Bike along the canals and discover the house of Anne Frank.",
     recipeName: "Dutch Stroopwafels",
     historySnippet: "The Golden Age of the Netherlands and the engineering of the canal rings.",
     curiosity: "There are more bicycles than people in Amsterdam!",
-    buyLink: "https://tuosito.com/amsterdam",
-    monumentImage: "/assets/monuments/amsterdam-canals.png",
-    kitchenImage: "/assets/kitchen/amsterdam-stroopwafels.png"
+    buyLink: "https://tuosito.com/amsterdam"
   },
   {
     id: 6,
@@ -143,14 +130,12 @@ export const VOLUMES: Volume[] = [
     city: "Stockholm",
     country: "Sweden",
     coordinates: [18.0686, 59.3293],
-    cover: "/assets/covers/vol-6-stockholm.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.6%20Stockholm.jpg",
     description: "Explore the archipelago and the historic Gamla Stan.",
     recipeName: "Swedish Meatballs",
     historySnippet: "The Vasa Museum and the history of the Swedish monarchy.",
     curiosity: "Stockholm is built on 14 islands connected by 57 bridges.",
-    buyLink: "https://tuosito.com/stockholm",
-    monumentImage: "/assets/monuments/stockholm-gamla-stan.png",
-    kitchenImage: "/assets/kitchen/stockholm-meatballs.png"
+    buyLink: "https://tuosito.com/stockholm"
   },
   {
     id: 7,
@@ -158,14 +143,12 @@ export const VOLUMES: Volume[] = [
     city: "Prague",
     country: "Czech Republic",
     coordinates: [14.4378, 50.0755],
-    cover: "/assets/covers/vol-7-prague.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.7%20Prague.jpg",
     description: "Cross the Charles Bridge and visit the largest ancient castle in the world.",
     recipeName: "Trdelník Pastry",
     historySnippet: "The legends of the Golem and the history of the Astronomical Clock.",
     curiosity: "Prague Castle is the largest coherent castle complex in the world.",
-    buyLink: "https://tuosito.com/prague",
-    monumentImage: "/assets/monuments/prague-castle.png",
-    kitchenImage: "/assets/kitchen/prague-trdelnik.png"
+    buyLink: "https://tuosito.com/prague"
   },
   {
     id: 8,
@@ -173,14 +156,12 @@ export const VOLUMES: Volume[] = [
     city: "Athens",
     country: "Greece",
     coordinates: [23.7275, 37.9838],
-    cover: "/assets/covers/vol-8-athens.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.8%20Athens.jpg",
     description: "Climb the Acropolis and learn about the ancient Greek gods.",
     recipeName: "Greek Moussaka",
     historySnippet: "The birth of democracy and the construction of the Parthenon.",
     curiosity: "Athens is one of the world's oldest cities, with recorded history spanning over 3,400 years.",
-    buyLink: "https://tuosito.com/athens",
-    monumentImage: "/assets/monuments/athens-acropolis.png",
-    kitchenImage: "/assets/kitchen/athens-moussaka.png"
+    buyLink: "https://tuosito.com/athens"
   },
   {
     id: 9,
@@ -188,14 +169,12 @@ export const VOLUMES: Volume[] = [
     city: "Berlin",
     country: "Germany",
     coordinates: [13.4050, 52.5200],
-    cover: "/assets/covers/vol-9-berlin.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.9%20Berlin.jpg",
     description: "See the remains of the Berlin Wall and the Brandenburg Gate.",
     recipeName: "Currywurst",
     historySnippet: "The reunification of Germany and the vibrant art scene of the East Side Gallery.",
     curiosity: "Berlin has more bridges than Venice!",
-    buyLink: "https://tuosito.com/berlin",
-    monumentImage: "/assets/monuments/berlin-brandenburg-gate.png",
-    kitchenImage: "/assets/kitchen/berlin-currywurst.png"
+    buyLink: "https://tuosito.com/berlin"
   },
   {
     id: 10,
@@ -203,14 +182,12 @@ export const VOLUMES: Volume[] = [
     city: "Vienna",
     country: "Austria",
     coordinates: [16.3738, 48.2082],
-    cover: "/assets/covers/vol-10-vienna.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.10%20Vienna.jpg",
     description: "Visit the Schönbrunn Palace and listen to the music of Mozart.",
     recipeName: "Sachertorte",
     historySnippet: "The Habsburg Empire and the tradition of Viennese coffee houses.",
     curiosity: "Vienna is known as the 'City of Dreams' because it was home to Sigmund Freud.",
-    buyLink: "https://tuosito.com/vienna",
-    monumentImage: "/assets/monuments/vienna-schonbrunn.png",
-    kitchenImage: "/assets/kitchen/vienna-sachertorte.png"
+    buyLink: "https://tuosito.com/vienna"
   },
   {
     id: 11,
@@ -218,14 +195,12 @@ export const VOLUMES: Volume[] = [
     city: "Lisbon",
     country: "Portugal",
     coordinates: [-9.1393, 38.7223],
-    cover: "/assets/covers/vol-11-lisbon.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.11%20Lisbon.jpg",
     description: "Ride the yellow trams and discover the Belém Tower.",
     recipeName: "Pastéis de Nata",
     historySnippet: "The Age of Discovery and the great explorers like Vasco da Gama.",
     curiosity: "Lisbon is one of the oldest cities in the world, predating London, Paris, and even Rome.",
-    buyLink: "https://tuosito.com/lisbon",
-    monumentImage: "/assets/monuments/lisbon-belem-tower.png",
-    kitchenImage: "/assets/kitchen/lisbon-pasteis-de-nata.png"
+    buyLink: "https://tuosito.com/lisbon"
   },
   {
     id: 12,
@@ -233,14 +208,12 @@ export const VOLUMES: Volume[] = [
     city: "Dublin",
     country: "Ireland",
     coordinates: [-6.2603, 53.3498],
-    cover: "/assets/covers/vol-12-dublin.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.12%20Dublin.jpg",
     description: "Explore the Trinity College library and the green Phoenix Park.",
     recipeName: "Irish Soda Bread",
     historySnippet: "The Book of Kells and the legends of leprechauns.",
     curiosity: "Dublin has more than 600 pubs!",
-    buyLink: "https://tuosito.com/dublin",
-    monumentImage: "/assets/monuments/dublin-trinity-college.png",
-    kitchenImage: "/assets/kitchen/dublin-soda-bread.png"
+    buyLink: "https://tuosito.com/dublin"
   },
   {
     id: 13,
@@ -248,14 +221,12 @@ export const VOLUMES: Volume[] = [
     city: "Edinburgh",
     country: "Scotland",
     coordinates: [-3.1883, 55.9533],
-    cover: "/assets/covers/vol-13-edinburgh.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.13%20Edinburgh.jpg",
     description: "Visit the Edinburgh Castle and walk the Royal Mile.",
     recipeName: "Shortbread Cookies",
     historySnippet: "The history of the Scottish clans and the inspiration for Harry Potter.",
     curiosity: "Edinburgh was the first city in the world to have its own fire brigade.",
-    buyLink: "https://tuosito.com/edinburgh",
-    monumentImage: "/assets/monuments/edinburgh-castle.png",
-    kitchenImage: "/assets/kitchen/edinburgh-shortbread.png"
+    buyLink: "https://tuosito.com/edinburgh"
   },
   {
     id: 14,
@@ -263,14 +234,12 @@ export const VOLUMES: Volume[] = [
     city: "Budapest",
     country: "Hungary",
     coordinates: [19.0402, 47.4979],
-    cover: "/assets/covers/vol-14-budapest.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.14%20Budapest.jpg",
     description: "Relax in the thermal baths and see the Parliament building.",
     recipeName: "Hungarian Goulash",
     historySnippet: "The unification of Buda and Pest and the history of the Chain Bridge.",
     curiosity: "Budapest has the oldest underground railway in mainland Europe.",
-    buyLink: "https://tuosito.com/budapest",
-    monumentImage: "/assets/monuments/budapest-parliament.png",
-    kitchenImage: "/assets/kitchen/budapest-goulash.png"
+    buyLink: "https://tuosito.com/budapest"
   },
   {
     id: 15,
@@ -278,14 +247,12 @@ export const VOLUMES: Volume[] = [
     city: "Copenhagen",
     country: "Denmark",
     coordinates: [12.5683, 55.6761],
-    cover: "/assets/covers/vol-15-copenhagen.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.15%20Copenhagen.jpg",
     description: "Meet the Little Mermaid and have fun at Tivoli Gardens.",
     recipeName: "Danish Smørrebrød",
     historySnippet: "The fairytales of Hans Christian Andersen and the Viking heritage.",
     curiosity: "Copenhagen is consistently ranked as one of the happiest cities in the world.",
-    buyLink: "https://tuosito.com/copenhagen",
-    monumentImage: "/assets/monuments/copenhagen-little-mermaid.png",
-    kitchenImage: "/assets/kitchen/copenhagen-smorrebrod.png"
+    buyLink: "https://tuosito.com/copenhagen"
   },
   {
     id: 16,
@@ -293,14 +260,12 @@ export const VOLUMES: Volume[] = [
     city: "Oslo",
     country: "Norway",
     coordinates: [10.7522, 59.9139],
-    cover: "/assets/covers/vol-16-oslo.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.16%20Oslo.jpg",
     description: "Visit the Viking Ship Museum and the Vigeland Park.",
     recipeName: "Norwegian Waffles",
     historySnippet: "The history of the Nobel Peace Prize and the polar explorers.",
     curiosity: "Oslo is surrounded by forests and the Oslofjord, making it a very green city.",
-    buyLink: "https://tuosito.com/oslo",
-    monumentImage: "/assets/monuments/oslo-viking-ship.png",
-    kitchenImage: "/assets/kitchen/oslo-waffles.png"
+    buyLink: "https://tuosito.com/oslo"
   },
   {
     id: 17,
@@ -308,14 +273,12 @@ export const VOLUMES: Volume[] = [
     city: "Helsinki",
     country: "Finland",
     coordinates: [24.9384, 60.1699],
-    cover: "/assets/covers/vol-17-helsinki.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.17%20Helsinki.jpg",
     description: "Explore the Suomenlinna fortress and the Market Square.",
     recipeName: "Karelian Pies",
     historySnippet: "The unique Finnish design and the history of the sea fortress.",
     curiosity: "Helsinki has over 300 islands in its archipelago.",
-    buyLink: "https://tuosito.com/helsinki",
-    monumentImage: "/assets/monuments/helsinki-cathedral.png",
-    kitchenImage: "/assets/kitchen/helsinki-karelian-pies.png"
+    buyLink: "https://tuosito.com/helsinki"
   },
   {
     id: 18,
@@ -323,14 +286,12 @@ export const VOLUMES: Volume[] = [
     city: "Reykjavik",
     country: "Iceland",
     coordinates: [-21.9424, 64.1466],
-    cover: "/assets/covers/vol-18-reykjavik.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.18%20Reykjavik.jpg",
     description: "See the Northern Lights and the Hallgrímskirkja church.",
     recipeName: "Icelandic Skyr with Berries",
     historySnippet: "The volcanic origins of Iceland and the sagas of the Vikings.",
     curiosity: "Reykjavik is the northernmost capital city in the world.",
-    buyLink: "https://tuosito.com/reykjavik",
-    monumentImage: "/assets/monuments/reykjavik-hallgrimskirkja.png",
-    kitchenImage: "/assets/kitchen/reykjavik-skyr.png"
+    buyLink: "https://tuosito.com/reykjavik"
   },
   {
     id: 19,
@@ -338,14 +299,12 @@ export const VOLUMES: Volume[] = [
     city: "Istanbul",
     country: "Turkey",
     coordinates: [28.9784, 41.0082],
-    cover: "/assets/covers/vol-19-istanbul.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.19%20Istanbul.jpg",
     description: "Visit the Hagia Sophia and the Grand Bazaar.",
     recipeName: "Turkish Baklava",
     historySnippet: "The Byzantine and Ottoman Empires and the bridge between Europe and Asia.",
     curiosity: "Istanbul is the only city in the world that straddles two continents.",
-    buyLink: "https://tuosito.com/istanbul",
-    monumentImage: "/assets/monuments/istanbul-hagia-sophia.png",
-    kitchenImage: "/assets/kitchen/istanbul-baklava.png"
+    buyLink: "https://tuosito.com/istanbul"
   },
   {
     id: 20,
@@ -353,14 +312,12 @@ export const VOLUMES: Volume[] = [
     city: "Saint Petersburg",
     country: "Russia",
     coordinates: [30.3351, 59.9343],
-    cover: "/assets/covers/vol-20-saint-petersburg.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.20%20Saint%20Petersburg.jpg",
     description: "Explore the Hermitage Museum and the Peter and Paul Fortress.",
     recipeName: "Russian Blini",
     historySnippet: "The reign of the Tsars and the 'White Nights' of summer.",
     curiosity: "The Hermitage Museum is so large that it would take years to see every artwork.",
-    buyLink: "https://tuosito.com/saint-petersburg",
-    monumentImage: "/assets/monuments/saint-petersburg-hermitage.png",
-    kitchenImage: "/assets/kitchen/saint-petersburg-blini.png"
+    buyLink: "https://tuosito.com/saint-petersburg"
   },
   {
     id: 21,
@@ -368,14 +325,12 @@ export const VOLUMES: Volume[] = [
     city: "New York",
     country: "USA",
     coordinates: [-74.0060, 40.7128],
-    cover: "/assets/covers/vol-21-new-york.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.21%20New%20York.jpg",
     description: "The city that never sleeps, from Central Park to Times Square.",
     recipeName: "New York Cheesecake",
     historySnippet: "The arrival of immigrants at Ellis Island and the birth of the first skyscrapers.",
     curiosity: "Central Park is larger than some small countries in the world!",
-    buyLink: "https://tuosito.com/new-york",
-    monumentImage: "/assets/monuments/new-york-statue-of-liberty.png",
-    kitchenImage: "/assets/kitchen/new-york-cheesecake.png"
+    buyLink: "https://tuosito.com/new-york"
   },
   {
     id: 22,
@@ -383,14 +338,12 @@ export const VOLUMES: Volume[] = [
     city: "Toronto",
     country: "Canada",
     coordinates: [-79.3832, 43.6532],
-    cover: "/assets/covers/vol-22-toronto.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.22%20Toronto.jpg",
     description: "Climb the CN Tower and explore the Distillery District.",
     recipeName: "Poutine",
     historySnippet: "The multicultural history of Canada's largest city.",
     curiosity: "Toronto has the world's largest underground shopping mall, PATH.",
-    buyLink: "https://tuosito.com/toronto",
-    monumentImage: "/assets/monuments/toronto-cn-tower.png",
-    kitchenImage: "/assets/kitchen/toronto-poutine.png"
+    buyLink: "https://tuosito.com/toronto"
   },
   {
     id: 23,
@@ -398,14 +351,12 @@ export const VOLUMES: Volume[] = [
     city: "Chicago",
     country: "USA",
     coordinates: [-87.6298, 41.8781],
-    cover: "/assets/covers/vol-23-chicago.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.23%20Chicago.jpg",
     description: "See the 'Bean' in Millennium Park and visit the Navy Pier.",
     recipeName: "Deep Dish Pizza",
     historySnippet: "The Great Chicago Fire and the rise of modern architecture.",
     curiosity: "The first skyscraper in the world was built in Chicago in 1885.",
-    buyLink: "https://tuosito.com/chicago",
-    monumentImage: "/assets/monuments/chicago-millennium-park.png",
-    kitchenImage: "/assets/kitchen/chicago-deep-dish-pizza.png"
+    buyLink: "https://tuosito.com/chicago"
   },
   {
     id: 24,
@@ -413,14 +364,12 @@ export const VOLUMES: Volume[] = [
     city: "Rio de Janeiro",
     country: "Brazil",
     coordinates: [-43.1729, -22.9068],
-    cover: "/assets/covers/vol-24-rio-de-janeiro.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.24%20Rio%20de%20Janeiro%20(1).jpg",
     description: "Visit Christ the Redeemer and relax on Copacabana beach.",
     recipeName: "Pão de Queijo",
     historySnippet: "The history of the Carnival and the Portuguese influence.",
     curiosity: "The name 'Rio de Janeiro' means 'River of January'.",
-    buyLink: "https://tuosito.com/rio-de-janeiro",
-    monumentImage: "/assets/monuments/rio-christ-the-redeemer.png",
-    kitchenImage: "/assets/kitchen/rio-pao-de-queijo.png"
+    buyLink: "https://tuosito.com/rio-de-janeiro"
   },
   {
     id: 25,
@@ -428,14 +377,12 @@ export const VOLUMES: Volume[] = [
     city: "Mexico City",
     country: "Mexico",
     coordinates: [-99.1332, 19.4326],
-    cover: "/assets/covers/vol-25-mexico-city.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.25%20Mexico%20City.jpg",
     description: "Explore the ancient Aztec ruins and the colorful Xochimilco canals.",
     recipeName: "Tacos al Pastor",
     historySnippet: "The Aztec Empire and the colonial history of the Zócalo.",
     curiosity: "Mexico City is built on the ruins of the Aztec capital, Tenochtitlan.",
-    buyLink: "https://tuosito.com/mexico-city",
-    monumentImage: "/assets/monuments/mexico-city-zocalo.png",
-    kitchenImage: "/assets/kitchen/mexico-city-tacos-al-pastor.png"
+    buyLink: "https://tuosito.com/mexico-city"
   },
   {
     id: 26,
@@ -443,14 +390,12 @@ export const VOLUMES: Volume[] = [
     city: "Patagonia",
     country: "Argentina/Chile",
     coordinates: [-71.3082, -41.1335],
-    cover: "/assets/covers/vol-26-patagonia.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.26%20Patagonia.jpg",
     description: "See the Perito Moreno Glacier and the peaks of Torres del Paine.",
     recipeName: "Argentine Empanadas",
     historySnippet: "The explorers of the southern tip of the world and the unique wildlife.",
     curiosity: "Patagonia is home to some of the largest dinosaur fossils ever found.",
-    buyLink: "https://tuosito.com/patagonia",
-    monumentImage: "/assets/monuments/patagonia-glacier.png",
-    kitchenImage: "/assets/kitchen/patagonia-empanadas.png"
+    buyLink: "https://tuosito.com/patagonia"
   },
   {
     id: 27,
@@ -458,14 +403,12 @@ export const VOLUMES: Volume[] = [
     city: "Machu Picchu",
     country: "Peru",
     coordinates: [-72.5450, -13.1631],
-    cover: "/assets/covers/vol-27-machu-picchu.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.27%20Machu%20Picchu.jpg",
     description: "Hike the Inca Trail and discover the secrets of the Andes.",
     recipeName: "Peruvian Ceviche",
     historySnippet: "The rise and fall of the Inca Empire and the rediscovery of the city.",
     curiosity: "Machu Picchu was built without the use of wheels or iron tools.",
-    buyLink: "https://tuosito.com/machu-picchu",
-    monumentImage: "/assets/monuments/machu-picchu-ruins.png",
-    kitchenImage: "/assets/kitchen/machu-picchu-ceviche.png"
+    buyLink: "https://tuosito.com/machu-picchu"
   },
   {
     id: 28,
@@ -473,14 +416,12 @@ export const VOLUMES: Volume[] = [
     city: "Miami",
     country: "USA",
     coordinates: [-80.1918, 25.7617],
-    cover: "/assets/covers/vol-28-miami.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.28%20Miami.jpg",
     description: "Enjoy the Art Deco district and the Everglades National Park.",
     recipeName: "Key Lime Pie",
     historySnippet: "The development of Florida and the Cuban influence in Little Havana.",
     curiosity: "Miami is the only major U.S. city founded by a woman, Julia Tuttle.",
-    buyLink: "https://tuosito.com/miami",
-    monumentImage: "/assets/monuments/miami-art-deco.png",
-    kitchenImage: "/assets/kitchen/miami-key-lime-pie.png"
+    buyLink: "https://tuosito.com/miami"
   },
   {
     id: 29,
@@ -488,14 +429,12 @@ export const VOLUMES: Volume[] = [
     city: "Vancouver",
     country: "Canada",
     coordinates: [-123.1207, 49.2827],
-    cover: "/assets/covers/vol-29-vancouver.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.29%20Vancouver.jpg",
     description: "Walk across the Capilano Suspension Bridge and explore Stanley Park.",
     recipeName: "Nanaimo Bars",
     historySnippet: "The history of the First Nations and the Pacific gateway.",
     curiosity: "Vancouver is often called 'Hollywood North' because so many movies are filmed there.",
-    buyLink: "https://tuosito.com/vancouver",
-    monumentImage: "/assets/monuments/vancouver-stanley-park.png",
-    kitchenImage: "/assets/kitchen/vancouver-nanaimo-bars.png"
+    buyLink: "https://tuosito.com/vancouver"
   },
   {
     id: 30,
@@ -503,14 +442,12 @@ export const VOLUMES: Volume[] = [
     city: "San Francisco",
     country: "USA",
     coordinates: [-122.4194, 37.7749],
-    cover: "/assets/covers/vol-30-san-francisco.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.30%20San%20Francisco.jpg",
     description: "Cross the Golden Gate Bridge and ride the historic cable cars.",
     recipeName: "Sourdough Bread",
     historySnippet: "The Gold Rush and the history of Alcatraz Island.",
     curiosity: "The Golden Gate Bridge was originally supposed to be painted black and yellow stripes!",
-    buyLink: "https://tuosito.com/san-francisco",
-    monumentImage: "/assets/monuments/san-francisco-golden-gate.png",
-    kitchenImage: "/assets/kitchen/san-francisco-sourdough.png"
+    buyLink: "https://tuosito.com/san-francisco"
   },
   {
     id: 31,
@@ -518,14 +455,12 @@ export const VOLUMES: Volume[] = [
     city: "Tokyo",
     country: "Japan",
     coordinates: [139.6917, 35.6895],
-    cover: "/assets/covers/vol-31-tokyo.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.31%20Tokyo.jpg",
     description: "Between bright skyscrapers, ancient temples, and futuristic robots.",
     recipeName: "Fun Onigiri",
     historySnippet: "The Samurai culture and Tokyo's evolution from a small fishing village to a metropolis.",
     curiosity: "In Tokyo, there are vending machines for almost everything, even umbrellas!",
-    buyLink: "https://tuosito.com/tokyo",
-    monumentImage: "/assets/monuments/tokyo-shibuya-crossing.png",
-    kitchenImage: "/assets/kitchen/tokyo-onigiri.png"
+    buyLink: "https://tuosito.com/tokyo"
   },
   {
     id: 32,
@@ -533,14 +468,12 @@ export const VOLUMES: Volume[] = [
     city: "Kyoto",
     country: "Japan",
     coordinates: [135.7681, 35.0116],
-    cover: "/assets/covers/vol-32-kyoto.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.32%20Kyoto.jpg",
     description: "Visit the Golden Pavilion and the Fushimi Inari Shrine.",
     recipeName: "Matcha Green Tea Cookies",
     historySnippet: "The history of the Emperors and the tradition of the Geishas.",
     curiosity: "Kyoto has over 1,600 Buddhist temples and 400 Shinto shrines.",
-    buyLink: "https://tuosito.com/kyoto",
-    monumentImage: "/assets/monuments/kyoto-fushimi-inari.png",
-    kitchenImage: "/assets/kitchen/kyoto-matcha-cookies.png"
+    buyLink: "https://tuosito.com/kyoto"
   },
   {
     id: 33,
@@ -548,14 +481,12 @@ export const VOLUMES: Volume[] = [
     city: "Bali",
     country: "Indonesia",
     coordinates: [115.1889, -8.4095],
-    cover: "/assets/covers/vol-33-bali.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.33%20Bali.jpg",
     description: "Explore the rice terraces and the beautiful beaches of Uluwatu.",
     recipeName: "Nasi Goreng",
     historySnippet: "The unique Balinese culture and the history of the temples.",
     curiosity: "Bali has its own unique calendar and celebrates many colorful festivals.",
-    buyLink: "https://tuosito.com/bali",
-    monumentImage: "/assets/monuments/bali-uluwatu-temple.png",
-    kitchenImage: "/assets/kitchen/bali-nasi-goreng.png"
+    buyLink: "https://tuosito.com/bali"
   },
   {
     id: 34,
@@ -563,14 +494,12 @@ export const VOLUMES: Volume[] = [
     city: "Sydney",
     country: "Australia",
     coordinates: [151.2093, -33.8688],
-    cover: "/assets/covers/vol-34-sydney.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.34%20Sydney.jpg",
     description: "See the Sydney Opera House and climb the Harbour Bridge.",
     recipeName: "Lamingtons",
     historySnippet: "The history of the first settlers and the Aboriginal heritage.",
     curiosity: "The Sydney Opera House was designed by a Danish architect who won a competition.",
-    buyLink: "https://tuosito.com/sydney",
-    monumentImage: "/assets/monuments/sydney-opera-house.png",
-    kitchenImage: "/assets/kitchen/sydney-lamingtons.png"
+    buyLink: "https://tuosito.com/sydney"
   },
   {
     id: 35,
@@ -578,14 +507,12 @@ export const VOLUMES: Volume[] = [
     city: "Auckland",
     country: "New Zealand",
     coordinates: [174.7633, -36.8485],
-    cover: "/assets/covers/vol-35-auckland.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.35%20Auckland.jpg",
     description: "Visit the Sky Tower and explore the volcanic cones.",
     recipeName: "Pavlova",
     historySnippet: "The Maori culture and the history of the Pacific explorers.",
     curiosity: "Auckland is built on a volcanic field with over 50 volcanoes.",
-    buyLink: "https://tuosito.com/auckland",
-    monumentImage: "/assets/monuments/auckland-sky-tower.png",
-    kitchenImage: "/assets/kitchen/auckland-pavlova.png"
+    buyLink: "https://tuosito.com/auckland"
   },
   {
     id: 36,
@@ -593,14 +520,12 @@ export const VOLUMES: Volume[] = [
     city: "Singapore",
     country: "Singapore",
     coordinates: [103.8198, 1.3521],
-    cover: "/assets/covers/vol-36-singapore.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Vol.36%20Singapore%20.jpg",
     description: "See the Supertrees at Gardens by the Bay and the Merlion.",
     recipeName: "Chicken Rice",
     historySnippet: "The history of the trading port and the multicultural society.",
     curiosity: "Singapore is one of the few city-states in the world.",
-    buyLink: "https://tuosito.com/singapore",
-    monumentImage: "/assets/monuments/singapore-gardens-by-the-bay.png",
-    kitchenImage: "/assets/kitchen/singapore-chicken-rice.png"
+    buyLink: "https://tuosito.com/singapore"
   },
   {
     id: 37,
@@ -608,14 +533,12 @@ export const VOLUMES: Volume[] = [
     city: "Seoul",
     country: "South Korea",
     coordinates: [126.9780, 37.5665],
-    cover: "/assets/covers/vol-37-seoul.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.37%20Seoul.jpg",
     description: "Visit the Gyeongbokgung Palace and the N Seoul Tower.",
     recipeName: "Bibimbap",
     historySnippet: "The history of the Joseon Dynasty and the rise of K-pop.",
     curiosity: "Seoul has the world's fastest internet speeds.",
-    buyLink: "https://tuosito.com/seoul",
-    monumentImage: "/assets/monuments/seoul-gyeongbokgung.png",
-    kitchenImage: "/assets/kitchen/seoul-bibimbap.png"
+    buyLink: "https://tuosito.com/seoul"
   },
   {
     id: 38,
@@ -623,14 +546,12 @@ export const VOLUMES: Volume[] = [
     city: "Hong Kong",
     country: "China",
     coordinates: [114.1694, 22.3193],
-    cover: "/assets/covers/vol-38-hong-kong.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.38%20Hong%20Kong.jpg",
     description: "Ride the Star Ferry and take the peak tram for a great view.",
     recipeName: "Dim Sum",
     historySnippet: "The history of the British colony and the return to China.",
     curiosity: "Hong Kong has the most skyscrapers of any city in the world.",
-    buyLink: "https://tuosito.com/hong-kong",
-    monumentImage: "/assets/monuments/hong-kong-victoria-peak.png",
-    kitchenImage: "/assets/kitchen/hong-kong-dim-sum.png"
+    buyLink: "https://tuosito.com/hong-kong"
   },
   {
     id: 39,
@@ -638,14 +559,12 @@ export const VOLUMES: Volume[] = [
     city: "Mumbai",
     country: "India",
     coordinates: [72.8777, 19.0760],
-    cover: "/assets/covers/vol-39-mumbai.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.39%20Mumbai.jpg",
     description: "See the Gateway of India and explore the Elephanta Caves.",
     recipeName: "Vada Pav",
     historySnippet: "The history of Bollywood and the British Raj.",
     curiosity: "Mumbai was originally a collection of seven islands.",
-    buyLink: "https://tuosito.com/mumbai",
-    monumentImage: "/assets/monuments/mumbai-gateway-of-india.png",
-    kitchenImage: "/assets/kitchen/mumbai-vada-pav.png"
+    buyLink: "https://tuosito.com/mumbai"
   },
   {
     id: 40,
@@ -653,14 +572,12 @@ export const VOLUMES: Volume[] = [
     city: "Dubai",
     country: "UAE",
     coordinates: [55.2708, 25.2048],
-    cover: "/assets/covers/vol-40-dubai.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Vol.40%20Dubai%20.jpg",
     description: "Climb the Burj Khalifa and visit the Palm Jumeirah.",
     recipeName: "Luqaimat",
     historySnippet: "The rapid development of the city and the history of pearl diving.",
     curiosity: "The Burj Khalifa is the tallest building in the world.",
-    buyLink: "https://tuosito.com/dubai",
-    monumentImage: "/assets/monuments/dubai-burj-khalifa.png",
-    kitchenImage: "/assets/kitchen/dubai-luqaimat.png"
+    buyLink: "https://tuosito.com/dubai"
   },
   {
     id: 41,
@@ -668,14 +585,12 @@ export const VOLUMES: Volume[] = [
     city: "North Pole",
     country: "Arctic",
     coordinates: [0, 90],
-    cover: "/assets/covers/vol-41-north-pole.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.41%20North%20Pole.jpg",
     description: "Meet the polar bears and see the endless ice.",
     recipeName: "Hot Chocolate with Marshmallows",
     historySnippet: "The explorers who reached the pole and the importance of the Arctic.",
     curiosity: "At the North Pole, every direction you look is South!",
-    buyLink: "https://tuosito.com/north-pole",
-    monumentImage: "/assets/monuments/north-pole-ice.png",
-    kitchenImage: "/assets/kitchen/north-pole-hot-chocolate.png"
+    buyLink: "https://tuosito.com/north-pole"
   },
   {
     id: 42,
@@ -683,14 +598,12 @@ export const VOLUMES: Volume[] = [
     city: "Antarctic",
     country: "Antarctica",
     coordinates: [0, -90],
-    cover: "/assets/covers/vol-42-antarctic.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.42%20Antarctic.jpg",
     description: "See the penguins and the massive icebergs.",
     recipeName: "Pemmican Bars",
     historySnippet: "The race to the South Pole and the scientific research stations.",
     curiosity: "Antarctica is the coldest, driest, and windiest continent on Earth.",
-    buyLink: "https://tuosito.com/antarctic",
-    monumentImage: "/assets/monuments/antarctic-icebergs.png",
-    kitchenImage: "/assets/kitchen/antarctic-pemmican.png"
+    buyLink: "https://tuosito.com/antarctic"
   },
   {
     id: 43,
@@ -698,14 +611,12 @@ export const VOLUMES: Volume[] = [
     city: "Sahara",
     country: "Africa",
     coordinates: [9.4001, 23.4162],
-    cover: "/assets/covers/vol-43-sahara.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.43%20Sahara.jpg",
     description: "Ride a camel across the sand dunes and see the oases.",
     recipeName: "Couscous with Vegetables",
     historySnippet: "The history of the trans-Saharan trade and the Tuareg people.",
     curiosity: "The Sahara is the largest hot desert in the world.",
-    buyLink: "https://tuosito.com/sahara",
-    monumentImage: "/assets/monuments/sahara-dunes.png",
-    kitchenImage: "/assets/kitchen/sahara-couscous.png"
+    buyLink: "https://tuosito.com/sahara"
   },
   {
     id: 44,
@@ -713,14 +624,12 @@ export const VOLUMES: Volume[] = [
     city: "Outback",
     country: "Australia",
     coordinates: [133.8807, -23.6980],
-    cover: "/assets/covers/vol-44-outback.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.44%20Outback.jpg",
     description: "See Uluru and the unique wildlife of the desert.",
     recipeName: "Damper Bread",
     historySnippet: "The Aboriginal culture and the history of the explorers.",
     curiosity: "The Australian Outback covers most of the continent.",
-    buyLink: "https://tuosito.com/outback",
-    monumentImage: "/assets/monuments/outback-uluru.png",
-    kitchenImage: "/assets/kitchen/outback-damper-bread.png"
+    buyLink: "https://tuosito.com/outback"
   },
   {
     id: 45,
@@ -728,14 +637,12 @@ export const VOLUMES: Volume[] = [
     city: "Amazon",
     country: "South America",
     coordinates: [-60.0250, -3.1190],
-    cover: "/assets/covers/vol-45-amazon.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.45%20The%20Amazon%20Rainforest.jpg",
     description: "Explore the jungle and see the colorful macaws.",
     recipeName: "Açaí Bowl",
     historySnippet: "The importance of the rainforest and the indigenous tribes.",
     curiosity: "The Amazon is home to one in ten known species on Earth.",
-    buyLink: "https://tuosito.com/amazon",
-    monumentImage: "/assets/monuments/amazon-jungle.png",
-    kitchenImage: "/assets/kitchen/amazon-acai-bowl.png"
+    buyLink: "https://tuosito.com/amazon"
   },
   {
     id: 46,
@@ -743,14 +650,12 @@ export const VOLUMES: Volume[] = [
     city: "Hawaii",
     country: "USA",
     coordinates: [-155.5828, 19.8968],
-    cover: "/assets/covers/vol-46-hawaii.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.46%20Hawaii.jpg",
     description: "See the volcanoes and learn to surf on the big waves.",
     recipeName: "Poke Bowl",
     historySnippet: "The history of the Hawaiian Kingdom and the volcanic formation.",
     curiosity: "Hawaii is the only U.S. state that grows coffee.",
-    buyLink: "https://tuosito.com/hawaii",
-    monumentImage: "/assets/monuments/hawaii-volcano.png",
-    kitchenImage: "/assets/kitchen/hawaii-poke-bowl.png"
+    buyLink: "https://tuosito.com/hawaii"
   },
   {
     id: 47,
@@ -758,14 +663,12 @@ export const VOLUMES: Volume[] = [
     city: "Madagascar",
     country: "Madagascar",
     coordinates: [46.8691, -18.7669],
-    cover: "/assets/covers/vol-47-madagascar.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.47%20Madagascar.jpg",
     description: "See the lemurs and the giant baobab trees.",
     recipeName: "Romazava",
     historySnippet: "The unique evolution of the island and the history of the pirates.",
     curiosity: "Over 90% of Madagascar's wildlife is found nowhere else on Earth.",
-    buyLink: "https://tuosito.com/madagascar",
-    monumentImage: "/assets/monuments/madagascar-baobabs.png",
-    kitchenImage: "/assets/kitchen/madagascar-romazava.png"
+    buyLink: "https://tuosito.com/madagascar"
   },
   {
     id: 48,
@@ -773,14 +676,12 @@ export const VOLUMES: Volume[] = [
     city: "Galápagos",
     country: "Ecuador",
     coordinates: [-90.9656, -0.9538],
-    cover: "/assets/covers/vol-48-galapagos.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.48%20Gal%C3%A1pagos.jpg",
     description: "Meet the giant tortoises and the marine iguanas.",
     recipeName: "Encebollado",
     historySnippet: "Charles Darwin's visit and the theory of evolution.",
     curiosity: "The Galápagos Islands are located at the confluence of three ocean currents.",
-    buyLink: "https://tuosito.com/galapagos",
-    monumentImage: "/assets/monuments/galapagos-tortoise.png",
-    kitchenImage: "/assets/kitchen/galapagos-encebollado.png"
+    buyLink: "https://tuosito.com/galapagos"
   },
   {
     id: 49,
@@ -788,14 +689,12 @@ export const VOLUMES: Volume[] = [
     city: "Easter Island",
     country: "Chile",
     coordinates: [-109.3497, -27.1127],
-    cover: "/assets/covers/vol-49-easter-island.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.49%20Easter%20Island.jpg",
     description: "See the giant Moai statues and learn about the Rapa Nui culture.",
     recipeName: "Umu Rapa Nui",
     historySnippet: "The mystery of how the statues were moved and the history of the island.",
     curiosity: "There are nearly 900 Moai statues on Easter Island.",
-    buyLink: "https://tuosito.com/easter-island",
-    monumentImage: "/assets/monuments/easter-island-moai.png",
-    kitchenImage: "/assets/kitchen/easter-island-umu.png"
+    buyLink: "https://tuosito.com/easter-island"
   },
   {
     id: 50,
@@ -803,13 +702,11 @@ export const VOLUMES: Volume[] = [
     city: "Santorini",
     country: "Greece",
     coordinates: [25.4315, 36.3932],
-    cover: "/assets/covers/vol-50-santorini.png",
+    cover: "https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.50%20Santorini.jpg",
     description: "See the white houses with blue domes and the beautiful sunset.",
     recipeName: "Tomato Fritters",
     historySnippet: "The volcanic eruption that shaped the island and the legend of Atlantis.",
     curiosity: "Santorini's soil is volcanic, which makes it great for growing unique grapes.",
-    buyLink: "https://tuosito.com/santorini",
-    monumentImage: "/assets/monuments/santorini-blue-domes.png",
-    kitchenImage: "/assets/kitchen/santorini-tomato-fritters.png"
-  },
+    buyLink: "https://tuosito.com/santorini"
+  }
 ];

@@ -204,13 +204,10 @@ export default function VolumeDetail() {
                 {/* Background Illustration of the Monument */}
                 <div className="absolute inset-0 z-0">
                   <img 
-                    src={volume.monumentImage || `/assets/monuments/default.png`} 
+                    src={cityInfo?.monument.image || `/assets/monuments/${cityId}-monument.png`} 
                     alt={`${volume.city} Monument`} 
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/assets/monuments/default.png';
-                    }}
                   />
                   <div className="absolute inset-0 bg-slate-900/70" />
                 </div>
@@ -218,7 +215,7 @@ export default function VolumeDetail() {
                 <div className="relative z-10 flex flex-col md:row items-center gap-8">
                   <div className="shrink-0 flex flex-col items-center">
                     <img 
-                      src="/assets/characters/professor-owl.png"
+                      src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/ab827ef4712ead1587aa0e2a36f2576d70a87f48/icona-removebg-preview.png"
                       alt="Professor Owl Icon"
                       className="w-[90px] h-auto mb-4"
                       referrerPolicy="no-referrer"
@@ -243,13 +240,10 @@ export default function VolumeDetail() {
                   className="w-full aspect-video rounded-2xl overflow-hidden mb-6 group/recipe relative"
                 >
                   <img 
-                    src={volume.kitchenImage || `/assets/kitchen/default.png`} 
+                    src={cityInfo?.dish.image || `/assets/kitchen/${cityId}-dish.png`} 
                     alt={volume.recipeName} 
                     className="w-full h-full object-cover group-hover/recipe:scale-110 transition-transform duration-500" 
                     referrerPolicy="no-referrer"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).src = '/assets/kitchen/default.png';
-                    }}
                   />
                   <div className="absolute inset-0 bg-blue-900/0 group-hover/recipe:bg-blue-900/20 transition-colors flex items-center justify-center">
                     <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl font-bold text-blue-600 opacity-0 group-hover/recipe:opacity-100 transition-opacity transform translate-y-2 group-hover/recipe:translate-y-0">
@@ -304,13 +298,10 @@ export default function VolumeDetail() {
               {/* Header Image */}
               <div className="relative h-48 sm:h-64 shrink-0">
                 <img 
-                  src={volume.kitchenImage || `/assets/kitchen/default.png`} 
+                  src={cityInfo.dish.image} 
                   alt={cityInfo.dish.name}
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = '/assets/kitchen/default.png';
-                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-8">
