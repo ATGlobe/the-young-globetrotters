@@ -1,0 +1,7 @@
+{
+  "name": "The Young Globetrotters",
+  "description": "E-commerce site for 'The Young Globetrotters' educational ebook series for children, featuring interactive maps and educational activities.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

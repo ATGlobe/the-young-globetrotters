@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@theme {
+  --animate-spin-slow: spin 8s linear infinite;
+}
+
+.ebook-cover {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.18);
+  transition: transform 0.3s ease;
+}
+
+.ebook-cover:hover {
+  transform: scale(1.05);
+}
+
+.character-img {
+  width: 100%;
+  max-width: 300px;
+  object-fit: contain;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 650px;
+  border-radius: 30px;
+  object-fit: contain;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #e2e8f0;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #cbd5e1;
+}
