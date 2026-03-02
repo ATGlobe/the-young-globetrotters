@@ -7,11 +7,11 @@ export default function Learning() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="relative py-24 bg-emerald-600 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white rounded-full translate-x-1/2 -translate-y-1/2 blur-3xl" />
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-white rounded-full -translate-x-1/2 translate-y-1/2 blur-3xl" />
-        </div>
+      <section 
+        className="relative py-24 overflow-hidden bg-center bg-cover"
+        style={{ backgroundImage: 'url(https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/aula.jpg)' }}
+      >
+        <div className="absolute inset-0 bg-white/60 pointer-events-none" />
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -19,20 +19,20 @@ export default function Learning() {
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/20 backdrop-blur-sm text-sm font-bold text-white mb-6">
+              <span className="inline-flex items-center px-4 py-1.5 rounded-full bg-emerald-100 text-sm font-bold text-emerald-700 mb-6">
                 <Star className="w-4 h-4 mr-2 fill-current" />
                 Bonus Educational Content
               </span>
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-slate-900 mb-6 leading-tight">
                 Learn and Play with Every Adventure
               </h1>
-              <p className="text-xl text-emerald-100 mb-10 leading-relaxed">
+              <p className="text-xl text-slate-600 mb-10 leading-relaxed">
                 Our "Learning Activities" edition includes printable packs designed to turn every ebook into a complete educational experience.
               </p>
               <div className="flex flex-wrap gap-4">
                 <Link 
-                  to="/shop" 
-                  className="bg-white text-emerald-600 px-8 py-4 rounded-2xl font-bold shadow-xl hover:bg-emerald-50 transition-all"
+                  to="/ebooks" 
+                  className="bg-emerald-600 text-white px-8 py-4 rounded-2xl font-bold shadow-xl hover:bg-emerald-700 transition-all"
                 >
                   Explore Volumes
                 </Link>
@@ -117,7 +117,7 @@ export default function Learning() {
             Choose the "Ebook + Activities" version of any volume to get the full educational pack.
           </p>
           <Link 
-            to="/shop" 
+            to="/ebooks" 
             className="inline-flex items-center px-10 py-5 bg-emerald-500 text-white font-bold rounded-2xl hover:bg-emerald-600 transition-all shadow-xl shadow-emerald-500/20"
           >
             Go to Shop

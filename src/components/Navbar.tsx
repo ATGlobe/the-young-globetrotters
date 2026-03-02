@@ -18,16 +18,6 @@ export default function Navbar() {
   const { user, isAuthenticated } = useAuthStore();
   const location = useLocation();
 
-  const navLinks = [
-    { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
-    { name: 'Characters', href: '/characters' },
-    { name: 'Ebooks', href: '/shop' },
-    { name: 'Shop', href: '/merch' },
-    { name: 'Activities', href: '/activities' },
-    { name: 'Map', href: '/map' },
-  ];
-
   return (
     <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-blue-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,19 +28,24 @@ export default function Navbar() {
                 src={LOGO_URL} 
                 alt="Axel & Tino Logo" 
                 className="w-12 h-12 object-contain" 
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/assets/logo.png';
-                }}
               />
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-emerald-500 bg-clip-text text-transparent font-sans tracking-tight">
-                Young Globetrotters
+              <span className="text-2xl font-bold text-slate-900 font-sans tracking-tight">
+                Axel & Tino
               </span>
             </Link>
           </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
-            {navLinks.map((link) => (
+            {[
+              { name: 'Home', href: '/' },
+              { name: 'About', href: '/about' },
+              { name: 'Ebooks', href: '/ebooks' },
+              { name: 'Shop', href: '/shop' },
+              { name: 'Characters', href: '/characters' },
+              { name: 'Map', href: '/map' },
+              { name: 'Activities', href: '/activities' },
+            ].map((link) => (
               <Link
                 key={link.name}
                 to={link.href}
@@ -103,7 +98,15 @@ export default function Navbar() {
             className="md:hidden bg-white border-b border-blue-100 overflow-hidden"
           >
             <div className="px-4 pt-2 pb-6 space-y-1">
-              {navLinks.map((link) => (
+              {[
+                { name: 'Home', href: '/' },
+                { name: 'About', href: '/about' },
+                { name: 'Ebooks', href: '/ebooks' },
+                { name: 'Shop', href: '/shop' },
+                { name: 'Characters', href: '/characters' },
+                { name: 'Map', href: '/map' },
+                { name: 'Activities', href: '/activities' },
+              ].map((link) => (
                 <Link
                   key={link.name}
                   to={link.href}

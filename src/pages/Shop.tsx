@@ -2,7 +2,8 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { VOLUMES } from '../constants';
 import VolumeCard from '../components/VolumeCard';
-import { Search, Filter, Book, GraduationCap } from 'lucide-react';
+import BundleCard from '../components/BundleCard';
+import { Search, Filter } from 'lucide-react';
 
 export default function Shop() {
   const [search, setSearch] = React.useState('');
@@ -20,6 +21,22 @@ export default function Shop() {
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-slate-900 mb-4">All Volumes</h1>
           <p className="text-slate-600">Explore our collection of 50 adventures around the world.</p>
+        </div>
+
+        {/* Bundle Section */}
+        <div className="mb-20">
+          <h2 className="text-2xl font-bold text-slate-900 mb-8">Start with the First 3 Adventures</h2>
+          <BundleCard 
+            title="The European Starter Collection"
+            description="Join Axel & Tino on their first three legendary journeys through Rome, Paris, and London. The perfect introduction to the Young Globetrotters universe."
+            covers={[
+              VOLUMES[0].cover,
+              VOLUMES[1].cover,
+              VOLUMES[2].cover
+            ]}
+            price="$24.99"
+            link="/volume/1"
+          />
         </div>
 
         {/* Filters */}
@@ -53,48 +70,6 @@ export default function Shop() {
           )}
         </div>
 
-        {/* Info Categories */}
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-blue-600 rounded-[40px] p-10 text-white relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="bg-white/20 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                <Book className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Digital Ebooks</h3>
-              <p className="text-blue-100 mb-6 leading-relaxed">
-                Perfect for reading on tablets, smartphones, or ereaders. Formats available: PDF, DOCX, MOBI, EPUB.
-              </p>
-              <ul className="space-y-3 text-sm text-blue-50">
-                <li className="flex items-center">• Immediate download</li>
-                <li className="flex items-center">• Compatible with all devices</li>
-                <li className="flex items-center">• High-quality illustrations</li>
-              </ul>
-            </div>
-            <div className="absolute -bottom-10 -right-10 opacity-10">
-              <Book className="w-64 h-64" />
-            </div>
-          </div>
-
-          <div className="bg-emerald-600 rounded-[40px] p-10 text-white relative overflow-hidden">
-            <div className="relative z-10">
-              <div className="bg-white/20 w-12 h-12 rounded-xl flex items-center justify-center mb-6">
-                <GraduationCap className="w-6 h-6" />
-              </div>
-              <h3 className="text-2xl font-bold mb-4">Ebook + Learning Activities</h3>
-              <p className="text-emerald-100 mb-6 leading-relaxed">
-                The complete learning package. Includes the ebook and a set of printable activities.
-              </p>
-              <ul className="space-y-3 text-sm text-emerald-50">
-                <li className="flex items-center">• Printable PDF with activities</li>
-                <li className="flex items-center">• Original coloring pages</li>
-                <li className="flex items-center">• Spaces for writing and reflection</li>
-              </ul>
-            </div>
-            <div className="absolute -bottom-10 -right-10 opacity-10">
-              <GraduationCap className="w-64 h-64" />
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

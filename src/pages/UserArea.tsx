@@ -73,11 +73,11 @@ export default function UserArea() {
                 Ready for your next adventure? Explore our collection of 50 cities and discover the world with Axel & Tino.
               </p>
               <div className="flex flex-col sm:flex-row justify-center gap-4">
-                <Link to="/shop" className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all">
+                <Link to="/ebooks" className="inline-flex items-center px-8 py-4 bg-blue-600 text-white font-bold rounded-2xl hover:bg-blue-700 transition-all">
                   Browse Ebooks
                 </Link>
-                <Link to="/merch" className="inline-flex items-center px-8 py-4 bg-white text-slate-700 font-bold rounded-2xl border border-slate-200 hover:bg-slate-50 transition-all">
-                  Visit Merch Store
+                <Link to="/shop" className="inline-flex items-center px-8 py-4 bg-white text-slate-700 font-bold rounded-2xl border border-slate-200 hover:bg-slate-50 transition-all">
+                  Visit Merch Shop
                 </Link>
               </div>
             </div>

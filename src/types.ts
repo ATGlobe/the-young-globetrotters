@@ -25,8 +25,8 @@ export type Volume = {
   buyLink: string;
   isLatest?: boolean;
   isNew?: boolean;
-  monumentImage: string;
-  kitchenImage: string;
+  monumentImage?: string;
+  kitchenImage?: string;
 };
 
 export type CartItem = {

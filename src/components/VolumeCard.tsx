@@ -13,10 +13,8 @@ export default function VolumeCard({ volume }: VolumeCardProps) {
       whileHover={{ y: -8 }}
       className="group bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl hover:shadow-blue-100/50 transition-all duration-300"
     >
-      <a 
-        href={volume.buyLink} 
-        target="_blank" 
-        rel="noopener noreferrer" 
+      <Link 
+        to={volume.id === 1 ? "/landing/volume-1" : `/volume/${volume.id}`}
         className="block relative aspect-[3/4] overflow-hidden"
       >
         <img
@@ -41,10 +39,10 @@ export default function VolumeCard({ volume }: VolumeCardProps) {
             </span>
           </div>
         )}
-      </a>
+      </Link>
 
       <div className="p-6">
-        <Link to={`/volume/${volume.id}`} className="block group/title">
+        <Link to={volume.id === 1 ? "/landing/volume-1" : `/volume/${volume.id}`} className="block group/title">
           <h3 className="text-lg font-bold text-slate-900 mb-2 group-hover/title:text-blue-600 transition-colors">
             {volume.title}
           </h3>
@@ -65,7 +63,7 @@ export default function VolumeCard({ volume }: VolumeCardProps) {
           </a>
           
           <Link
-            to={`/volume/${volume.id}`}
+            to={volume.id === 1 ? "/landing/volume-1" : `/volume/${volume.id}`}
             className="w-full text-center text-[#FE8900] text-sm font-semibold hover:text-[#FE5500] transition-all duration-200 group/adventure flex items-center justify-center gap-1"
           >
             ✨ Scopri l’avventura 

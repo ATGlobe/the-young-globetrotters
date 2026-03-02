@@ -11,7 +11,10 @@ import {
   ArrowLeft,
   FileText,
   Compass,
-  X
+  X,
+  Download,
+  ShieldCheck,
+  Monitor
 } from 'lucide-react';
 import { quizApi, progressApi } from '../lib/api';
 import { useAuthStore } from '../store/authStore';
@@ -19,6 +22,7 @@ import AuthModal from '../components/AuthModal';
 import QuizPlayer from '../components/QuizPlayer';
 import { AnimatePresence } from 'motion/react';
 import { citiesData } from '../data/citiesData';
+import InfoCard from '../components/InfoCard';
 
 export default function VolumeDetail() {
   const { id } = useParams();
@@ -35,6 +39,12 @@ export default function VolumeDetail() {
 
   const cityId = volume?.city.toLowerCase().replace(/\s+/g, '-');
   const cityInfo = cityId ? citiesData[cityId] : null;
+
+  React.useEffect(() => {
+    if (volume) {
+      document.title = `${volume.city} for Kids – Educational Travel Ebook | Axel & Tino`;
+    }
+  }, [volume]);
 
   React.useEffect(() => {
     if (isAuthenticated && volume) {
@@ -146,6 +156,22 @@ export default function VolumeDetail() {
                 <ShoppingCart className="w-6 h-6 mr-3" />
                 Buy Now
               </a>
+
+              {/* Micro-conversion Elements */}
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-slate-400">
+                  <Download className="w-4 h-4 text-emerald-500" />
+                  Instant Download
+                </div>
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-slate-400">
+                  <ShieldCheck className="w-4 h-4 text-emerald-500" />
+                  Secure Checkout
+                </div>
+                <div className="flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-slate-400">
+                  <Monitor className="w-4 h-4 text-emerald-500" />
+                  Tablet & Desktop
+                </div>
+              </div>
             </div>
 
             {/* Features List */}
@@ -200,63 +226,30 @@ export default function VolumeDetail() {
                 <p className="mt-4">Together with Axel and Tino, children will explore the most famous monuments of {volume.city}, learning local history in a fun and interactive way. History Owl will provide cultural insights, while the Chef will reveal the secrets of traditional cuisine.</p>
               </div>
               
-              <div className="bg-slate-900 rounded-[40px] p-10 text-white relative overflow-hidden min-h-[200px]">
-                {/* Background Illustration of the Monument */}
-                <div className="absolute inset-0 z-0">
-                  <img 
-                    src={cityInfo?.monument.image || `/assets/monuments/${cityId}-monument.png`} 
-                    alt={`${volume.city} Monument`} 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-slate-900/70" />
-                </div>
-
-                <div className="relative z-10 flex flex-col md:row items-center gap-8">
-                  <div className="shrink-0 flex flex-col items-center">
-                    <img 
-                      src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/ab827ef4712ead1587aa0e2a36f2576d70a87f48/icona-removebg-preview.png"
-                      alt="Professor Owl Icon"
-                      className="w-[90px] h-auto mb-4"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold mb-2">Professor Owl Corner</h3>
-                    <p className="text-slate-200 leading-relaxed italic">"{volume.historySnippet}"</p>
-                  </div>
-                </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <InfoCard 
+                  title="Professor Owl Corner"
+                  image="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png"
+                  backgroundColor="bg-slate-900"
+                  isDark={true}
+                  content={volume.historySnippet}
+                  buttonText="Learn More"
+                  onButtonClick={() => {
+                    // Optional: scroll to a specific section or open a modal
+                  }}
+                />
+                <InfoCard 
+                  title="In the Kitchen with Chef"
+                  image="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Progetto_senza_titolo__1_-removebg-preview.png"
+                  backgroundColor="bg-blue-50"
+                  content={`Learn how to prepare ${volume.recipeName} with a simplified recipe suitable for children and their parents!`}
+                  buttonText="View Recipe"
+                  onButtonClick={() => setShowRecipeModal(true)}
+                />
               </div>
             </div>
             
             <div className="space-y-8">
-              <div className="bg-blue-50 rounded-[40px] p-8">
-                <h3 className="text-xl font-bold text-blue-900 mb-6 flex items-center">
-                  <Utensils className="w-6 h-6 mr-2" />
-                  In the kitchen with Chef
-                </h3>
-                <button 
-                  onClick={() => setShowRecipeModal(true)}
-                  className="w-full aspect-video rounded-2xl overflow-hidden mb-6 group/recipe relative"
-                >
-                  <img 
-                    src={cityInfo?.dish.image || `/assets/kitchen/${cityId}-dish.png`} 
-                    alt={volume.recipeName} 
-                    className="w-full h-full object-cover group-hover/recipe:scale-110 transition-transform duration-500" 
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-blue-900/0 group-hover/recipe:bg-blue-900/20 transition-colors flex items-center justify-center">
-                    <div className="bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl font-bold text-blue-600 opacity-0 group-hover/recipe:opacity-100 transition-opacity transform translate-y-2 group-hover/recipe:translate-y-0">
-                      View Recipe
-                    </div>
-                  </div>
-                </button>
-                <h4 className="font-bold text-blue-800 mb-2">{volume.recipeName}</h4>
-                <p className="text-sm text-blue-700 leading-relaxed">
-                  Learn how to prepare this typical dish with a simplified recipe suitable for children and their parents!
-                </p>
-              </div>
-
               <div className="bg-yellow-50 rounded-[40px] p-8">
                 <h3 className="text-xl font-bold text-yellow-900 mb-4 flex items-center">
                   <Lightbulb className="w-6 h-6 mr-2" />
