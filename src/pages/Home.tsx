@@ -13,7 +13,8 @@ import {
   GraduationCap,
   Sparkles,
   Landmark,
-  Heart
+  Heart,
+  ShoppingBag
 } from 'lucide-react';
 import { VOLUMES, LOGO_URL } from '../constants';
 import VolumeCard from '../components/VolumeCard';
@@ -187,7 +188,72 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. The Educational Ecosystem */}
+      {/* 4. Shop Promotion Section */}
+      <section className="py-24 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative bg-blue-600 rounded-[64px] p-12 lg:p-24 text-white overflow-hidden shadow-2xl shadow-blue-100"
+          >
+            {/* Background Pattern */}
+            <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
+              <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-400 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
+            </div>
+
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-8 text-center lg:text-left">
+                <div className="inline-flex items-center bg-white/20 backdrop-blur-md px-6 py-2 rounded-full text-white font-black text-sm uppercase tracking-widest">
+                  <Sparkles className="w-4 h-4 mr-2 text-yellow-300" />
+                  Official Merchandise
+                </div>
+                <h2 className="text-4xl lg:text-6xl font-black leading-tight tracking-tight">
+                  Bring the Adventure <br />
+                  <span className="text-yellow-300">Home</span>
+                </h2>
+                <p className="text-xl text-blue-50 font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
+                  From Axel's pilot caps to Chef's recipe mugs, explore our exclusive collection of gear for young explorers.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
+                  <Link
+                    to="/shop"
+                    className="bg-white text-blue-600 px-10 py-5 rounded-2xl font-black text-lg flex items-center gap-3 shadow-xl hover:bg-blue-50 transition-all"
+                  >
+                    <ShoppingBag className="w-6 h-6" />
+                    Visit the Shop
+                  </Link>
+                  <div className="flex items-center gap-2 text-blue-100 font-bold">
+                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
+                    Worldwide Shipping
+                  </div>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="grid grid-cols-2 gap-4">
+                  <motion.div
+                    animate={{ y: [0, -20, 0] }}
+                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                    className="bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/20 rotate-3"
+                  >
+                    <img src="https://picsum.photos/seed/mug/400/400" alt="Mug" className="rounded-2xl shadow-lg" referrerPolicy="no-referrer" />
+                  </motion.div>
+                  <motion.div
+                    animate={{ y: [0, 20, 0] }}
+                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                    className="bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/20 -rotate-3 mt-12"
+                  >
+                    <img src="https://picsum.photos/seed/cap/400/400" alt="Cap" className="rounded-2xl shadow-lg" referrerPolicy="no-referrer" />
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* 5. The Educational Ecosystem */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-50/30 skew-x-12 translate-x-1/2" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -201,18 +267,22 @@ export default function Home() {
             {[
               { title: "Printable Learning Activities", desc: "Hands-on exercises designed to reinforce concepts learned in the books.", icon: GraduationCap },
               { title: "Geography Worksheets", desc: "Detailed maps and data sheets for deep geographical exploration.", icon: Globe },
-              { title: "Cultural Deep Dives", desc: "In-depth looks at local traditions, festivals, and societal structures.", icon: Sparkles },
+              { title: "Official Merchandise", desc: "Bring the adventure home with our exclusive collection of gear.", icon: ShoppingBag, link: "/shop" },
               { title: "Culinary Mini-Guides", desc: "Step-by-step recipes and food history from around the world.", icon: Utensils },
               { title: "STEM & Aviation Lessons", desc: "Science-based adventures focusing on flight, physics, and engineering.", icon: Plane },
               { title: "Premium Educational Bundles", desc: "Curated collections of resources for schools and home learning.", icon: Compass }
             ].map((item, i) => (
-              <div key={i} className="p-8 rounded-[32px] border border-slate-100 bg-white hover:shadow-xl hover:shadow-blue-100/30 transition-all group">
+              <Link 
+                key={i} 
+                to={item.link || "#"}
+                className="p-8 rounded-[32px] border border-slate-100 bg-white hover:shadow-xl hover:shadow-blue-100/30 transition-all group block"
+              >
                 <div className="bg-blue-50 text-blue-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                   <item.icon className="w-7 h-7" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-900 mb-4">{item.title}</h3>
                 <p className="text-slate-500 leading-relaxed">{item.desc}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -3,15 +3,20 @@ import { motion } from 'motion/react';
 import { VOLUMES } from '../constants';
 import VolumeCard from '../components/VolumeCard';
 import BundleCard from '../components/BundleCard';
-import { Search, Filter } from 'lucide-react';
+import { Search, Filter, X } from 'lucide-react';
 
 export default function Shop() {
   const [search, setSearch] = React.useState('');
+  const [selectedCountry, setSelectedCountry] = React.useState('All');
+
+  const countries = ['All', ...new Set(VOLUMES.map(v => v.country))].sort();
 
   const filteredVolumes = VOLUMES.filter(v => {
     const matchesSearch = v.title.toLowerCase().includes(search.toLowerCase()) || 
-                         v.city.toLowerCase().includes(search.toLowerCase());
-    return matchesSearch;
+                         v.city.toLowerCase().includes(search.toLowerCase()) ||
+                         v.country.toLowerCase().includes(search.toLowerCase());
+    const matchesCountry = selectedCountry === 'All' || v.country === selectedCountry;
+    return matchesSearch && matchesCountry;
   });
 
   return (
@@ -21,6 +26,41 @@ export default function Shop() {
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-slate-900 mb-4">All Volumes</h1>
           <p className="text-slate-600">Explore our collection of 50 adventures around the world.</p>
+        </div>
+
+        {/* Filters */}
+        <div className="mb-12 flex flex-col md:flex-row gap-4 items-start md:items-center">
+          <div className="relative flex-grow max-w-2xl">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+            <input
+              type="text"
+              placeholder="Search by city, country or title..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full pl-12 pr-12 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white"
+            />
+            {search && (
+              <button 
+                onClick={() => setSearch('')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+          
+          <div className="relative min-w-[200px]">
+            <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
+            <select
+              value={selectedCountry}
+              onChange={(e) => setSelectedCountry(e.target.value)}
+              className="w-full pl-10 pr-4 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white appearance-none cursor-pointer text-slate-700 font-medium"
+            >
+              {countries.map(country => (
+                <option key={country} value={country}>{country}</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* Bundle Section */}
@@ -37,20 +77,6 @@ export default function Shop() {
             price="$24.99"
             link="/volume/1"
           />
-        </div>
-
-        {/* Filters */}
-        <div className="mb-12">
-          <div className="relative max-w-2xl">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search by city or title..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white"
-            />
-          </div>
         </div>
 
         {/* Grid */}
