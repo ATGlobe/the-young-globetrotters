@@ -10,6 +10,10 @@ import Shop from './pages/Shop';
 import ForTeachers from './pages/ForTeachers';
 import Contact from './pages/Contact';
 import Mappa from './pages/Mappa';
+import CulinaryTraditions from './pages/CulinaryTraditions';
+import AviationThemes from './pages/AviationThemes';
+import StructuredLearning from './pages/StructuredLearning';
+import GlobalAwareness from './pages/GlobalAwareness';
 
 export default function App() {
   return (
@@ -26,6 +30,10 @@ export default function App() {
           <Route path="teachers" element={<ForTeachers />} />
           <Route path="contact" element={<Contact />} />
           <Route path="map" element={<Mappa />} />
+          <Route path="culinary-traditions" element={<CulinaryTraditions />} />
+          <Route path="aviation-themes" element={<AviationThemes />} />
+          <Route path="structured-learning" element={<StructuredLearning />} />
+          <Route path="global-awareness" element={<GlobalAwareness />} />
         </Route>
       </Routes>
     </Router>

@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import WorldMap from '../components/WorldMap';
+import Map from '../components/Map';
 import Passport from '../components/Passport';
 import { Globe, Compass } from 'lucide-react';
 import { BOOKS } from '../data/books';
@@ -38,12 +38,12 @@ export default function Mappa() {
                 Interactive World Map
               </h2>
               <p className="text-slate-500">
-                Click on the cities to explore Axel & Tino’s journey.
+                Click on the countries to explore Axel & Tino’s journey.
               </p>
             </div>
 
             <div className="bg-slate-50 rounded-3xl p-8 shadow-inner">
-              <WorldMap />
+              <Map />
             </div>
 
           </div>

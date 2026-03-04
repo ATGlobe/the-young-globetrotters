@@ -25,7 +25,7 @@ const Hero: React.FC<HeroProps> = ({
       {/* Background Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent opacity-50" />
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/world-map.png')]" />
+        <div className="absolute inset-0 opacity-10" />
         
         {/* Animated blobs for modern look */}
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-white/10 rounded-full blur-3xl animate-pulse" />
@@ -75,23 +75,7 @@ const Hero: React.FC<HeroProps> = ({
             )}
           </motion.div>
 
-          {image && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 40 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="mt-16 relative inline-block"
-            >
-              <img 
-                src={image} 
-                alt="Hero Illustration" 
-                className="max-w-full h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)]"
-                referrerPolicy="no-referrer"
-              />
-              {/* Decorative circle behind image */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/5 rounded-full -z-10 blur-2xl" />
-            </motion.div>
-          )}
+          {/* image prop removed */}
         </div>
       </div>
     </section>
