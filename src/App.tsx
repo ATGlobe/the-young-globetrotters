@@ -5,6 +5,7 @@ import About from './pages/About';
 import Books from './pages/Books';
 import BookPage from './pages/BookPage';
 import Activities from './pages/Activities';
+import ActivityCategory from './pages/ActivityCategory';
 import ExplorerPassport from './pages/ExplorerPassport';
 import Shop from './pages/Shop';
 import ForTeachers from './pages/ForTeachers';
@@ -25,6 +26,7 @@ export default function App() {
           <Route path="books" element={<Books />} />
           <Route path="books/:city" element={<BookPage />} />
           <Route path="activities" element={<Activities />} />
+          <Route path="activities/:category" element={<ActivityCategory />} />
           <Route path="passport" element={<ExplorerPassport />} />
           <Route path="shop" element={<Shop />} />
           <Route path="teachers" element={<ForTeachers />} />

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { 
   Globe, 
   Utensils, 
@@ -16,7 +16,8 @@ import {
   Car,
   Heart,
   Lightbulb,
-  Sparkles
+  Sparkles,
+  ArrowRight
 } from 'lucide-react';
 
 interface Question {
@@ -59,6 +60,7 @@ const questions: Question[] = [
 ];
 
 export default function Activities() {
+  const navigate = useNavigate();
   const [currentStep, setCurrentStep] = useState<'intro' | 'quiz' | 'results'>('intro');
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -88,8 +90,22 @@ export default function Activities() {
     }, 1000);
   };
 
+  const scrollToCategories = () => {
+    document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div className="min-h-screen bg-orange-50/30">
+      <style>{`
+        @keyframes subtle-bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+        .hover-bounce:hover {
+          animation: subtle-bounce 0.6s ease-in-out infinite;
+        }
+      `}</style>
+
       {/* Hero Section */}
       <section className="relative py-24 px-4 bg-orange-500 overflow-hidden">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
@@ -105,8 +121,8 @@ export default function Activities() {
               Are you ready to prove your explorer skills? Join Foxy in a series of fun challenges and earn your virtual wings!
             </p>
             <button 
-              onClick={() => document.getElementById('quiz-section')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-white text-orange-600 font-black px-10 py-5 rounded-full hover:bg-orange-50 transition-all shadow-xl hover:scale-105"
+              onClick={scrollToCategories}
+              className="bg-white text-orange-600 font-black px-10 py-5 rounded-full hover:bg-orange-50 transition-all shadow-xl hover-bounce"
             >
               START CHALLENGE
             </button>
@@ -146,21 +162,25 @@ export default function Activities() {
                   <h2 className="text-4xl font-bold text-slate-800">Choose Your Category</h2>
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {[
-                      { name: 'Geography', icon: Globe, color: 'bg-blue-500' },
-                      { name: 'Food', icon: Utensils, color: 'bg-emerald-500' },
-                      { name: 'Aviation', icon: Plane, color: 'bg-sky-500' },
-                      { name: 'Culture', icon: Music, color: 'bg-purple-500' }
+                      { name: 'Geography', icon: Globe, color: 'bg-blue-500', path: 'geography' },
+                      { name: 'Food', icon: Utensils, color: 'bg-emerald-500', path: 'food' },
+                      { name: 'Aviation', icon: Plane, color: 'bg-sky-500', path: 'aviation' },
+                      { name: 'Culture', icon: Music, color: 'bg-purple-500', path: 'culture' }
                     ].map((cat) => (
-                      <button 
+                      <Link 
                         key={cat.name}
-                        onClick={() => startQuiz(cat.name)}
+                        to={`/activities/${cat.path}`}
                         className="group flex flex-col items-center p-8 rounded-3xl border-2 border-slate-50 hover:border-orange-200 hover:bg-orange-50 transition-all"
                       >
                         <div className={`w-16 h-16 ${cat.color} text-white rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                           <cat.icon className="w-8 h-8" />
                         </div>
                         <span className="font-bold text-slate-700">{cat.name}</span>
-                      </button>
+                        <div className="mt-4 flex items-center gap-1 text-orange-500 font-bold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
+                          <span>Explore</span>
+                          <ArrowRight size={12} />
+                        </div>
+                      </Link>
                     ))}
                   </div>
                 </motion.div>
@@ -301,6 +321,41 @@ export default function Activities() {
         </div>
       </section>
 
+      {/* Foxy's Growth Journey */}
+      <section className="py-24 bg-white border-t border-orange-100">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <div className="inline-block px-4 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-bold uppercase tracking-widest mb-8">
+            Foxy's Growth Journey
+          </div>
+          <h2 className="text-4xl font-bold text-slate-900 mb-8">The Real Badge of an Explorer</h2>
+          <div className="space-y-8">
+            <p className="text-xl text-slate-600 leading-relaxed italic">
+              "Foxy looked at Axel's Golden Winged Aviation Badge and thought, 'I want to be a real explorer too!' 
+              But Axel smiled and told him a secret: being a real explorer isn't just about the badge."
+            </p>
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { title: 'Be Brave', icon: Heart, desc: 'Trying new things even when they feel a little scary.' },
+                { title: 'Be Curious', icon: Lightbulb, desc: 'Asking questions and wanting to learn about the world.' },
+                { title: 'Be Kind', icon: Sparkles, desc: 'Helping friends and respecting every culture we meet.' }
+              ].map((val, i) => (
+                <div key={i} className="p-8 bg-orange-50 rounded-3xl border border-orange-100">
+                  <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-sm">
+                    <val.icon className="text-orange-500" />
+                  </div>
+                  <h4 className="font-bold text-slate-900 mb-2">{val.title}</h4>
+                  <p className="text-sm text-slate-500">{val.desc}</p>
+                </div>
+              ))}
+            </div>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Foxy learned that every time he was brave, curious, or kind, he was already earning his wings. 
+              Because the most important part of the journey is not where you go, but who you become along the way!
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Closing Message */}
       <section className="py-24 bg-slate-900 text-white text-center">
         <div className="max-w-4xl mx-auto px-4">
@@ -308,87 +363,6 @@ export default function Activities() {
           <p className="text-xl text-slate-400 leading-relaxed">
             Whether you're solving a quiz or dancing like a chef, every step you take brings you closer to understanding our beautiful world. Keep exploring, keep questioning, and keep growing!
           </p>
-        </div>
-      </section>
-
-      {/* Foxy's Corner – Everyone Can Shine */}
-      <section className="py-24 bg-white border-t border-orange-100">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid md:grid-cols-2 gap-16 items-center mb-20">
-            <div className="relative">
-              <img 
-                src="https://picsum.photos/seed/foxy-axel-friend/800/800" 
-                alt="Foxy and Axel" 
-                className="rounded-[40px] shadow-2xl"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute -bottom-6 -left-6 bg-orange-500 p-6 rounded-3xl shadow-xl text-white">
-                <Heart className="w-10 h-10" />
-              </div>
-            </div>
-            <div className="space-y-6">
-              <div className="inline-block px-4 py-1 bg-orange-100 text-orange-600 rounded-full text-sm font-bold uppercase tracking-widest">
-                Foxy's Corner
-              </div>
-              <h2 className="text-4xl font-bold text-slate-800">Everyone Can Shine</h2>
-              <p className="text-lg text-slate-600 leading-relaxed italic">
-                "Sometimes Foxy looked up at Axel soaring through the clouds and felt a little small. 
-                But Axel would always land and say, 'Foxy, your curiosity on the ground is just as important as my wings in the sky. 
-                We all have our own way of exploring!'"
-              </p>
-              <div className="p-8 bg-orange-50 rounded-3xl border border-orange-100">
-                <h4 className="text-xl font-bold text-orange-900 mb-4 flex items-center gap-2">
-                  <Lightbulb className="w-5 h-5" />
-                  A Healthy Message About Inclusion
-                </h4>
-                <p className="text-orange-800 leading-relaxed">
-                  Growth mindset means believing that we can all learn and grow at our own pace. 
-                  Inclusion is about making sure everyone feels they belong, no matter how they explore. 
-                  Just like Foxy, your unique talents are what make the adventure special!
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-12">
-            <div className="bg-slate-50 p-10 rounded-[32px] border border-slate-100">
-              <h3 className="text-2xl font-bold text-slate-800 mb-8">Reflect Together</h3>
-              <div className="space-y-6">
-                {[
-                  "What is one thing you're proud of learning today?",
-                  "How can we help a friend feel included in our games?",
-                  "What makes your way of exploring unique?"
-                ].map((q, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="flex-shrink-0 w-8 h-8 bg-white rounded-full flex items-center justify-center text-orange-500 font-bold shadow-sm">
-                      {i + 1}
-                    </div>
-                    <p className="text-slate-700 font-medium">{q}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="bg-orange-500 p-10 rounded-[32px] text-white relative overflow-hidden">
-              <Sparkles className="absolute top-4 right-4 w-12 h-12 text-orange-300 opacity-50" />
-              <h3 className="text-2xl font-bold mb-6">Design Your Own Badge</h3>
-              <p className="mb-8 opacity-90">What values would your explorer badge represent? Here are some ideas to get you started:</p>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { name: 'Courage', color: 'bg-orange-400' },
-                  { name: 'Kindness', color: 'bg-orange-400' },
-                  { name: 'Curiosity', color: 'bg-orange-400' },
-                  { name: 'Creativity', color: 'bg-orange-400' }
-                ].map((val) => (
-                  <div key={val.name} className={`${val.color} p-4 rounded-2xl text-center font-bold border border-white/20`}>
-                    {val.name}
-                  </div>
-                ))}
-              </div>
-              <button className="mt-10 w-full bg-white text-orange-600 font-black py-4 rounded-2xl hover:bg-orange-50 transition-all">
-                DOWNLOAD TEMPLATE
-              </button>
-            </div>
-          </div>
         </div>
       </section>
     </div>
