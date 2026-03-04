@@ -1,62 +1,95 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { Globe, BookOpen } from 'lucide-react';
 
 interface HeroProps {
   title: string;
   subtitle?: string;
-  bgColor: string;
+  bgColor?: string;
   image?: string;
+  showButtons?: boolean;
   children?: React.ReactNode;
 }
 
-const Hero: React.FC<HeroProps> = ({ title, subtitle, bgColor, image, children }) => {
+const Hero: React.FC<HeroProps> = ({ 
+  title, 
+  subtitle, 
+  bgColor = 'bg-blue-600', 
+  image, 
+  showButtons = false,
+  children 
+}) => {
   return (
-    <section className={`relative py-20 overflow-hidden text-white ${bgColor}`}>
-      {/* Subtle background pattern/overlay */}
-      <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
-      
-      <div className="container relative z-10 px-4 mx-auto">
-        <div className="flex flex-col items-center justify-between gap-12 lg:flex-row">
-          <div className="max-w-2xl text-center lg:text-left">
-            <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-6 text-5xl font-bold leading-tight lg:text-6xl"
-            >
+    <section className={`relative min-h-[80vh] flex items-center justify-center overflow-hidden py-24 ${bgColor} text-white`}>
+      {/* Background Elements */}
+      <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 to-transparent opacity-50" />
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/world-map.png')]" />
+        
+        {/* Animated blobs for modern look */}
+        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-white/10 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-black/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
+      <div className="container relative z-10 px-4 mx-auto text-center">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
+            <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight tracking-tight">
               {title}
-            </motion.h1>
+            </h1>
+            
             {subtitle && (
-              <motion.p 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="mb-8 text-xl opacity-90"
-              >
+              <p className="text-xl md:text-2xl opacity-90 mb-12 leading-relaxed max-w-2xl mx-auto font-medium">
                 {subtitle}
-              </motion.p>
+              </p>
             )}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-            >
-              {children}
-            </motion.div>
-          </div>
-          
+
+            {showButtons && (
+              <div className="flex flex-wrap items-center justify-center gap-6 mb-12">
+                <Link 
+                  to="/map" 
+                  className="group flex items-center gap-3 px-8 py-4 bg-white text-blue-600 rounded-2xl font-bold text-lg hover:bg-blue-50 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                >
+                  <Globe className="group-hover:rotate-12 transition-transform" />
+                  Explore the Map
+                </Link>
+                <Link 
+                  to="/books" 
+                  className="group flex items-center gap-3 px-8 py-4 bg-blue-700 text-white border-2 border-white/20 rounded-2xl font-bold text-lg hover:bg-blue-800 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1"
+                >
+                  <BookOpen className="group-hover:scale-110 transition-transform" />
+                  Discover Books
+                </Link>
+              </div>
+            )}
+
+            {children && (
+              <div className="mt-8">
+                {children}
+              </div>
+            )}
+          </motion.div>
+
           {image && (
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.3 }}
-              className="relative w-full max-w-md"
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="mt-16 relative inline-block"
             >
               <img 
                 src={image} 
-                alt={title} 
-                className="w-full h-auto drop-shadow-2xl"
+                alt="Hero Illustration" 
+                className="max-w-full h-auto drop-shadow-[0_35px_35px_rgba(0,0,0,0.3)]"
                 referrerPolicy="no-referrer"
               />
+              {/* Decorative circle behind image */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-white/5 rounded-full -z-10 blur-2xl" />
             </motion.div>
           )}
         </div>

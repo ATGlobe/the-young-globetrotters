@@ -38,10 +38,10 @@ const BookPage: React.FC = () => {
       <Hero 
         title={book.title}
         subtitle={`${book.city}, ${book.country}`}
-        bgColor="bg-[#1E3A8A]"
-        image={book.cover}
+        bgColor="bg-blue-900"
+        image={book.coverImage}
       >
-        <div className="flex flex-wrap gap-4 mt-8">
+        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
           {!unlocked ? (
             <button 
               onClick={handleUnlock}
@@ -55,7 +55,7 @@ const BookPage: React.FC = () => {
             </div>
           )}
           <a 
-            href={book.gumroadUrl} 
+            href={book.externalLink} 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-white border-2 border-white rounded-xl hover:bg-white/10 transition-all"
@@ -70,7 +70,7 @@ const BookPage: React.FC = () => {
         <div className="container px-4 mx-auto">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="mb-8 text-3xl font-bold text-slate-900">Adventure Overview</h2>
-            <p className="text-xl leading-relaxed text-slate-600">{book.intro}</p>
+            <p className="text-xl leading-relaxed text-slate-600">{book.description}</p>
           </div>
         </div>
       </section>
@@ -253,7 +253,7 @@ const BookPage: React.FC = () => {
             Get the full book and join Axel & Tino on their journey through {book.city}.
           </p>
           <a 
-            href={book.gumroadUrl} 
+            href={book.externalLink} 
             target="_blank" 
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-12 py-5 text-xl font-bold text-blue-600 bg-white rounded-2xl hover:bg-slate-50 transition-all shadow-2xl hover:-translate-y-1"

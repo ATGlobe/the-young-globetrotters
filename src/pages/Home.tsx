@@ -1,8 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { CHARACTERS, LOGO_URL } from '../constants';
+import { CHARACTERS } from '../constants';
 import { BOOKS } from '../data/books';
+import Hero from '../components/Hero';
+import BookCard from '../components/BookCard';
 import { Globe, BookOpen, Utensils, Plane, ArrowRight, CheckCircle2 } from 'lucide-react';
 
 const Home: React.FC = () => {
@@ -11,68 +13,13 @@ const Home: React.FC = () => {
   return (
     <div className="overflow-hidden">
       {/* Hero Section */}
-      <section className="relative py-24 bg-white lg:py-32">
-        <div className="container px-4 mx-auto">
-          <div className="flex flex-col items-center gap-16 lg:flex-row">
-            <div className="flex-1 text-center lg:text-left">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-semibold text-blue-600 bg-blue-50 rounded-full"
-              >
-                <Globe size={16} />
-                <span>The Future of Educational Publishing</span>
-              </motion.div>
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="mb-8 text-5xl font-bold leading-tight text-slate-900 lg:text-7xl"
-              >
-                Inspiring the Next Generation of <span className="text-blue-600">Global Citizens</span>
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mb-10 text-xl leading-relaxed text-slate-600"
-              >
-                Axel & Tino – The Young Globetrotters is an international book series that combines travel, culture, and structured educational storytelling for children aged 7–12.
-              </motion.p>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-wrap items-center justify-center gap-4 lg:justify-start"
-              >
-                <Link to="/books" className="px-8 py-4 text-lg font-bold text-white transition-all bg-blue-600 rounded-xl hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1">
-                  Explore the Series
-                </Link>
-                <Link to="/about" className="px-8 py-4 text-lg font-bold text-slate-700 transition-all bg-slate-100 rounded-xl hover:bg-slate-200">
-                  Our Philosophy
-                </Link>
-              </motion.div>
-            </div>
-            <div className="flex-1 relative">
-              <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4, type: 'spring' }}
-                className="relative z-10"
-              >
-                <img 
-                  src="/images/foxy-blu-plane.jpg" 
-                  alt="Axel the Falcon" 
-                  className="w-full h-auto max-w-md mx-auto drop-shadow-2xl object-contain animate-float"
-                  referrerPolicy="no-referrer"
-                />
-              </motion.div>
-              {/* Decorative elements */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-50 rounded-full -z-10 blur-3xl opacity-50" />
-            </div>
-          </div>
-        </div>
-      </section>
+      <Hero 
+        title="Inspiring the Next Generation of Global Citizens"
+        subtitle="Axel & Tino – The Young Globetrotters is an international book series that combines travel, culture, and structured educational storytelling for children aged 7–12."
+        bgColor="bg-blue-600"
+        image="/images/foxy-blu-plane.jpg"
+        showButtons={true}
+      />
 
       {/* What Makes It Different */}
       <section className="py-24 bg-slate-50">
@@ -223,36 +170,9 @@ const Home: React.FC = () => {
             </Link>
           </div>
           
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid gap-10 md:grid-cols-3">
             {featuredBooks.map((book) => (
-              <motion.div
-                key={book.id}
-                whileHover={{ y: -10 }}
-                className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all"
-              >
-                <div className="aspect-[3/4] overflow-hidden bg-slate-100">
-                  <img 
-                    src={book.cover} 
-                    alt={book.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                <div className="p-8">
-                  <div className="flex items-center gap-2 mb-4 text-sm font-bold text-blue-600 uppercase tracking-wider">
-                    <Globe size={14} />
-                    <span>{book.city}, {book.country}</span>
-                  </div>
-                  <h3 className="mb-4 text-2xl font-bold text-slate-900">{book.title}</h3>
-                  <p className="mb-8 text-slate-600 line-clamp-2">{book.intro}</p>
-                  <Link 
-                    to={`/books/${book.slug}`}
-                    className="inline-flex items-center gap-2 font-bold text-slate-900 group-hover:text-blue-600 transition-colors"
-                  >
-                    View Adventure <ArrowRight size={18} />
-                  </Link>
-                </div>
-              </motion.div>
+              <BookCard key={book.id} book={book} />
             ))}
           </div>
           

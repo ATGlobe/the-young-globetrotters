@@ -13,8 +13,8 @@ export type Book = {
   title: string;
   city: string;
   country: string;
-  cover: string;
-  intro: string;
+  coverImage: string;
+  description: string;
   landmarks: string[];
   wildlife: string[];
   culturalFacts: string[];
@@ -25,7 +25,7 @@ export type Book = {
   };
   foxyTransport: string;
   learningFocus: string[];
-  gumroadUrl: string;
+  externalLink: string;
 };
 
 export type QuizQuestion = {

@@ -7,8 +7,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Eternal City',
     city: 'Rome',
     country: 'Italy',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/vol.1%20Rome.jpg',
-    intro: 'Discover the Colosseum and the secrets of ancient gladiators with Axel and Tino.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/vol.1%20Rome.jpg',
+    description: 'Discover the Colosseum and the secrets of ancient gladiators with Axel and Tino.',
     landmarks: ['Colosseum', 'Trevi Fountain', 'Vatican Museums'],
     wildlife: ['Peregrine Falcons', 'Roman Cats'],
     culturalFacts: ['The Roman Empire', 'Gladiators'],
@@ -19,7 +19,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Vespa Scooter',
     learningFocus: ['History', 'Architecture'],
-    gumroadUrl: 'https://tuosito.com/rome'
+    externalLink: 'https://tuosito.com/rome'
   },
   {
     id: '2',
@@ -27,8 +27,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of Light',
     city: 'Paris',
     country: 'France',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.2%20Paris.jpg',
-    intro: 'An adventure between the Eiffel Tower and the scent of freshly baked croissants.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.2%20Paris.jpg',
+    description: 'An adventure between the Eiffel Tower and the scent of freshly baked croissants.',
     landmarks: ['Eiffel Tower', 'Louvre Museum', 'Notre Dame'],
     wildlife: ['Falcons of Notre Dame', 'Seine River Fish'],
     culturalFacts: ['French Revolution', 'Impressionist Art'],
@@ -39,7 +39,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Hot Air Balloon',
     learningFocus: ['Art', 'History'],
-    gumroadUrl: 'https://tuosito.com/paris'
+    externalLink: 'https://tuosito.com/paris'
   },
   {
     id: '3',
@@ -47,8 +47,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Global Metropolis',
     city: 'London',
     country: 'United Kingdom',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.3%20London.jpg',
-    intro: 'Solve a mystery between Big Ben and the Tower Bridge.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.3%20London.jpg',
+    description: 'Solve a mystery between Big Ben and the Tower Bridge.',
     landmarks: ['Big Ben', 'Tower Bridge', 'London Eye'],
     wildlife: ['Tower Ravens', 'Thames Swans'],
     culturalFacts: ['The British Monarchy', 'Shakespeare'],
@@ -59,7 +59,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Double-Decker Bus',
     learningFocus: ['Culture', 'Geography'],
-    gumroadUrl: 'https://tuosito.com/london'
+    externalLink: 'https://tuosito.com/london'
   },
   {
     id: '4',
@@ -67,8 +67,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Vibrant Catalan City',
     city: 'Barcelona',
     country: 'Spain',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.4%20Barcelona.jpg',
-    intro: 'Explore the colorful world of Gaudí and the lively Las Ramblas.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.4%20Barcelona.jpg',
+    description: 'Explore the colorful world of Gaudí and the lively Las Ramblas.',
     landmarks: ['Sagrada Família', 'Park Güell', 'Las Ramblas'],
     wildlife: ['Mediterranean Gulls', 'Monk Parakeets'],
     culturalFacts: ['Antoni Gaudí', 'Catalan Traditions'],
@@ -79,7 +79,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Skateboard',
     learningFocus: ['Architecture', 'Art'],
-    gumroadUrl: 'https://tuosito.com/barcelona'
+    externalLink: 'https://tuosito.com/barcelona'
   },
   {
     id: '5',
@@ -87,8 +87,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of Canals',
     city: 'Amsterdam',
     country: 'Netherlands',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.5%20Amsterdam.jpg',
-    intro: 'Bike along the canals and discover the house of Anne Frank.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.5%20Amsterdam.jpg',
+    description: 'Bike along the canals and discover the house of Anne Frank.',
     landmarks: ['Canal Ring', 'Anne Frank House', 'Rijksmuseum'],
     wildlife: ['Canal Herons', 'Dutch Rabbits'],
     culturalFacts: ['The Golden Age', 'Bicycle Culture'],
@@ -99,7 +99,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Bicycle',
     learningFocus: ['Engineering', 'History'],
-    gumroadUrl: 'https://tuosito.com/amsterdam'
+    externalLink: 'https://tuosito.com/amsterdam'
   },
   {
     id: '6',
@@ -107,8 +107,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Venice of the North',
     city: 'Stockholm',
     country: 'Sweden',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.6%20Stockholm.jpg',
-    intro: 'Explore the archipelago and the historic Gamla Stan.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.6%20Stockholm.jpg',
+    description: 'Explore the archipelago and the historic Gamla Stan.',
     landmarks: ['Vasa Museum', 'Gamla Stan', 'Royal Palace'],
     wildlife: ['Baltic Seals', 'Arctic Terns'],
     culturalFacts: ['Viking Heritage', 'Nobel Prize'],
@@ -119,7 +119,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Speedboat',
     learningFocus: ['History', 'Geography'],
-    gumroadUrl: 'https://tuosito.com/stockholm'
+    externalLink: 'https://tuosito.com/stockholm'
   },
   {
     id: '7',
@@ -127,8 +127,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of a Hundred Spires',
     city: 'Prague',
     country: 'Czech Republic',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.7%20Prague.jpg',
-    intro: 'Cross the Charles Bridge and visit the largest ancient castle in the world.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.7%20Prague.jpg',
+    description: 'Cross the Charles Bridge and visit the largest ancient castle in the world.',
     landmarks: ['Charles Bridge', 'Prague Castle', 'Astronomical Clock'],
     wildlife: ['Vltava Swans', 'Bohemian Deer'],
     culturalFacts: ['Legends of the Golem', 'Medieval History'],
@@ -139,7 +139,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Vintage Car',
     learningFocus: ['History', 'Legends'],
-    gumroadUrl: 'https://tuosito.com/prague'
+    externalLink: 'https://tuosito.com/prague'
   },
   {
     id: '8',
@@ -147,8 +147,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Cradle of Civilization',
     city: 'Athens',
     country: 'Greece',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.8%20Athens.jpg',
-    intro: 'Climb the Acropolis and learn about the ancient Greek gods.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.8%20Athens.jpg',
+    description: 'Climb the Acropolis and learn about the ancient Greek gods.',
     landmarks: ['Acropolis', 'Parthenon', 'Plaka District'],
     wildlife: ['Greek Tortoises', 'Cicadas'],
     culturalFacts: ['Birth of Democracy', 'Greek Mythology'],
@@ -159,7 +159,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Chariot',
     learningFocus: ['History', 'Philosophy'],
-    gumroadUrl: 'https://tuosito.com/athens'
+    externalLink: 'https://tuosito.com/athens'
   },
   {
     id: '9',
@@ -167,8 +167,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of Freedom',
     city: 'Berlin',
     country: 'Germany',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.9%20Berlin.jpg',
-    intro: 'See the remains of the Berlin Wall and the Brandenburg Gate.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.9%20Berlin.jpg',
+    description: 'See the remains of the Berlin Wall and the Brandenburg Gate.',
     landmarks: ['Brandenburg Gate', 'Berlin Wall', 'Reichstag'],
     wildlife: ['Berlin Bears', 'Urban Foxes'],
     culturalFacts: ['Reunification', 'Modern Art'],
@@ -179,7 +179,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Trabant Car',
     learningFocus: ['History', 'Politics'],
-    gumroadUrl: 'https://tuosito.com/berlin'
+    externalLink: 'https://tuosito.com/berlin'
   },
   {
     id: '10',
@@ -187,8 +187,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of Music',
     city: 'Vienna',
     country: 'Austria',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.10%20Vienna.jpg',
-    intro: 'Visit the Schönbrunn Palace and listen to the music of Mozart.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.10%20Vienna.jpg',
+    description: 'Visit the Schönbrunn Palace and listen to the music of Mozart.',
     landmarks: ['Schönbrunn Palace', 'St. Stephen\'s Cathedral', 'Prater'],
     wildlife: ['Lipizzaner Horses', 'Danube Beavers'],
     culturalFacts: ['Classical Music', 'Coffee House Culture'],
@@ -199,7 +199,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Horse Carriage',
     learningFocus: ['Music', 'History'],
-    gumroadUrl: 'https://tuosito.com/vienna'
+    externalLink: 'https://tuosito.com/vienna'
   },
   {
     id: '11',
@@ -207,8 +207,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of Explorers',
     city: 'Lisbon',
     country: 'Portugal',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.11%20Lisbon.jpg',
-    intro: 'Ride the yellow trams and discover the Belém Tower.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.11%20Lisbon.jpg',
+    description: 'Ride the yellow trams and discover the Belém Tower.',
     landmarks: ['Belém Tower', 'Jerónimos Monastery', 'Alfama'],
     wildlife: ['Atlantic Dolphins', 'Iberian Lynx'],
     culturalFacts: ['Age of Discovery', 'Fado Music'],
@@ -219,7 +219,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Yellow Tram',
     learningFocus: ['History', 'Exploration'],
-    gumroadUrl: 'https://tuosito.com/lisbon'
+    externalLink: 'https://tuosito.com/lisbon'
   },
   {
     id: '12',
@@ -227,8 +227,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Fair City',
     city: 'Dublin',
     country: 'Ireland',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.12%20Dublin.jpg',
-    intro: 'Explore the Trinity College library and the green Phoenix Park.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.12%20Dublin.jpg',
+    description: 'Explore the Trinity College library and the green Phoenix Park.',
     landmarks: ['Trinity College', 'Phoenix Park', 'Dublin Castle'],
     wildlife: ['Fallow Deer', 'Irish Hares'],
     culturalFacts: ['Book of Kells', 'Celtic Mythology'],
@@ -239,7 +239,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Bicycle',
     learningFocus: ['Literature', 'History'],
-    gumroadUrl: 'https://tuosito.com/dublin'
+    externalLink: 'https://tuosito.com/dublin'
   },
   {
     id: '13',
@@ -247,8 +247,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Historic Capital',
     city: 'Edinburgh',
     country: 'Scotland',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.13%20Edinburgh.jpg',
-    intro: 'Visit the Edinburgh Castle and walk the Royal Mile.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.13%20Edinburgh.jpg',
+    description: 'Visit the Edinburgh Castle and walk the Royal Mile.',
     landmarks: ['Edinburgh Castle', 'Royal Mile', 'Arthur\'s Seat'],
     wildlife: ['Highland Cows', 'Puffins'],
     culturalFacts: ['Scottish Clans', 'Harry Potter Inspiration'],
@@ -259,7 +259,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Steam Train',
     learningFocus: ['History', 'Geology'],
-    gumroadUrl: 'https://tuosito.com/edinburgh'
+    externalLink: 'https://tuosito.com/edinburgh'
   },
   {
     id: '14',
@@ -267,8 +267,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Pearl of the Danube',
     city: 'Budapest',
     country: 'Hungary',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.14%20Budapest.jpg',
-    intro: 'Relax in the thermal baths and see the Parliament building.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.14%20Budapest.jpg',
+    description: 'Relax in the thermal baths and see the Parliament building.',
     landmarks: ['Hungarian Parliament', 'Chain Bridge', 'Buda Castle'],
     wildlife: ['Danube Fish', 'Hungarian Grey Cattle'],
     culturalFacts: ['Thermal Bath Tradition', 'Invention of Rubik\'s Cube'],
@@ -279,7 +279,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'River Boat',
     learningFocus: ['History', 'Architecture'],
-    gumroadUrl: 'https://tuosito.com/budapest'
+    externalLink: 'https://tuosito.com/budapest'
   },
   {
     id: '15',
@@ -287,8 +287,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of Fairytales',
     city: 'Copenhagen',
     country: 'Denmark',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.15%20Copenhagen.jpg',
-    intro: 'Meet the Little Mermaid and have fun at Tivoli Gardens.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.15%20Copenhagen.jpg',
+    description: 'Meet the Little Mermaid and have fun at Tivoli Gardens.',
     landmarks: ['Little Mermaid Statue', 'Tivoli Gardens', 'Nyhavn'],
     wildlife: ['Danish Mute Swans', 'Red Squirrels'],
     culturalFacts: ['Hans Christian Andersen', 'Hygge Concept'],
@@ -299,7 +299,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Cargo Bike',
     learningFocus: ['Literature', 'Design'],
-    gumroadUrl: 'https://tuosito.com/copenhagen'
+    externalLink: 'https://tuosito.com/copenhagen'
   },
   {
     id: '16',
@@ -307,8 +307,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Green Capital',
     city: 'Oslo',
     country: 'Norway',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.16%20Oslo.jpg',
-    intro: 'Visit the Viking Ship Museum and the Vigeland Park.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.16%20Oslo.jpg',
+    description: 'Visit the Viking Ship Museum and the Vigeland Park.',
     landmarks: ['Viking Ship Museum', 'Vigeland Park', 'Opera House'],
     wildlife: ['Moose', 'Norwegian Forest Cats'],
     culturalFacts: ['Viking History', 'Nobel Peace Prize'],
@@ -319,7 +319,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Electric Car',
     learningFocus: ['History', 'Environment'],
-    gumroadUrl: 'https://tuosito.com/oslo'
+    externalLink: 'https://tuosito.com/oslo'
   },
   {
     id: '17',
@@ -327,8 +327,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Daughter of the Baltic',
     city: 'Helsinki',
     country: 'Finland',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.17%20Helsinki.jpg',
-    intro: 'Explore the Suomenlinna fortress and the Market Square.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.17%20Helsinki.jpg',
+    description: 'Explore the Suomenlinna fortress and the Market Square.',
     landmarks: ['Suomenlinna', 'Helsinki Cathedral', 'Market Square'],
     wildlife: ['Saimaa Ringed Seals', 'Reindeer'],
     culturalFacts: ['Finnish Design', 'Sauna Culture'],
@@ -339,7 +339,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Icebreaker Ship',
     learningFocus: ['Design', 'History'],
-    gumroadUrl: 'https://tuosito.com/helsinki'
+    externalLink: 'https://tuosito.com/helsinki'
   },
   {
     id: '18',
@@ -347,8 +347,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Geothermal City',
     city: 'Reykjavik',
     country: 'Iceland',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.18%20Reykjavik.jpg',
-    intro: 'See the Northern Lights and the Hallgrímskirkja church.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.18%20Reykjavik.jpg',
+    description: 'See the Northern Lights and the Hallgrímskirkja church.',
     landmarks: ['Hallgrímskirkja', 'Blue Lagoon', 'Harpa Concert Hall'],
     wildlife: ['Puffins', 'Arctic Foxes'],
     culturalFacts: ['Volcanic Origins', 'Icelandic Sagas'],
@@ -359,7 +359,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: '4x4 Jeep',
     learningFocus: ['Geology', 'Nature'],
-    gumroadUrl: 'https://tuosito.com/reykjavik'
+    externalLink: 'https://tuosito.com/reykjavik'
   },
   {
     id: '19',
@@ -367,8 +367,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure at the Crossroads of Continents',
     city: 'Istanbul',
     country: 'Turkey',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.19%20Istanbul.jpg',
-    intro: 'Visit the Hagia Sophia and the Grand Bazaar.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.19%20Istanbul.jpg',
+    description: 'Visit the Hagia Sophia and the Grand Bazaar.',
     landmarks: ['Hagia Sophia', 'Blue Mosque', 'Grand Bazaar'],
     wildlife: ['Istanbul Street Cats', 'Bosphorus Dolphins'],
     culturalFacts: ['Byzantine Empire', 'Ottoman Empire'],
@@ -379,7 +379,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Ferry',
     learningFocus: ['History', 'Geography'],
-    gumroadUrl: 'https://tuosito.com/istanbul'
+    externalLink: 'https://tuosito.com/istanbul'
   },
   {
     id: '20',
@@ -387,8 +387,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Imperial City',
     city: 'Saint Petersburg',
     country: 'Russia',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.20%20Saint%20Petersburg.jpg',
-    intro: 'Explore the Hermitage Museum and the Peter and Paul Fortress.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.20%20Saint%20Petersburg.jpg',
+    description: 'Explore the Hermitage Museum and the Peter and Paul Fortress.',
     landmarks: ['Hermitage Museum', 'Church of the Savior on Spilled Blood', 'Peterhof Palace'],
     wildlife: ['Siberian Tigers', 'Hermitage Cats'],
     culturalFacts: ['Reign of the Tsars', 'White Nights'],
@@ -399,7 +399,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Troika Sled',
     learningFocus: ['Art', 'History'],
-    gumroadUrl: 'https://tuosito.com/saint-petersburg'
+    externalLink: 'https://tuosito.com/saint-petersburg'
   },
   {
     id: '21',
@@ -407,8 +407,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Big Apple',
     city: 'New York',
     country: 'USA',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.21%20New%20York.jpg',
-    intro: 'The city that never sleeps, from Central Park to Times Square.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.21%20New%20York.jpg',
+    description: 'The city that never sleeps, from Central Park to Times Square.',
     landmarks: ['Statue of Liberty', 'Empire State Building', 'Central Park'],
     wildlife: ['Central Park Raccoons', 'Peregrine Falcons'],
     culturalFacts: ['Ellis Island', 'Broadway'],
@@ -419,7 +419,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Yellow Taxi',
     learningFocus: ['History', 'Urbanization'],
-    gumroadUrl: 'https://tuosito.com/new-york'
+    externalLink: 'https://tuosito.com/new-york'
   },
   {
     id: '22',
@@ -427,8 +427,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Dynamic Metropolis',
     city: 'Toronto',
     country: 'Canada',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.22%20Toronto.jpg',
-    intro: 'Climb the CN Tower and explore the Distillery District.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.22%20Toronto.jpg',
+    description: 'Climb the CN Tower and explore the Distillery District.',
     landmarks: ['CN Tower', 'Royal Ontario Museum', 'Distillery District'],
     wildlife: ['Canada Geese', 'Black Squirrels'],
     culturalFacts: ['Multiculturalism', 'Indigenous History'],
@@ -439,7 +439,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Streetcar',
     learningFocus: ['Geography', 'Culture'],
-    gumroadUrl: 'https://tuosito.com/toronto'
+    externalLink: 'https://tuosito.com/toronto'
   },
   {
     id: '23',
@@ -447,8 +447,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Windy City',
     city: 'Chicago',
     country: 'USA',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.23%20Chicago.jpg',
-    intro: 'See the "Bean" in Millennium Park and visit the Navy Pier.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.23%20Chicago.jpg',
+    description: 'See the "Bean" in Millennium Park and visit the Navy Pier.',
     landmarks: ['Millennium Park', 'Willis Tower', 'Navy Pier'],
     wildlife: ['Lake Michigan Perch', 'Coyotes'],
     culturalFacts: ['Great Chicago Fire', 'Modern Architecture'],
@@ -459,7 +459,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'L-Train',
     learningFocus: ['Architecture', 'History'],
-    gumroadUrl: 'https://tuosito.com/chicago'
+    externalLink: 'https://tuosito.com/chicago'
   },
   {
     id: '24',
@@ -467,8 +467,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Marvelous City',
     city: 'Rio de Janeiro',
     country: 'Brazil',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.24%20Rio%20de%20Janeiro%20(1).jpg',
-    intro: 'Visit Christ the Redeemer and relax on Copacabana beach.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.24%20Rio%20de%20Janeiro%20(1).jpg',
+    description: 'Visit Christ the Redeemer and relax on Copacabana beach.',
     landmarks: ['Christ the Redeemer', 'Sugarloaf Mountain', 'Copacabana'],
     wildlife: ['Toucans', 'Marmosets'],
     culturalFacts: ['Carnival', 'Samba Music'],
@@ -479,7 +479,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Hang Glider',
     learningFocus: ['Culture', 'Geography'],
-    gumroadUrl: 'https://tuosito.com/rio-de-janeiro'
+    externalLink: 'https://tuosito.com/rio-de-janeiro'
   },
   {
     id: '25',
@@ -487,8 +487,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Heart of Mexico',
     city: 'Mexico City',
     country: 'Mexico',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.25%20Mexico%20City.jpg',
-    intro: 'Explore the ancient Aztec ruins and the colorful Xochimilco canals.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.25%20Mexico%20City.jpg',
+    description: 'Explore the ancient Aztec ruins and the colorful Xochimilco canals.',
     landmarks: ['Zócalo', 'Teotihuacan Pyramids', 'Xochimilco'],
     wildlife: ['Axolotls', 'Monarch Butterflies'],
     culturalFacts: ['Aztec Empire', 'Day of the Dead'],
@@ -499,7 +499,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Trajinera Boat',
     learningFocus: ['History', 'Archaeology'],
-    gumroadUrl: 'https://tuosito.com/mexico-city'
+    externalLink: 'https://tuosito.com/mexico-city'
   },
   {
     id: '26',
@@ -507,8 +507,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Untamed Wilderness',
     city: 'Patagonia',
     country: 'Argentina/Chile',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.26%20Patagonia.jpg',
-    intro: 'See the Perito Moreno Glacier and the peaks of Torres del Paine.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.26%20Patagonia.jpg',
+    description: 'See the Perito Moreno Glacier and the peaks of Torres del Paine.',
     landmarks: ['Perito Moreno Glacier', 'Torres del Paine', 'Fitz Roy'],
     wildlife: ['Guanacos', 'Andean Condors'],
     culturalFacts: ['Gaucho Culture', 'Glacial Geology'],
@@ -519,7 +519,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Horse',
     learningFocus: ['Geology', 'Wildlife'],
-    gumroadUrl: 'https://tuosito.com/patagonia'
+    externalLink: 'https://tuosito.com/patagonia'
   },
   {
     id: '27',
@@ -527,8 +527,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Lost City of the Incas',
     city: 'Machu Picchu',
     country: 'Peru',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.27%20Machu%20Picchu.jpg',
-    intro: 'Hike the Inca Trail and discover the secrets of the Andes.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.27%20Machu%20Picchu.jpg',
+    description: 'Hike the Inca Trail and discover the secrets of the Andes.',
     landmarks: ['Machu Picchu Ruins', 'Sacred Valley', 'Cusco'],
     wildlife: ['Llamas', 'Spectacled Bears'],
     culturalFacts: ['Inca Empire', 'Quechua Language'],
@@ -539,7 +539,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Llama',
     learningFocus: ['History', 'Archaeology'],
-    gumroadUrl: 'https://tuosito.com/machu-picchu'
+    externalLink: 'https://tuosito.com/machu-picchu'
   },
   {
     id: '28',
@@ -547,8 +547,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Magic City',
     city: 'Miami',
     country: 'USA',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.28%20Miami.jpg',
-    intro: 'Enjoy the Art Deco district and the Everglades National Park.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.28%20Miami.jpg',
+    description: 'Enjoy the Art Deco district and the Everglades National Park.',
     landmarks: ['South Beach', 'Art Deco District', 'Everglades'],
     wildlife: ['Alligators', 'Manatees'],
     culturalFacts: ['Cuban Influence', 'Art Deco Architecture'],
@@ -559,7 +559,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Airboat',
     learningFocus: ['Environment', 'Architecture'],
-    gumroadUrl: 'https://tuosito.com/miami'
+    externalLink: 'https://tuosito.com/miami'
   },
   {
     id: '29',
@@ -567,8 +567,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Gateway to the Pacific',
     city: 'Vancouver',
     country: 'Canada',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.29%20Vancouver.jpg',
-    intro: 'Walk across the Capilano Suspension Bridge and explore Stanley Park.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.29%20Vancouver.jpg',
+    description: 'Walk across the Capilano Suspension Bridge and explore Stanley Park.',
     landmarks: ['Stanley Park', 'Capilano Suspension Bridge', 'Granville Island'],
     wildlife: ['Orcas', 'Bald Eagles'],
     culturalFacts: ['First Nations History', 'Pacific Gateway'],
@@ -579,7 +579,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Seaplane',
     learningFocus: ['Geography', 'Nature'],
-    gumroadUrl: 'https://tuosito.com/vancouver'
+    externalLink: 'https://tuosito.com/vancouver'
   },
   {
     id: '30',
@@ -587,8 +587,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City by the Bay',
     city: 'San Francisco',
     country: 'USA',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.30%20San%20Francisco.jpg',
-    intro: 'Cross the Golden Gate Bridge and ride the historic cable cars.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.30%20San%20Francisco.jpg',
+    description: 'Cross the Golden Gate Bridge and ride the historic cable cars.',
     landmarks: ['Golden Gate Bridge', 'Alcatraz Island', 'Fisherman\'s Wharf'],
     wildlife: ['Sea Lions', 'Monarch Butterflies'],
     culturalFacts: ['Gold Rush', 'Tech Revolution'],
@@ -599,7 +599,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Cable Car',
     learningFocus: ['History', 'Technology'],
-    gumroadUrl: 'https://tuosito.com/san-francisco'
+    externalLink: 'https://tuosito.com/san-francisco'
   },
   {
     id: '31',
@@ -607,8 +607,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Neon Metropolis',
     city: 'Tokyo',
     country: 'Japan',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.31%20Tokyo.jpg',
-    intro: 'Between bright skyscrapers, ancient temples, and futuristic robots.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.31%20Tokyo.jpg',
+    description: 'Between bright skyscrapers, ancient temples, and futuristic robots.',
     landmarks: ['Shibuya Crossing', 'Tokyo Tower', 'Senso-ji Temple'],
     wildlife: ['Japanese Macaques', 'Koi Fish'],
     culturalFacts: ['Samurai Culture', 'Anime & Manga'],
@@ -619,7 +619,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Bullet Train',
     learningFocus: ['Technology', 'Tradition'],
-    gumroadUrl: 'https://tuosito.com/tokyo'
+    externalLink: 'https://tuosito.com/tokyo'
   },
   {
     id: '32',
@@ -627,8 +627,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Ancient Capital',
     city: 'Kyoto',
     country: 'Japan',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.32%20Kyoto.jpg',
-    intro: 'Visit the Golden Pavilion and the Fushimi Inari Shrine.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.32%20Kyoto.jpg',
+    description: 'Visit the Golden Pavilion and the Fushimi Inari Shrine.',
     landmarks: ['Kinkaku-ji', 'Fushimi Inari Shrine', 'Gion District'],
     wildlife: ['Japanese Cranes', 'Sika Deer'],
     culturalFacts: ['Geisha Tradition', 'Tea Ceremony'],
@@ -639,7 +639,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Rickshaw',
     learningFocus: ['History', 'Culture'],
-    gumroadUrl: 'https://tuosito.com/kyoto'
+    externalLink: 'https://tuosito.com/kyoto'
   },
   {
     id: '33',
@@ -647,8 +647,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Island of the Gods',
     city: 'Bali',
     country: 'Indonesia',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.33%20Bali.jpg',
-    intro: 'Explore the rice terraces and the beautiful beaches of Uluwatu.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.33%20Bali.jpg',
+    description: 'Explore the rice terraces and the beautiful beaches of Uluwatu.',
     landmarks: ['Uluwatu Temple', 'Tegalalang Rice Terrace', 'Ubud Monkey Forest'],
     wildlife: ['Manta Rays', 'Balinese Monkeys'],
     culturalFacts: ['Balinese Hinduism', 'Traditional Dance'],
@@ -659,7 +659,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Scooter',
     learningFocus: ['Culture', 'Environment'],
-    gumroadUrl: 'https://tuosito.com/bali'
+    externalLink: 'https://tuosito.com/bali'
   },
   {
     id: '34',
@@ -667,8 +667,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Harbour City',
     city: 'Sydney',
     country: 'Australia',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.34%20Sydney.jpg',
-    intro: 'See the Sydney Opera House and climb the Harbour Bridge.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.34%20Sydney.jpg',
+    description: 'See the Sydney Opera House and climb the Harbour Bridge.',
     landmarks: ['Sydney Opera House', 'Harbour Bridge', 'Bondi Beach'],
     wildlife: ['Kangaroos', 'Koalas'],
     culturalFacts: ['Aboriginal Heritage', 'First Settlers'],
@@ -679,7 +679,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Surfboard',
     learningFocus: ['History', 'Geography'],
-    gumroadUrl: 'https://tuosito.com/sydney'
+    externalLink: 'https://tuosito.com/sydney'
   },
   {
     id: '35',
@@ -687,8 +687,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of Sails',
     city: 'Auckland',
     country: 'New Zealand',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.35%20Auckland.jpg',
-    intro: 'Visit the Sky Tower and explore the volcanic cones.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.35%20Auckland.jpg',
+    description: 'Visit the Sky Tower and explore the volcanic cones.',
     landmarks: ['Sky Tower', 'Mount Eden', 'Waiheke Island'],
     wildlife: ['Kiwi Birds', 'Tuatara'],
     culturalFacts: ['Maori Culture', 'Pacific Exploration'],
@@ -699,7 +699,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Sailboat',
     learningFocus: ['Geology', 'Culture'],
-    gumroadUrl: 'https://tuosito.com/auckland'
+    externalLink: 'https://tuosito.com/auckland'
   },
   {
     id: '36',
@@ -707,8 +707,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Garden City',
     city: 'Singapore',
     country: 'Singapore',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Vol.36%20Singapore%20.jpg',
-    intro: 'See the Supertrees at Gardens by the Bay and the Merlion.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Vol.36%20Singapore%20.jpg',
+    description: 'See the Supertrees at Gardens by the Bay and the Merlion.',
     landmarks: ['Gardens by the Bay', 'Marina Bay Sands', 'Merlion Park'],
     wildlife: ['Otters', 'Hornbills'],
     culturalFacts: ['Multicultural Society', 'Trading History'],
@@ -719,7 +719,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Cable Car',
     learningFocus: ['Urban Planning', 'Culture'],
-    gumroadUrl: 'https://tuosito.com/singapore'
+    externalLink: 'https://tuosito.com/singapore'
   },
   {
     id: '37',
@@ -727,8 +727,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Dynamic Capital',
     city: 'Seoul',
     country: 'South Korea',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.37%20Seoul.jpg',
-    intro: 'Visit the Gyeongbokgung Palace and the N Seoul Tower.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.37%20Seoul.jpg',
+    description: 'Visit the Gyeongbokgung Palace and the N Seoul Tower.',
     landmarks: ['Gyeongbokgung Palace', 'N Seoul Tower', 'Bukchon Hanok Village'],
     wildlife: ['Korean Magpies', 'Water Deer'],
     culturalFacts: ['Joseon Dynasty', 'K-Pop Phenomenon'],
@@ -739,7 +739,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Subway',
     learningFocus: ['History', 'Technology'],
-    gumroadUrl: 'https://tuosito.com/seoul'
+    externalLink: 'https://tuosito.com/seoul'
   },
   {
     id: '38',
@@ -747,8 +747,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Pearl of the Orient',
     city: 'Hong Kong',
     country: 'China',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.38%20Hong%20Kong.jpg',
-    intro: 'Ride the Star Ferry and take the peak tram for a great view.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.38%20Hong%20Kong.jpg',
+    description: 'Ride the Star Ferry and take the peak tram for a great view.',
     landmarks: ['Victoria Peak', 'Star Ferry', 'Big Buddha'],
     wildlife: ['Pink Dolphins', 'Black-faced Spoonbills'],
     culturalFacts: ['British Colony History', 'Cantonese Culture'],
@@ -759,7 +759,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Peak Tram',
     learningFocus: ['Geography', 'History'],
-    gumroadUrl: 'https://tuosito.com/hong-kong'
+    externalLink: 'https://tuosito.com/hong-kong'
   },
   {
     id: '39',
@@ -767,8 +767,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the City of Dreams',
     city: 'Mumbai',
     country: 'India',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.39%20Mumbai.jpg',
-    intro: 'See the Gateway of India and explore the Elephanta Caves.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.39%20Mumbai.jpg',
+    description: 'See the Gateway of India and explore the Elephanta Caves.',
     landmarks: ['Gateway of India', 'Marine Drive', 'Elephanta Caves'],
     wildlife: ['Leopards of Sanjay Gandhi Park', 'Flamingos'],
     culturalFacts: ['Bollywood', 'British Raj History'],
@@ -779,7 +779,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Auto Rickshaw',
     learningFocus: ['Culture', 'History'],
-    gumroadUrl: 'https://tuosito.com/mumbai'
+    externalLink: 'https://tuosito.com/mumbai'
   },
   {
     id: '40',
@@ -787,8 +787,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Futuristic Oasis',
     city: 'Dubai',
     country: 'UAE',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Vol.40%20Dubai%20.jpg',
-    intro: 'Climb the Burj Khalifa and visit the Palm Jumeirah.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Vol.40%20Dubai%20.jpg',
+    description: 'Climb the Burj Khalifa and visit the Palm Jumeirah.',
     landmarks: ['Burj Khalifa', 'Palm Jumeirah', 'Dubai Mall'],
     wildlife: ['Arabian Oryx', 'Falcons'],
     culturalFacts: ['Pearl Diving History', 'Rapid Modernization'],
@@ -799,7 +799,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Supercar',
     learningFocus: ['Technology', 'Geography'],
-    gumroadUrl: 'https://tuosito.com/dubai'
+    externalLink: 'https://tuosito.com/dubai'
   },
   {
     id: '41',
@@ -807,8 +807,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Top of the World',
     city: 'North Pole',
     country: 'Arctic',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.41%20North%20Pole.jpg',
-    intro: 'Meet the polar bears and see the endless ice.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.41%20North%20Pole.jpg',
+    description: 'Meet the polar bears and see the endless ice.',
     landmarks: ['Magnetic North Pole', 'Ice Floes'],
     wildlife: ['Polar Bears', 'Arctic Wolves'],
     culturalFacts: ['Arctic Exploration', 'Climate Science'],
@@ -819,7 +819,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Dog Sled',
     learningFocus: ['Science', 'Environment'],
-    gumroadUrl: 'https://tuosito.com/north-pole'
+    externalLink: 'https://tuosito.com/north-pole'
   },
   {
     id: '42',
@@ -827,8 +827,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Frozen Continent',
     city: 'Antarctic',
     country: 'Antarctica',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.42%20Antarctic.jpg',
-    intro: 'See the penguins and the massive icebergs.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.42%20Antarctic.jpg',
+    description: 'See the penguins and the massive icebergs.',
     landmarks: ['South Pole', 'McMurdo Station'],
     wildlife: ['Emperor Penguins', 'Weddell Seals'],
     culturalFacts: ['Scientific Cooperation', 'Heroic Age of Exploration'],
@@ -839,7 +839,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Snowmobile',
     learningFocus: ['Science', 'History'],
-    gumroadUrl: 'https://tuosito.com/antarctic'
+    externalLink: 'https://tuosito.com/antarctic'
   },
   {
     id: '43',
@@ -847,8 +847,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Vast Desert Sea',
     city: 'Sahara',
     country: 'Africa',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.43%20Sahara.jpg',
-    intro: 'Ride a camel across the sand dunes and see the oases.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.43%20Sahara.jpg',
+    description: 'Ride a camel across the sand dunes and see the oases.',
     landmarks: ['Sand Dunes', 'Oasis', 'Ancient Trade Routes'],
     wildlife: ['Fennec Foxes', 'Dromedary Camels'],
     culturalFacts: ['Tuareg People', 'Trans-Saharan Trade'],
@@ -859,7 +859,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Camel',
     learningFocus: ['Geography', 'Culture'],
-    gumroadUrl: 'https://tuosito.com/sahara'
+    externalLink: 'https://tuosito.com/sahara'
   },
   {
     id: '44',
@@ -867,8 +867,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Rugged Heartland',
     city: 'Outback',
     country: 'Australia',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.44%20Outback.jpg',
-    intro: 'See Uluru and the unique wildlife of the desert.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.44%20Outback.jpg',
+    description: 'See Uluru and the unique wildlife of the desert.',
     landmarks: ['Uluru', 'Kata Tjuta', 'Alice Springs'],
     wildlife: ['Red Kangaroos', 'Thorny Devils'],
     culturalFacts: ['Aboriginal Dreamtime', 'Survival Skills'],
@@ -879,7 +879,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Off-Road Truck',
     learningFocus: ['Culture', 'Nature'],
-    gumroadUrl: 'https://tuosito.com/outback'
+    externalLink: 'https://tuosito.com/outback'
   },
   {
     id: '45',
@@ -887,8 +887,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Earth\'s Green Lungs',
     city: 'Amazon',
     country: 'South America',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.45%20The%20Amazon%20Rainforest.jpg',
-    intro: 'Explore the jungle and see the colorful macaws.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.45%20The%20Amazon%20Rainforest.jpg',
+    description: 'Explore the jungle and see the colorful macaws.',
     landmarks: ['Amazon River', 'Rainforest Canopy'],
     wildlife: ['Jaguars', 'Macaws'],
     culturalFacts: ['Indigenous Tribes', 'Biodiversity'],
@@ -899,7 +899,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Canoe',
     learningFocus: ['Environment', 'Biology'],
-    gumroadUrl: 'https://tuosito.com/amazon'
+    externalLink: 'https://tuosito.com/amazon'
   },
   {
     id: '46',
@@ -907,8 +907,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Aloha State',
     city: 'Hawaii',
     country: 'USA',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.46%20Hawaii.jpg',
-    intro: 'See the volcanoes and learn to surf on the big waves.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.46%20Hawaii.jpg',
+    description: 'See the volcanoes and learn to surf on the big waves.',
     landmarks: ['Diamond Head', 'Pearl Harbor', 'Volcanoes National Park'],
     wildlife: ['Humpback Whales', 'Green Sea Turtles'],
     culturalFacts: ['Hula Dance', 'Hawaiian Kingdom'],
@@ -919,7 +919,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Outrigger Canoe',
     learningFocus: ['Geology', 'Culture'],
-    gumroadUrl: 'https://tuosito.com/hawaii'
+    externalLink: 'https://tuosito.com/hawaii'
   },
   {
     id: '47',
@@ -927,8 +927,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Island of Unique Wonders',
     city: 'Madagascar',
     country: 'Madagascar',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.47%20Madagascar.jpg',
-    intro: 'See the lemurs and the giant baobab trees.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.47%20Madagascar.jpg',
+    description: 'See the lemurs and the giant baobab trees.',
     landmarks: ['Avenue of the Baobabs', 'Tsingy de Bemaraha'],
     wildlife: ['Lemurs', 'Chameleons'],
     culturalFacts: ['Malagasy Traditions', 'Pirate History'],
@@ -939,7 +939,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Zebu Cart',
     learningFocus: ['Biology', 'History'],
-    gumroadUrl: 'https://tuosito.com/madagascar'
+    externalLink: 'https://tuosito.com/madagascar'
   },
   {
     id: '48',
@@ -947,8 +947,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in Darwin\'s Living Laboratory',
     city: 'Galápagos',
     country: 'Ecuador',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.48%20Gal%C3%A1pagos.jpg',
-    intro: 'Meet the giant tortoises and the marine iguanas.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.48%20Gal%C3%A1pagos.jpg',
+    description: 'Meet the giant tortoises and the marine iguanas.',
     landmarks: ['Tortuga Bay', 'Charles Darwin Research Station'],
     wildlife: ['Giant Tortoises', 'Marine Iguanas'],
     culturalFacts: ['Theory of Evolution', 'Conservation'],
@@ -959,7 +959,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Submarine',
     learningFocus: ['Science', 'Environment'],
-    gumroadUrl: 'https://tuosito.com/galapagos'
+    externalLink: 'https://tuosito.com/galapagos'
   },
   {
     id: '49',
@@ -967,8 +967,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in Mysterious Rapa Nui',
     city: 'Easter Island',
     country: 'Chile',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.49%20Easter%20Island.jpg',
-    intro: 'See the giant Moai statues and learn about the Rapa Nui culture.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.49%20Easter%20Island.jpg',
+    description: 'See the giant Moai statues and learn about the Rapa Nui culture.',
     landmarks: ['Moai Statues', 'Rano Raraku', 'Anakena Beach'],
     wildlife: ['Seabirds', 'Rapa Nui Horses'],
     culturalFacts: ['Moai Construction', 'Birdman Cult'],
@@ -979,7 +979,7 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Raft',
     learningFocus: ['Archaeology', 'Culture'],
-    gumroadUrl: 'https://tuosito.com/easter-island'
+    externalLink: 'https://tuosito.com/easter-island'
   },
   {
     id: '50',
@@ -987,8 +987,8 @@ export const BOOKS: Book[] = [
     title: 'Adventure in the Jewel of the Aegean',
     city: 'Santorini',
     country: 'Greece',
-    cover: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.50%20Santorini.jpg',
-    intro: 'See the white houses with blue domes and the beautiful sunset.',
+    coverImage: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Vol.50%20Santorini.jpg',
+    description: 'See the white houses with blue domes and the beautiful sunset.',
     landmarks: ['Oia Village', 'Caldera', 'Akrotiri'],
     wildlife: ['Mediterranean Monk Seals', 'Donkeys'],
     culturalFacts: ['Volcanic Eruption History', 'Legend of Atlantis'],
@@ -999,6 +999,6 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Donkey',
     learningFocus: ['Geology', 'History'],
-    gumroadUrl: 'https://tuosito.com/santorini'
+    externalLink: 'https://tuosito.com/santorini'
   }
 ];
