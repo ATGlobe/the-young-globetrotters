@@ -1,339 +1,288 @@
-import { motion } from 'motion/react';
+import React from 'react';
+import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
-  Plane, 
-  ArrowRight, 
-  BookOpen, 
-  Globe, 
-  Utensils, 
-  ShieldCheck, 
-  Mail,
-  CheckCircle2,
-  Compass,
-  GraduationCap,
-  Sparkles,
-  Landmark,
-  Heart,
-  ShoppingBag
-} from 'lucide-react';
-import { VOLUMES, LOGO_URL } from '../constants';
-import VolumeCard from '../components/VolumeCard';
+import { CHARACTERS, LOGO_URL } from '../constants';
+import { BOOKS } from '../data/books';
+import { Globe, BookOpen, Utensils, Plane, ArrowRight, CheckCircle2 } from 'lucide-react';
 
-export default function Home() {
-  const featuredVolumes = VOLUMES.slice(0, 3);
+const Home: React.FC = () => {
+  const featuredBooks = BOOKS.slice(0, 3);
 
   return (
-    <div className="overflow-hidden bg-white">
-      {/* 1. Hero Section */}
-      <section className="relative pt-24 pb-32 lg:pt-40 lg:pb-56 bg-world-pattern">
-        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-white pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-left"
-            >
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 text-blue-700 text-sm font-bold mb-8">
-                <Globe className="w-4 h-4 mr-2" />
-                Axel & Tino – The Young Globetrotters
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-8 tracking-tight">
-                Explore the World. <br />
-                <span className="text-blue-600">Learn Through Adventure.</span>
-              </h1>
-              <p className="text-xl text-slate-600 mb-12 leading-relaxed max-w-xl">
-                Join Axel & Tino on educational journeys across the globe. Discover cities, culture, history, wildlife and culinary traditions — one adventure at a time.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center gap-4">
-                <Link
-                  to="/volume/1"
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 rounded-2xl bg-blue-600 text-white font-bold text-lg shadow-xl shadow-blue-200 hover:bg-blue-700 hover:scale-[1.02] transition-all"
-                >
-                  Start the Adventure in Rome
-                  <ArrowRight className="ml-2 w-5 h-5" />
+    <div className="overflow-hidden">
+      {/* Hero Section */}
+      <section className="relative py-24 bg-white lg:py-32">
+        <div className="container px-4 mx-auto">
+          <div className="flex flex-col items-center gap-16 lg:flex-row">
+            <div className="flex-1 text-center lg:text-left">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="inline-flex items-center gap-2 px-4 py-2 mb-6 text-sm font-semibold text-blue-600 bg-blue-50 rounded-full"
+              >
+                <Globe size={16} />
+                <span>The Future of Educational Publishing</span>
+              </motion.div>
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="mb-8 text-5xl font-bold leading-tight text-slate-900 lg:text-7xl"
+              >
+                Inspiring the Next Generation of <span className="text-blue-600">Global Citizens</span>
+              </motion.h1>
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+                className="mb-10 text-xl leading-relaxed text-slate-600"
+              >
+                Axel & Tino – The Young Globetrotters is an international book series that combines travel, culture, and structured educational storytelling for children aged 7–12.
+              </motion.p>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-wrap items-center justify-center gap-4 lg:justify-start"
+              >
+                <Link to="/books" className="px-8 py-4 text-lg font-bold text-white transition-all bg-blue-600 rounded-xl hover:bg-blue-700 hover:shadow-lg hover:-translate-y-1">
+                  Explore the Series
                 </Link>
-                <Link
-                  to="/ebooks"
-                  className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-5 rounded-2xl bg-white text-slate-700 font-bold text-lg border border-slate-200 hover:bg-slate-50 transition-all"
-                >
-                  Explore All 50 Destinations
+                <Link to="/about" className="px-8 py-4 text-lg font-bold text-slate-700 transition-all bg-slate-100 rounded-xl hover:bg-slate-200">
+                  Our Philosophy
                 </Link>
-              </div>
-              <p className="mt-6 text-sm text-slate-500 font-medium flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-blue-500" />
-                New destinations added regularly.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: 30 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1, 
-                x: 0,
-                y: [0, -15, 0]
-              }}
-              transition={{ 
-                opacity: { duration: 0.8, delay: 0.2 },
-                scale: { duration: 0.8, delay: 0.2 },
-                x: { duration: 0.8, delay: 0.2 },
-                y: {
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  ease: "easeInOut"
-                }
-              }}
-              className="relative flex justify-center lg:justify-end"
-            >
-              <div className="w-full max-w-[320px] lg:max-w-[540px] mt-12 lg:mt-0">
+              </motion.div>
+            </div>
+            <div className="flex-1 relative">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.4, type: 'spring' }}
+                className="relative z-10"
+              >
                 <img 
-                  src="https://drive.google.com/uc?export=view&id=1xMHWY9E4gBAEftORS9lu3C1Jd4xrSj_g" 
-                  alt="Foxy on a blue airplane" 
-                  className="w-full h-auto object-contain shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-[40px]"
+                  src="/images/foxy-blu-plane.jpg" 
+                  alt="Axel the Falcon" 
+                  className="w-full h-auto max-w-md mx-auto drop-shadow-2xl object-contain animate-float"
                   referrerPolicy="no-referrer"
                 />
-              </div>
-              <div className="absolute -bottom-16 -right-16 w-80 h-80 bg-blue-400 rounded-full blur-[140px] opacity-25 pointer-events-none" />
-            </motion.div>
+              </motion.div>
+              {/* Decorative elements */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-blue-50 rounded-full -z-10 blur-3xl opacity-50" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* 2. About the Series */}
-      <section className="py-24 bg-white border-y border-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">What Are The Young Globetrotters?</h2>
-              <p className="text-lg text-slate-600 leading-relaxed mb-10">
-                This is a global educational ebook series where each volume explores a real-world destination through storytelling, cultural insights, geography, history and fun missions.
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                {[
-                  { icon: Globe, title: "Real Cities", color: "text-blue-600", bg: "bg-blue-50" },
-                  { icon: BookOpen, title: "Educational Content", color: "text-indigo-600", bg: "bg-indigo-50" },
-                  { icon: Utensils, title: "Local Recipes", color: "text-orange-600", bg: "bg-orange-50" },
-                  { icon: Plane, title: "Aviation & STEM", color: "text-sky-600", bg: "bg-sky-50" }
-                ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-4 p-4 rounded-2xl border border-slate-50 bg-slate-50/50">
-                    <div className={`${item.bg} ${item.color} p-3 rounded-xl`}>
-                      <item.icon className="w-6 h-6" />
-                    </div>
-                    <span className="font-bold text-slate-800">{item.title}</span>
-                  </div>
-                ))}
-              </div>
+      {/* What Makes It Different */}
+      <section className="py-24 bg-slate-50">
+        <div className="container px-4 mx-auto">
+          <div className="max-w-3xl mx-auto mb-16 text-center">
+            <h2 className="mb-6 text-4xl font-bold text-slate-900">What Makes It Different?</h2>
+            <p className="text-lg text-slate-600">A structured educational ecosystem designed to foster curiosity and global awareness.</p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              { icon: <Globe className="text-blue-600" />, title: 'Global Awareness', text: 'Introducing children to diverse cultures, history, and geography through storytelling.' },
+              { icon: <BookOpen className="text-orange-600" />, title: 'Structured Learning', text: 'A repeatable format that builds confidence and reinforces educational themes.' },
+              { icon: <Utensils className="text-red-600" />, title: 'Culinary Traditions', text: 'Exploring the world through its flavors with authentic local recipes in every book.' },
+              { icon: <Plane className="text-sky-500" />, title: 'Aviation Themes', text: 'Subtle introduction to aviation and the excitement of travel and exploration.' },
+            ].map((feature, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -5 }}
+                className="p-8 bg-white rounded-2xl shadow-sm border border-slate-100"
+              >
+                <div className="w-12 h-12 mb-6 rounded-xl bg-slate-50 flex items-center justify-center">
+                  {feature.icon}
+                </div>
+                <h3 className="mb-4 text-xl font-bold text-slate-900">{feature.title}</h3>
+                <p className="text-slate-600">{feature.text}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              {/* Trust Signals Row */}
-              <div className="pt-10 border-t border-slate-100 grid grid-cols-2 md:grid-cols-4 gap-6">
-                {[
-                  { icon: GraduationCap, label: "Educational Content" },
-                  { icon: Landmark, label: "Real Cities" },
-                  { icon: Globe, label: "Cultural Learning" },
-                  { icon: Heart, label: "Family Friendly" }
-                ].map((signal, i) => (
-                  <div key={i} className="flex flex-col items-center text-center gap-2 group">
-                    <div className="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-400 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
-                      <signal.icon className="w-5 h-5" />
-                    </div>
-                    <span className="text-[10px] font-black uppercase tracking-wider text-slate-400 group-hover:text-slate-600 transition-colors">
-                      {signal.label}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="relative flex justify-center lg:justify-end">
-              <div className="w-full max-w-[280px] lg:max-w-[420px] mt-8 lg:mt-0">
-                <div className="rounded-[40px] overflow-hidden shadow-[0_10px_25px_rgba(0,0,0,0.06)] border-8 border-white bg-blue-50/30">
+      {/* Meet the Globetrotters */}
+      <section className="py-24 bg-white">
+        <div className="container px-4 mx-auto">
+          <div className="max-w-3xl mx-auto mb-16 text-center">
+            <h2 className="mb-6 text-4xl font-bold text-slate-900">Meet the Globetrotters</h2>
+            <p className="text-lg text-slate-600">The characters that bring every adventure to life.</p>
+          </div>
+          <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
+            {CHARACTERS.map((char) => (
+              <motion.div
+                key={char.id}
+                whileHover={{ y: -10 }}
+                className="group relative flex flex-col items-center text-center"
+              >
+                <div className={`w-full aspect-square rounded-3xl mb-6 overflow-hidden ${char.color} bg-opacity-10 group-hover:bg-opacity-20 transition-all`}>
                   <img 
-                    src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/personaggi.png" 
-                    alt="Axel & Tino Characters" 
-                    className="w-full h-auto object-contain"
+                    src={char.image} 
+                    alt={char.name} 
+                    className="w-full h-full object-contain p-4 drop-shadow-md group-hover:scale-110 transition-transform"
                     referrerPolicy="no-referrer"
                   />
                 </div>
-              </div>
-              <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-xl border border-blue-50 max-w-[240px] hidden lg:block">
-                <p className="text-sm font-medium text-slate-600 italic">
-                  "Our mission is to inspire the next generation of global citizens."
-                </p>
-                <p className="text-xs font-bold text-blue-600 mt-2">— Axel & Tino</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 3. Featured Volumes */}
-      <section className="py-24 bg-slate-50/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
-            <div className="max-w-2xl">
-              <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-4">Featured Adventures</h2>
-              <p className="text-slate-600">Start your collection with our most popular destinations.</p>
-            </div>
-            <Link to="/ebooks" className="text-blue-600 font-bold flex items-center hover:gap-2 transition-all">
-              View All 50 Volumes <ArrowRight className="ml-2 w-5 h-5" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredVolumes.map((volume) => (
-              <VolumeCard key={volume.id} volume={volume} />
+                <h3 className="mb-2 text-xl font-bold text-slate-900">{char.name}</h3>
+                <p className="text-sm font-medium text-blue-600 uppercase tracking-wider mb-3">{char.role}</p>
+                <p className="text-slate-600 text-sm">{char.description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Shop Promotion Section */}
-      <section className="py-24 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative bg-blue-600 rounded-[64px] p-12 lg:p-24 text-white overflow-hidden shadow-2xl shadow-blue-100"
-          >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 opacity-10 pointer-events-none">
-              <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl" />
-              <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-400 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl" />
-            </div>
-
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8 text-center lg:text-left">
-                <div className="inline-flex items-center bg-white/20 backdrop-blur-md px-6 py-2 rounded-full text-white font-black text-sm uppercase tracking-widest">
-                  <Sparkles className="w-4 h-4 mr-2 text-yellow-300" />
-                  Official Merchandise
-                </div>
-                <h2 className="text-4xl lg:text-6xl font-black leading-tight tracking-tight">
-                  Bring the Adventure <br />
-                  <span className="text-yellow-300">Home</span>
-                </h2>
-                <p className="text-xl text-blue-50 font-medium leading-relaxed max-w-xl mx-auto lg:mx-0">
-                  From Axel's pilot caps to Chef's recipe mugs, explore our exclusive collection of gear for young explorers.
-                </p>
-                <div className="flex flex-col sm:flex-row items-center gap-6 justify-center lg:justify-start">
-                  <Link
-                    to="/shop"
-                    className="bg-white text-blue-600 px-10 py-5 rounded-2xl font-black text-lg flex items-center gap-3 shadow-xl hover:bg-blue-50 transition-all"
-                  >
-                    <ShoppingBag className="w-6 h-6" />
-                    Visit the Shop
-                  </Link>
-                  <div className="flex items-center gap-2 text-blue-100 font-bold">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                    Worldwide Shipping
+      {/* How Each Adventure Works */}
+      <section className="py-24 bg-slate-900 text-white">
+        <div className="container px-4 mx-auto">
+          <div className="max-w-3xl mx-auto mb-20 text-center">
+            <h2 className="mb-6 text-4xl font-bold">How Each Adventure Works</h2>
+            <p className="text-lg text-slate-400">Every city follows a consistent, educational structure that children love and teachers trust.</p>
+          </div>
+          <div className="relative">
+            {/* Desktop Timeline Line */}
+            <div className="absolute top-1/2 left-0 w-full h-px bg-slate-800 hidden lg:block" />
+            
+            <div className="grid gap-12 lg:grid-cols-4">
+              {[
+                { step: '01', title: 'The Arrival', text: 'Axel & Tino land in a new city and begin their exploration.' },
+                { step: '02', title: 'Discovery', text: 'Professor Owl explains landmarks, history, and local wildlife.' },
+                { step: '03', title: 'The Recipe', text: 'Chef introduces a traditional local dish for kids to try.' },
+                { step: '04', title: 'The Chase', text: 'Foxy tries a new transport method to steal Axel\'s badge.' },
+              ].map((item, i) => (
+                <div key={i} className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left">
+                  <div className="w-12 h-12 mb-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xl">
+                    {item.step}
                   </div>
+                  <h3 className="mb-4 text-2xl font-bold">{item.title}</h3>
+                  <p className="text-slate-400 leading-relaxed">{item.text}</p>
                 </div>
-              </div>
-              <div className="relative">
-                <div className="grid grid-cols-2 gap-4">
-                  <motion.div
-                    animate={{ y: [0, -20, 0] }}
-                    transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                    className="bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/20 rotate-3"
-                  >
-                    <img src="https://picsum.photos/seed/mug/400/400" alt="Mug" className="rounded-2xl shadow-lg" referrerPolicy="no-referrer" />
-                  </motion.div>
-                  <motion.div
-                    animate={{ y: [0, 20, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                    className="bg-white/10 backdrop-blur-md p-4 rounded-3xl border border-white/20 -rotate-3 mt-12"
-                  >
-                    <img src="https://picsum.photos/seed/cap/400/400" alt="Cap" className="rounded-2xl shadow-lg" referrerPolicy="no-referrer" />
-                  </motion.div>
-                </div>
-              </div>
+              ))}
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 5. The Educational Ecosystem */}
-      <section className="py-24 bg-white relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/3 h-full bg-blue-50/30 skew-x-12 translate-x-1/2" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-3xl lg:text-4xl font-bold text-slate-900 mb-6">More Than Books – A Growing Learning Universe</h2>
-            <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
-              We are building a comprehensive educational ecosystem designed to support children's growth through diverse learning formats and interactive experiences.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: "Printable Learning Activities", desc: "Hands-on exercises designed to reinforce concepts learned in the books.", icon: GraduationCap },
-              { title: "Geography Worksheets", desc: "Detailed maps and data sheets for deep geographical exploration.", icon: Globe },
-              { title: "Official Merchandise", desc: "Bring the adventure home with our exclusive collection of gear.", icon: ShoppingBag, link: "/shop" },
-              { title: "Culinary Mini-Guides", desc: "Step-by-step recipes and food history from around the world.", icon: Utensils },
-              { title: "STEM & Aviation Lessons", desc: "Science-based adventures focusing on flight, physics, and engineering.", icon: Plane },
-              { title: "Premium Educational Bundles", desc: "Curated collections of resources for schools and home learning.", icon: Compass }
-            ].map((item, i) => (
-              <Link 
-                key={i} 
-                to={item.link || "#"}
-                className="p-8 rounded-[32px] border border-slate-100 bg-white hover:shadow-xl hover:shadow-blue-100/30 transition-all group block"
-              >
-                <div className="bg-blue-50 text-blue-600 w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
-                  <item.icon className="w-7 h-7" />
-                </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4">{item.title}</h3>
-                <p className="text-slate-500 leading-relaxed">{item.desc}</p>
-              </Link>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* 5. Trust Section */}
-      <section className="py-24 bg-slate-900 text-white overflow-hidden relative">
-        <div className="absolute inset-0 bg-dot-pattern opacity-10" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-3xl lg:text-4xl font-bold mb-8">Built for Curious Young Minds</h2>
-              <div className="space-y-8">
+      {/* Learning Through Adventure */}
+      <section className="py-24 bg-slate-50">
+        <div className="container px-4 mx-auto">
+          <div className="flex flex-col items-center gap-16 lg:flex-row">
+            <div className="flex-1">
+              <img 
+                src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png" 
+                alt="Professor Owl" 
+                className="w-full h-auto max-w-md mx-auto drop-shadow-2xl"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="flex-1">
+              <h2 className="mb-8 text-4xl font-bold text-slate-900">Learning Through Adventure</h2>
+              <p className="mb-8 text-lg text-slate-600">
+                Our series is more than just stories. It\'s a structured educational platform that covers multiple disciplines:
+              </p>
+              <div className="grid gap-4 md:grid-cols-2">
                 {[
-                  { title: "Educational Value", desc: "Content aligned with geography and history curricula for ages 6–12." },
-                  { title: "Cultural Awareness", desc: "Promoting empathy and understanding of global diversity." },
-                  { title: "Safe & Age-Appropriate", desc: "Trustworthy storytelling designed specifically for young readers." },
-                  { title: "Versatile Learning", desc: "Perfectly suited for home learning, homeschooling, and classroom use." }
+                  'World Geography',
+                  'Historical Events',
+                  'Cultural Traditions',
+                  'Wildlife & Nature',
+                  'Culinary Arts',
+                  'Aviation Basics',
+                  'Critical Thinking',
+                  'Global Citizenship'
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-6">
-                    <div className="shrink-0">
-                      <CheckCircle2 className="w-8 h-8 text-blue-400" />
-                    </div>
-                    <div>
-                      <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                      <p className="text-slate-400 leading-relaxed">{item.desc}</p>
-                    </div>
+                  <div key={i} className="flex items-center gap-3">
+                    <CheckCircle2 className="text-emerald-500" size={20} />
+                    <span className="font-medium text-slate-700">{item}</span>
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[48px] p-12 relative z-10">
-                <ShieldCheck className="w-20 h-20 text-blue-200 mb-8" />
-                <h3 className="text-3xl font-bold mb-6">A Brand Parents Trust</h3>
-                <p className="text-blue-100 text-lg leading-relaxed mb-8">
-                  "The Young Globetrotters series has been a game-changer for our family. It's rare to find content that is both genuinely educational and highly engaging for kids."
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-full bg-blue-400/30 flex items-center justify-center font-bold">SM</div>
-                  <div>
-                    <p className="font-bold">Sarah Mitchell</p>
-                    <p className="text-sm text-blue-300">Educator & Parent</p>
-                  </div>
-                </div>
+              <div className="mt-12">
+                <Link to="/teachers" className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all">
+                  Explore our Educational Philosophy <ArrowRight size={20} />
+                </Link>
               </div>
-              <div className="absolute -top-12 -right-12 w-64 h-64 bg-blue-600 rounded-full blur-[120px] opacity-20" />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Adventures */}
+      <section className="py-24 bg-white">
+        <div className="container px-4 mx-auto">
+          <div className="flex items-end justify-between mb-16">
+            <div className="max-w-2xl">
+              <h2 className="mb-6 text-4xl font-bold text-slate-900">Featured Adventures</h2>
+              <p className="text-lg text-slate-600">Start your journey with our latest city explorations.</p>
+            </div>
+            <Link to="/books" className="hidden lg:flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all">
+              View All Books <ArrowRight size={20} />
+            </Link>
+          </div>
+          
+          <div className="grid gap-8 md:grid-cols-3">
+            {featuredBooks.map((book) => (
+              <motion.div
+                key={book.id}
+                whileHover={{ y: -10 }}
+                className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all"
+              >
+                <div className="aspect-[3/4] overflow-hidden bg-slate-100">
+                  <img 
+                    src={book.cover} 
+                    alt={book.title} 
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <div className="p-8">
+                  <div className="flex items-center gap-2 mb-4 text-sm font-bold text-blue-600 uppercase tracking-wider">
+                    <Globe size={14} />
+                    <span>{book.city}, {book.country}</span>
+                  </div>
+                  <h3 className="mb-4 text-2xl font-bold text-slate-900">{book.title}</h3>
+                  <p className="mb-8 text-slate-600 line-clamp-2">{book.intro}</p>
+                  <Link 
+                    to={`/books/${book.slug}`}
+                    className="inline-flex items-center gap-2 font-bold text-slate-900 group-hover:text-blue-600 transition-colors"
+                  >
+                    View Adventure <ArrowRight size={18} />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center lg:hidden">
+            <Link to="/books" className="inline-flex items-center gap-2 text-blue-600 font-bold">
+              View All Books <ArrowRight size={20} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-24 bg-blue-600 text-white">
+        <div className="container px-4 mx-auto text-center">
+          <h2 className="mb-8 text-4xl font-bold lg:text-5xl">Ready to Start the Adventure?</h2>
+          <p className="max-w-2xl mx-auto mb-12 text-xl opacity-90">
+            Join thousands of young explorers around the world and discover the magic of our planet.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-6">
+            <Link to="/books" className="px-10 py-4 text-lg font-bold text-blue-600 bg-white rounded-xl hover:bg-slate-50 transition-all shadow-lg">
+              Explore the Books
+            </Link>
+            <Link to="/shop" className="px-10 py-4 text-lg font-bold text-white border-2 border-white rounded-xl hover:bg-white/10 transition-all">
+              Visit the Shop
+            </Link>
           </div>
         </div>
       </section>
     </div>
   );
-}
+};
+
+export default Home;

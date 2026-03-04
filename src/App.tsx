@@ -1,22 +1,15 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Home from './pages/Home';
-import Characters from './pages/Characters';
-import Shop from './pages/Shop';
-import VolumeDetail from './pages/VolumeDetail';
-import UserArea from './pages/UserArea';
-import Mappa from './pages/Mappa';
 import About from './pages/About';
-import Blog from './pages/Blog';
-import FAQ from './pages/FAQ';
+import Books from './pages/Books';
+import BookPage from './pages/BookPage';
+import Activities from './pages/Activities';
+import ExplorerPassport from './pages/ExplorerPassport';
+import Shop from './pages/Shop';
+import ForTeachers from './pages/ForTeachers';
 import Contact from './pages/Contact';
-import Privacy from './pages/Privacy';
-import Terms from './pages/Terms';
-import Learning from './pages/Learning';
-import Admin from './pages/Admin';
-import KidsActivities from './pages/KidsActivities';
-import MerchShop from './pages/MerchShop';
-import VolumeLanding from './pages/VolumeLanding';
+import Mappa from './pages/Mappa';
 
 export default function App() {
   return (
@@ -25,21 +18,14 @@ export default function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
-          <Route path="characters" element={<Characters />} />
-          <Route path="ebooks" element={<Shop />} />
-          <Route path="shop" element={<MerchShop />} />
-          <Route path="activities" element={<KidsActivities />} />
-          <Route path="volume/:id" element={<VolumeDetail />} />
-          <Route path="landing/volume-1" element={<VolumeLanding />} />
-          <Route path="account" element={<UserArea />} />
-          <Route path="map" element={<Mappa />} />
-          <Route path="blog" element={<Blog />} />
-          <Route path="faq" element={<FAQ />} />
+          <Route path="books" element={<Books />} />
+          <Route path="books/:city" element={<BookPage />} />
+          <Route path="activities" element={<Activities />} />
+          <Route path="passport" element={<ExplorerPassport />} />
+          <Route path="shop" element={<Shop />} />
+          <Route path="teachers" element={<ForTeachers />} />
           <Route path="contact" element={<Contact />} />
-          <Route path="privacy" element={<Privacy />} />
-          <Route path="terms" element={<Terms />} />
-          <Route path="learning" element={<Learning />} />
-          <Route path="admin" element={<Admin />} />
+          <Route path="map" element={<Mappa />} />
         </Route>
       </Routes>
     </Router>

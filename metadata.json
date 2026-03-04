@@ -1,6 +1,6 @@
 {
-  "name": "The Young Globetrotters",
-  "description": "E-commerce site for 'The Young Globetrotters' educational ebook series for children, featuring interactive maps and educational activities.",
+  "name": "Axel & Tino – The Young Globetrotters",
+  "description": "Discover educational travel books for kids with Axel & Tino. Geography books for children and cultural learning for ages 7–12 through STEM-inspired adventures across the globe.",
   "requestFramePermissions": [
     "geolocation"
   ]

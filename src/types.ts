@@ -3,39 +3,74 @@ export type Character = {
   name: string;
   role: string;
   description: string;
-  longDescription: string;
-  icon: string;
-  color: string;
   image: string;
+  color: string;
 };
 
-export type EbookFormat = 'PDF' | 'DOCX' | 'MOBI' | 'EPUB';
-
-export type Volume = {
-  id: number;
+export type Book = {
+  id: string;
+  slug: string;
   title: string;
   city: string;
   country: string;
-  coordinates: [number, number]; // [longitude, latitude]
   cover: string;
-  description: string;
-  recipeName: string;
-  historySnippet: string;
-  curiosity: string;
-  buyLink: string;
-  isLatest?: boolean;
-  isNew?: boolean;
-  monumentImage?: string;
-  kitchenImage?: string;
+  intro: string;
+  landmarks: string[];
+  wildlife: string[];
+  culturalFacts: string[];
+  recipe: {
+    name: string;
+    description: string;
+    image: string;
+  };
+  foxyTransport: string;
+  learningFocus: string[];
+  gumroadUrl: string;
 };
 
-export type CartItem = {
-  id: string | number;
-  type: 'digital' | 'educational' | 'merch';
-  quantity: number;
+export type QuizQuestion = {
+  id: string;
+  question: string;
+  options: string[];
+  correctAnswer: number;
+};
+
+export type Quiz = {
+  id: string;
+  title: string;
+  city: string;
+  questions: QuizQuestion[];
+};
+
+export type Badge = {
+  citySlug: string;
+  name: string;
+  image: string;
+  unlocked: boolean;
+};
+
+export type Product = {
+  id: string;
+  name: string;
+  category: 'Apparel' | 'School & Travel' | 'Accessories' | 'Collectibles';
   price: number;
-  title?: string;
-  image?: string;
+  image: string;
+  storeUrl: string;
+  description: string;
+};
+
+export type Activity = {
+  id: string;
+  title: string;
+  type: 'Quiz' | 'Printable' | 'Coloring' | 'Games';
+  city: string;
+  image: string;
+  description: string;
+  fileUrl?: string;
+};
+
+export type CartItem = Product & {
+  quantity: number;
 };
 
 export type Purchase = {
@@ -43,5 +78,5 @@ export type Purchase = {
   date: string;
   items: CartItem[];
   total: number;
-  downloadLinks: { [key: string]: string };
+  status: 'completed' | 'pending' | 'failed';
 };

@@ -1,102 +1,108 @@
-import React from 'react';
-import { motion } from 'motion/react';
-import { VOLUMES } from '../constants';
-import VolumeCard from '../components/VolumeCard';
-import BundleCard from '../components/BundleCard';
-import { Search, Filter, X } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import Hero from '../components/Hero';
+import { MERCH } from '../data/merch';
+import { ExternalLink, ShoppingBag, Tag } from 'lucide-react';
 
-export default function Shop() {
-  const [search, setSearch] = React.useState('');
-  const [selectedCountry, setSelectedCountry] = React.useState('All');
-
-  const countries = ['All', ...new Set(VOLUMES.map(v => v.country))].sort();
-
-  const filteredVolumes = VOLUMES.filter(v => {
-    const matchesSearch = v.title.toLowerCase().includes(search.toLowerCase()) || 
-                         v.city.toLowerCase().includes(search.toLowerCase()) ||
-                         v.country.toLowerCase().includes(search.toLowerCase());
-    const matchesCountry = selectedCountry === 'All' || v.country === selectedCountry;
-    return matchesSearch && matchesCountry;
-  });
+const Shop: React.FC = () => {
+  const [activeCategory, setActiveCategory] = useState('All');
+  
+  const categories = ['All', 'Apparel', 'School & Travel', 'Accessories', 'Collectibles'];
+  
+  const filteredProducts = activeCategory === 'All' 
+    ? MERCH 
+    : MERCH.filter(p => p.category === activeCategory);
 
   return (
-    <div className="bg-slate-50 min-h-screen py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-slate-900 mb-4">All Volumes</h1>
-          <p className="text-slate-600">Explore our collection of 50 adventures around the world.</p>
+    <div className="bg-slate-50 min-h-screen">
+      <Hero 
+        title="Official Brand Store"
+        subtitle="Bring the adventure home with our curated collection of Young Globetrotters gear. High-quality apparel and accessories for every explorer."
+        bgColor="bg-[#16A34A]" // Green
+        image="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Generated_Image_February_09__2026_-_12_51AM-removebg-preview.png"
+      >
+        <div className="flex items-center gap-2 mt-8 px-4 py-2 bg-white/10 rounded-full w-fit backdrop-blur-sm border border-white/20">
+          <Tag size={16} />
+          <span className="text-sm font-medium">Official Print-on-Demand Partner Store</span>
         </div>
+      </Hero>
 
-        {/* Filters */}
-        <div className="mb-12 flex flex-col md:flex-row gap-4 items-start md:items-center">
-          <div className="relative flex-grow max-w-2xl">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search by city, country or title..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-12 pr-12 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white"
-            />
-            {search && (
-              <button 
-                onClick={() => setSearch('')}
-                className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+      {/* Category Filter */}
+      <section className="py-12 bg-white border-b border-slate-100 sticky top-20 z-40">
+        <div className="container px-4 mx-auto">
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-6 py-2 rounded-full font-bold transition-all ${
+                  activeCategory === cat 
+                    ? 'bg-green-600 text-white shadow-md' 
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`}
               >
-                <X className="w-4 h-4" />
+                {cat}
               </button>
-            )}
-          </div>
-          
-          <div className="relative min-w-[200px]">
-            <Filter className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 w-4 h-4" />
-            <select
-              value={selectedCountry}
-              onChange={(e) => setSelectedCountry(e.target.value)}
-              className="w-full pl-10 pr-4 py-4 rounded-2xl border border-slate-200 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all bg-white appearance-none cursor-pointer text-slate-700 font-medium"
-            >
-              {countries.map(country => (
-                <option key={country} value={country}>{country}</option>
-              ))}
-            </select>
+            ))}
           </div>
         </div>
+      </section>
 
-        {/* Bundle Section */}
-        <div className="mb-20">
-          <h2 className="text-2xl font-bold text-slate-900 mb-8">Start with the First 3 Adventures</h2>
-          <BundleCard 
-            title="The European Starter Collection"
-            description="Join Axel & Tino on their first three legendary journeys through Rome, Paris, and London. The perfect introduction to the Young Globetrotters universe."
-            covers={[
-              VOLUMES[0].cover,
-              VOLUMES[1].cover,
-              VOLUMES[2].cover
-            ]}
-            price="$24.99"
-            link="/volume/1"
-          />
-        </div>
+      {/* Product Grid */}
+      <section className="py-20">
+        <div className="container px-4 mx-auto">
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {filteredProducts.map((product) => (
+              <motion.div
+                key={product.id}
+                layout
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="group bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all flex flex-col"
+              >
+                <div className="aspect-square overflow-hidden bg-slate-50 relative">
+                  <img 
+                    src={product.image} 
+                    alt={product.name} 
+                    className="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-500"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-xs font-bold text-slate-900 shadow-sm">
+                    {product.category}
+                  </div>
+                </div>
+                <div className="p-8 flex flex-col flex-grow">
+                  <h3 className="mb-3 text-xl font-bold text-slate-900">{product.name}</h3>
+                  <p className="mb-6 text-sm text-slate-600 line-clamp-2 flex-grow">{product.description}</p>
+                  <div className="flex items-center justify-between mt-auto">
+                    <span className="text-2xl font-bold text-green-600">${product.price.toFixed(2)}</span>
+                    <a 
+                      href="#" // In a real app, this would be the external store link
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg font-bold text-sm hover:bg-green-600 transition-colors"
+                    >
+                      Buy Official <ExternalLink size={14} />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {filteredVolumes.length > 0 ? (
-            filteredVolumes.map((volume) => (
-              <VolumeCard key={volume.id} volume={volume} />
-            ))
-          ) : (
-            <div className="col-span-full py-20 text-center">
-              <div className="bg-white p-12 rounded-[40px] border border-dashed border-slate-300 inline-block">
-                <Search className="w-12 h-12 text-slate-300 mx-auto mb-4" />
-                <h3 className="text-xl font-bold text-slate-900 mb-2">No volumes found</h3>
-                <p className="text-slate-500">Try changing your search terms.</p>
-              </div>
+          <div className="mt-20 p-12 bg-green-50 rounded-[3rem] border border-green-100 text-center">
+            <div className="w-16 h-16 bg-green-600 text-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+              <ShoppingBag size={32} />
             </div>
-          )}
+            <h3 className="text-2xl font-bold text-slate-900 mb-4">Quality Guaranteed</h3>
+            <p className="max-w-2xl mx-auto text-slate-600">
+              All our products are fulfilled by professional print-on-demand partners to ensure the highest quality and worldwide shipping. Your purchase directly supports the creation of new educational adventures!
+            </p>
+          </div>
         </div>
-
-      </div>
+      </section>
     </div>
   );
-}
+};
+
+export default Shop;

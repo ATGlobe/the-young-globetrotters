@@ -1,180 +1,138 @@
 import React from 'react';
-import { motion } from 'motion/react';
-import { Mail, MessageCircle, Phone, Send, MapPin } from 'lucide-react';
+import Hero from '../components/Hero';
+import { Mail, Phone, MapPin, Send, MessageSquare, Globe, ArrowRight } from 'lucide-react';
 
-export default function Contact() {
-  const [status, setStatus] = React.useState<'idle' | 'sending' | 'sent'>('idle');
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('sending');
-    setTimeout(() => setStatus('sent'), 1500);
-  };
-
+const Contact: React.FC = () => {
   return (
-    <div className="bg-slate-50 min-h-screen py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-4xl font-bold text-slate-900 mb-4"
-          >
-            Get in Touch
-          </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-slate-500 max-w-2xl mx-auto"
-          >
-            Have questions about the series or your order? We're here to help!
-          </motion.p>
-        </div>
+    <div className="bg-white min-h-screen">
+      <Hero 
+        title="Get in Touch"
+        subtitle="Have questions about the series, school partnerships, or the official store? Our team is here to help you on your global journey."
+        bgColor="bg-slate-900" // Professional Slate
+        image="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Axel__10_-removebg-preview.png"
+      />
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          {/* Contact Info */}
-          <div className="space-y-8">
-            <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-sm">
-              <h3 className="text-xl font-bold text-slate-900 mb-8">Contact Information</h3>
+      <section className="py-24 bg-white">
+        <div className="container px-4 mx-auto">
+          <div className="flex flex-col items-start gap-16 lg:flex-row">
+            {/* Contact Information */}
+            <div className="flex-1 w-full">
+              <h2 className="mb-8 text-4xl font-bold text-slate-900">Contact Information</h2>
+              <p className="mb-12 text-xl text-slate-600 leading-relaxed">
+                Whether you're a parent, a teacher, or a potential partner, we'd love to hear from you.
+              </p>
               
-              <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="bg-blue-50 p-3 rounded-2xl text-blue-600">
-                    <Mail className="w-6 h-6" />
+              <div className="space-y-8">
+                <div className="flex items-start gap-6">
+                  <div className="p-4 bg-blue-50 text-blue-600 rounded-2xl">
+                    <Mail size={24} />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-400 uppercase font-bold tracking-wider">Email Us</p>
-                    <p className="font-bold text-slate-900">support@youngglobetrotters.com</p>
+                    <h4 className="font-bold text-slate-900 mb-1 text-lg">Email Us</h4>
+                    <p className="text-slate-600">hello@youngglobetrotters.com</p>
+                    <p className="text-sm text-slate-400 mt-1">We respond within 24 hours.</p>
                   </div>
                 </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="bg-emerald-50 p-3 rounded-2xl text-emerald-600">
-                    <MessageCircle className="w-6 h-6" />
+                
+                <div className="flex items-start gap-6">
+                  <div className="p-4 bg-emerald-50 text-emerald-600 rounded-2xl">
+                    <MessageSquare size={24} />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-400 uppercase font-bold tracking-wider">Live Chat</p>
-                    <p className="font-bold text-slate-900">Available Mon-Fri, 9am-6pm</p>
+                    <h4 className="font-bold text-slate-900 mb-1 text-lg">Partnerships</h4>
+                    <p className="text-slate-600">partners@youngglobetrotters.com</p>
+                    <p className="text-sm text-slate-400 mt-1">For schools and international distribution.</p>
                   </div>
                 </div>
-
-                <div className="flex items-center gap-4">
-                  <div className="bg-purple-50 p-3 rounded-2xl text-purple-600">
-                    <MapPin className="w-6 h-6" />
+                
+                <div className="flex items-start gap-6">
+                  <div className="p-4 bg-purple-50 text-purple-600 rounded-2xl">
+                    <Globe size={24} />
                   </div>
                   <div>
-                    <p className="text-xs text-slate-400 uppercase font-bold tracking-wider">Office</p>
-                    <p className="font-bold text-slate-900">London, United Kingdom</p>
+                    <h4 className="font-bold text-slate-900 mb-1 text-lg">Global Office</h4>
+                    <p className="text-slate-600">123 Explorer Way, London, UK</p>
+                    <p className="text-sm text-slate-400 mt-1">Our creative hub for global adventures.</p>
                   </div>
+                </div>
+              </div>
+
+              <div className="mt-16 p-8 bg-slate-50 rounded-3xl border border-slate-100">
+                <h4 className="font-bold text-slate-900 mb-4 text-lg">Follow the Adventure</h4>
+                <div className="flex gap-4">
+                  {['Facebook', 'Instagram', 'Twitter', 'Youtube'].map((social) => (
+                    <button key={social} className="px-4 py-2 bg-white rounded-xl border border-slate-200 text-sm font-medium text-slate-700 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                      {social}
+                    </button>
+                  ))}
                 </div>
               </div>
             </div>
 
-            <div className="bg-blue-600 p-8 rounded-[40px] text-white shadow-xl shadow-blue-200">
-              <h3 className="text-xl font-bold mb-4">Newsletter</h3>
-              <p className="text-blue-100 text-sm mb-6">Join our community and get a free activity pack for your kids!</p>
-              <div className="flex gap-2">
-                <input 
-                  type="email" 
-                  placeholder="Your email" 
-                  className="bg-white/10 border border-white/20 rounded-xl px-4 py-2 text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/50 flex-grow"
-                />
-                <button className="bg-white text-blue-600 p-2 rounded-xl hover:bg-blue-50 transition-colors">
-                  <Send className="w-5 h-5" />
+            {/* Contact Form */}
+            <div className="flex-1 w-full p-10 bg-white rounded-[3rem] shadow-2xl border border-slate-100 relative overflow-hidden">
+              <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/5 blur-[100px] -z-10" />
+              <h3 className="text-2xl font-bold text-slate-900 mb-8">Send a Message</h3>
+              <form className="space-y-6">
+                <div className="grid gap-6 md:grid-cols-2">
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wider">Full Name</label>
+                    <input 
+                      type="text" 
+                      placeholder="Your Name"
+                      className="w-full px-6 py-4 bg-slate-50 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wider">Email Address</label>
+                    <input 
+                      type="email" 
+                      placeholder="Email@example.com"
+                      className="w-full px-6 py-4 bg-slate-50 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wider">Subject</label>
+                  <select className="w-full px-6 py-4 bg-slate-50 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all appearance-none">
+                    <option>General Inquiry</option>
+                    <option>School Partnership</option>
+                    <option>Shop Support</option>
+                    <option>Book Feedback</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-bold text-slate-700 mb-2 uppercase tracking-wider">Message</label>
+                  <textarea 
+                    rows={5}
+                    placeholder="How can we help you?"
+                    className="w-full px-6 py-4 bg-slate-50 rounded-xl border border-slate-200 focus:ring-2 focus:ring-blue-400 outline-none transition-all resize-none"
+                  ></textarea>
+                </div>
+                
+                <button className="w-full py-5 bg-blue-600 text-white rounded-xl font-bold text-lg flex items-center justify-center gap-3 hover:bg-blue-700 transition-all shadow-lg">
+                  Send Message <Send size={20} />
                 </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="bg-white p-10 rounded-[48px] border border-slate-100 shadow-sm">
-              {status === 'sent' ? (
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-20"
-                >
-                  <div className="bg-emerald-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 text-emerald-600">
-                    <Send className="w-10 h-10" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-4">Message Sent!</h3>
-                  <p className="text-slate-500">Thank you for reaching out. We'll get back to you within 24 hours.</p>
-                  <button 
-                    onClick={() => setStatus('idle')}
-                    className="mt-8 text-blue-600 font-bold hover:underline"
-                  >
-                    Send another message
-                  </button>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-700 ml-1">Full Name</label>
-                      <input 
-                        required
-                        type="text" 
-                        placeholder="John Doe"
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-700 ml-1">Email Address</label>
-                      <input 
-                        required
-                        type="email" 
-                        placeholder="john@example.com"
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 ml-1">Subject</label>
-                    <select className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all appearance-none">
-                      <option>General Inquiry</option>
-                      <option>Order Support</option>
-                      <option>School/Teacher Program</option>
-                      <option>Partnership</option>
-                    </select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700 ml-1">Message</label>
-                    <textarea 
-                      required
-                      rows={6}
-                      placeholder="How can we help you?"
-                      className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all resize-none"
-                    ></textarea>
-                  </div>
-
-                  <button 
-                    type="submit"
-                    disabled={status === 'sending'}
-                    className="w-full bg-blue-600 text-white font-bold py-5 rounded-2xl shadow-xl shadow-blue-200 hover:bg-blue-700 transition-all flex items-center justify-center gap-2"
-                  >
-                    {status === 'sending' ? (
-                      <motion.div 
-                        animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="w-6 h-6 border-2 border-white border-t-transparent rounded-full"
-                      />
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="w-5 h-5" />
-                      </>
-                    )}
-                  </button>
-                </form>
-              )}
+              </form>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* FAQ CTA */}
+      <section className="py-24 bg-slate-50">
+        <div className="container px-4 mx-auto text-center">
+          <h2 className="mb-6 text-3xl font-bold text-slate-900">Looking for quick answers?</h2>
+          <p className="mb-10 text-lg text-slate-600">Check our frequently asked questions for parents and teachers.</p>
+          <button className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all">
+            Visit our Help Center <ArrowRight size={20} />
+          </button>
+        </div>
+      </section>
     </div>
   );
-}
+};
+
+export default Contact;
