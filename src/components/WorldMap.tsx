@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { useNavigate } from "react-router-dom";
 import { citiesData } from "../data/citiesData";
 
@@ -56,28 +56,57 @@ const CITY_COORDS: Record<string, { lat: number; lng: number; type: 'city' | 'na
   "santorini": { lat: 36.3932, lng: 25.4615, type: 'city' }
 };
 
+const CONTINENTS = [
+  {
+    id: "north-america",
+    name: "North America",
+    path: "M100,120 C120,80 250,50 380,80 C420,100 450,180 400,280 C350,350 250,360 150,320 C100,280 80,200 100,120 Z"
+  },
+  {
+    id: "south-america",
+    name: "South America",
+    path: "M280,300 C340,300 410,320 410,420 C410,480 360,510 300,510 C240,510 210,460 210,400 C210,340 240,300 280,300 Z"
+  },
+  {
+    id: "europe",
+    name: "Europe",
+    path: "M470,80 C520,50 590,50 630,90 C660,130 640,200 590,220 C540,240 480,220 460,180 C440,140 440,100 470,80 Z"
+  },
+  {
+    id: "africa",
+    name: "Africa",
+    path: "M460,220 C540,180 660,200 690,300 C720,400 660,490 580,510 C500,520 440,460 430,380 C420,300 430,240 460,220 Z"
+  },
+  {
+    id: "asia",
+    name: "Asia",
+    path: "M630,80 C780,30 950,40 980,120 C1000,200 960,320 850,410 C740,440 650,400 620,320 C600,240 600,120 630,80 Z"
+  },
+  {
+    id: "australia",
+    name: "Australia",
+    path: "M780,350 C850,350 930,370 930,450 C930,510 880,530 820,530 C760,530 730,500 730,440 C730,370 750,350 780,350 Z"
+  },
+  {
+    id: "greenland",
+    name: "Greenland",
+    path: "M350,40 C400,20 480,30 500,60 C520,100 480,130 430,130 C380,130 340,100 340,70 C340,50 340,40 350,40 Z"
+  }
+];
+
 const TYPE_COLORS = {
   city: "#FFD600",
   nature: "#4CAF50",
   special: "#00E5FF"
 };
 
-// Simplified World Map Path (Low-poly style for better performance and clean look)
-const WORLD_PATH = "M157.1,100.1c-1.3,0.1-2.6,0.2-3.9,0.4c-4.3,0.6-8.5,1.5-12.7,2.8c-4.2,1.3-8.2,3-12.1,5c-3.8,2.1-7.4,4.5-10.8,7.2c-3.4,2.7-6.5,5.7-9.3,9c-2.8,3.3-5.2,6.8-7.3,10.6c-2.1,3.7-3.8,7.7-5,11.8c-1.3,4.1-2,8.3-2.3,12.6c-0.3,4.3-0.1,8.6,0.6,12.8c0.7,4.2,1.8,8.4,3.4,12.4c1.6,4,3.6,7.8,6,11.4c2.4,3.6,5.2,6.9,8.3,9.9c3.1,3,6.5,5.7,10.1,8c3.6,2.3,7.4,4.3,11.4,5.8c4,1.5,8.1,2.6,12.3,3.2c4.2,0.6,8.5,0.8,12.8,0.5c4.3-0.3,8.6-1,12.7-2.1c4.1-1.1,8.1-2.7,11.9-4.7c3.8-2,7.4-4.4,10.7-7.1c3.3-2.7,6.3-5.7,9-9c2.7-3.3,5-6.9,7-10.7c2-3.8,3.5-7.8,4.6-11.9c1.1-4.1,1.7-8.3,1.8-12.6c0.1-4.3-0.2-8.6-1-12.8c-0.8-4.2-2.1-8.3-3.8-12.3c-1.7-4-3.8-7.8-6.3-11.3c-2.5-3.5-5.4-6.8-8.6-9.7c-3.2-2.9-6.7-5.5-10.4-7.7c-3.7-2.2-7.6-4-11.7-5.4c-4.1-1.4-8.3-2.3-12.6-2.8C165.7,100.2,161.4,100,157.1,100.1z"; // This is just a placeholder, I'll use a real comprehensive path below.
-
-// Real World Map SVG Path (Simplified)
-const WORLD_MAP_PATH = "M1000,250c0,138.1-111.9,250-250,250S500,388.1,500,250S611.9,0,750,0S1000,111.9,1000,250z M250,500C111.9,500,0,388.1,0,250S111.9,0,250,0s250,111.9,250,250S388.1,500,250,500z"; // Still placeholder-ish, let's provide a better one.
-
 export default function WorldMap() {
   const navigate = useNavigate();
   const [hoveredCity, setHoveredCity] = useState<string | null>(null);
 
-  const width = 1000;
-  const height = 500;
-
   const project = (lat: number, lng: number) => {
-    const x = (lng + 180) * (width / 360);
-    const y = (90 - lat) * (height / 180);
+    const x = (lng + 180) * (1000 / 360);
+    const y = (90 - lat) * (500 / 180);
     return { x, y };
   };
 
@@ -88,41 +117,35 @@ export default function WorldMap() {
   })).filter(d => d.lat !== undefined);
 
   return (
-    <div className="w-full bg-slate-900 rounded-[2rem] p-4 md:p-8 shadow-2xl border border-white/10 overflow-hidden">
+    <div className="w-full bg-[#162447] rounded-[2rem] p-4 md:p-8 shadow-2xl border border-white/10 overflow-hidden">
       <div className="relative w-full h-auto">
         <svg
-          viewBox={`0 0 ${width} ${height}`}
-          className="w-full h-auto"
+          viewBox="0 0 1000 500"
+          width="100%"
+          height="auto"
           preserveAspectRatio="xMidYMid meet"
+          className="w-full h-auto"
         >
-          {/* World Map Background */}
-          <path
-            d="M1000,250c0,138.1-223.9,250-500,250S0,388.1,0,250S223.9,0,500,0S1000,111.9,1000,250z"
-            fill="#1e293b"
-            opacity="0.3"
-          />
-          
-          {/* Simplified Continents (Representational) */}
-          <g fill="#334155" stroke="#475569" strokeWidth="0.5">
-            {/* North America */}
-            <path d="M100,50 L250,50 L350,150 L300,250 L150,250 L50,150 Z" />
-            {/* South America */}
-            <path d="M250,260 L350,260 L320,450 L220,400 Z" />
-            {/* Europe & Asia */}
-            <path d="M450,50 L900,50 L950,250 L700,350 L500,350 L400,200 Z" />
-            {/* Africa */}
-            <path d="M480,200 L620,200 L650,400 L500,450 L450,300 Z" />
-            {/* Australia */}
-            <path d="M800,350 L950,350 L920,480 L820,480 Z" />
-            {/* Antarctica */}
-            <path d="M100,480 L900,480 L850,500 L150,500 Z" />
-          </g>
+          {/* Ocean Background */}
+          <rect width="1000" height="500" fill="#162447" />
+
+          {/* Continents */}
+          {CONTINENTS.map((continent) => (
+            <path
+              key={continent.id}
+              d={continent.path}
+              className="transition-all duration-300 ease-in-out hover:fill-[#3E5F9E] hover:scale-[1.01] cursor-pointer origin-center"
+              fill="#2E4A7D"
+              stroke="none"
+            />
+          ))}
 
           {/* Markers */}
           {destinations.map((dest) => {
             const { x, y } = project(dest.lat, dest.lng);
             const color = TYPE_COLORS[dest.type] || TYPE_COLORS.city;
-            
+            const isHovered = hoveredCity === dest.slug;
+
             return (
               <g
                 key={dest.slug}
@@ -131,9 +154,9 @@ export default function WorldMap() {
                 onMouseLeave={() => setHoveredCity(null)}
                 onClick={() => navigate(`/books/${dest.slug}`)}
               >
-                {/* Glow for hovered */}
+                {/* Glow Effect */}
                 <AnimatePresence>
-                  {hoveredCity === dest.slug && (
+                  {isHovered && (
                     <motion.circle
                       cx={x}
                       cy={y}
@@ -141,6 +164,7 @@ export default function WorldMap() {
                       animate={{ r: 15, opacity: 0.3 }}
                       exit={{ r: 6, opacity: 0 }}
                       fill={color}
+                      className="pointer-events-none"
                     />
                   )}
                 </AnimatePresence>
@@ -155,36 +179,39 @@ export default function WorldMap() {
                   strokeWidth={1.5}
                   initial={false}
                   animate={{
-                    scale: hoveredCity === dest.slug ? 1.3 : 1,
+                    scale: isHovered ? 1.3 : 1,
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  style={{
+                    filter: isHovered ? `drop-shadow(0 0 8px ${color})` : 'none'
+                  }}
                 />
 
                 {/* Tooltip */}
                 <AnimatePresence>
-                  {hoveredCity === dest.slug && (
+                  {isHovered && (
                     <motion.g
-                      initial={{ opacity: 0, y: -5 }}
+                      initial={{ opacity: 0, y: -10 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -5 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="pointer-events-none"
                     >
                       <rect
-                        x={x - 50}
-                        y={y - 35}
-                        width={100}
-                        height={20}
-                        rx={4}
+                        x={x - 60}
+                        y={y - 40}
+                        width={120}
+                        height={24}
+                        rx={6}
                         fill="white"
                         className="shadow-xl"
                       />
                       <text
                         x={x}
-                        y={y - 21}
+                        y={y - 24}
                         textAnchor="middle"
                         fill="#0f172a"
-                        fontSize="10"
+                        fontSize="12"
                         fontWeight="bold"
-                        className="pointer-events-none"
                       >
                         {dest.name}
                       </text>
@@ -198,17 +225,17 @@ export default function WorldMap() {
       </div>
 
       {/* Legend */}
-      <div className="mt-6 flex flex-wrap justify-center gap-6 text-xs font-bold uppercase tracking-wider">
+      <div className="mt-6 flex flex-wrap justify-center gap-6 text-[10px] font-bold uppercase tracking-widest">
         <div className="flex items-center gap-2 text-slate-400">
-          <div className="w-3 h-3 rounded-full bg-[#FFD600]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#FFD600]" />
           <span>Cities</span>
         </div>
         <div className="flex items-center gap-2 text-slate-400">
-          <div className="w-3 h-3 rounded-full bg-[#4CAF50]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#4CAF50]" />
           <span>Nature</span>
         </div>
         <div className="flex items-center gap-2 text-slate-400">
-          <div className="w-3 h-3 rounded-full bg-[#00E5FF]" />
+          <div className="w-2.5 h-2.5 rounded-full bg-[#00E5FF]" />
           <span>Special</span>
         </div>
       </div>
