@@ -273,21 +273,26 @@ export default function Activities() {
       {/* Travel Methods Section */}
       <section className="py-24 px-4 max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-slate-800 mb-12 text-center">How We Travel</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
           {[
-            { icon: Plane, name: 'Airplane', desc: 'Fastest way to cross oceans.' },
-            { icon: Train, name: 'Train', desc: 'Scenic routes through countries.' },
-            { icon: Ship, name: 'Ship', desc: 'Exploring the vast blue seas.' },
-            { icon: Car, name: 'Car', desc: 'Road trips and local discoveries.' },
-            { icon: Bike, name: 'Bicycle', desc: 'Eco-friendly local exploration.' }
+            { image: 'https://i.ibb.co/nNkNGNCC/Foxy-drive-plane.png', name: 'Airplane', desc: 'Fastest way to cross oceans.' },
+            { image: 'https://i.ibb.co/20LYs180/Foxy-drive-Train.png', name: 'Train', desc: 'Scenic routes through countries.' },
+            { image: 'https://i.ibb.co/dJgv6rwq/nave-blu-removebg-preview.png', name: 'Ship', desc: 'Exploring the vast blue seas.' },
+            { image: 'https://i.ibb.co/000hkZR/auto-blu-removebg-preview.png', name: 'Car', desc: 'Road trips and local discoveries.' },
+            { image: 'https://i.ibb.co/LDh11Dw6/Foxy-in-bici.png', name: 'Bicycle', desc: 'Eco-friendly local exploration.' }
           ].map((method, i) => (
             <motion.div 
               key={i}
               whileHover={{ scale: 1.05 }}
-              className="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 text-center cursor-pointer hover:shadow-md transition-all"
+              className="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 text-center cursor-pointer hover:shadow-md transition-all flex flex-col items-center"
             >
-              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                <method.icon className="w-6 h-6 text-orange-600" />
+              <div className="w-24 h-24 bg-orange-50 rounded-2xl flex items-center justify-center mb-4 overflow-hidden">
+                <img 
+                  src={method.image} 
+                  alt={method.name} 
+                  className="w-full h-full object-contain p-2"
+                  referrerPolicy="no-referrer"
+                />
               </div>
               <h4 className="font-bold text-slate-800 mb-2">{method.name}</h4>
               <p className="text-xs text-slate-500">{method.desc}</p>
