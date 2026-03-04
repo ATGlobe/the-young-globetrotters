@@ -118,7 +118,7 @@ export default function Activities() {
             className="relative"
           >
             <img 
-              src="https://ibb.co/qFBt5nSq" 
+              src="https://i.ibb.co/Fq6SVWrZ/Foxy-deltaplano.png" 
               alt="Activities Hero" 
               className="w-full h-auto rounded-[40px] shadow-2xl"
               referrerPolicy="no-referrer"
