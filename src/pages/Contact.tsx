@@ -9,7 +9,7 @@ const Contact: React.FC = () => {
         title="Get in Touch"
         subtitle="Have questions about the series, school partnerships, or the official store? Our team is here to help you on your global journey."
         bgColor="bg-slate-900" // Professional Slate
-        image="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/characters-lineup.png"
+        image="https://i.ibb.co/DPpFnf6k/personaggi-removebg-preview.png"
       />
 
       <section className="py-24 bg-white">

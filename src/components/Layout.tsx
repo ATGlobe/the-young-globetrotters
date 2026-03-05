@@ -2,6 +2,8 @@ import React from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { LOGO_URL, BRAND_NAME } from '../constants';
 import { Menu, X, Facebook, Instagram, Twitter, Youtube } from 'lucide-react';
+import { CookieBanner } from './CookieBanner';
+import { LegalFooter } from './LegalFooter';
 
 const Layout: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -16,6 +18,7 @@ const Layout: React.FC = () => {
     { name: 'Explorer Passport', path: '/passport' },
     { name: 'Shop', path: '/shop' },
     { name: 'For Teachers', path: '/teachers' },
+    { name: 'Blog', path: '/blog' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -131,6 +134,8 @@ const Layout: React.FC = () => {
           </div>
         </div>
       </footer>
+      <LegalFooter />
+      <CookieBanner />
     </div>
   );
 };

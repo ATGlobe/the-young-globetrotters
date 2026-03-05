@@ -1,265 +1,237 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { BOOKS } from '../data/books';
+import { VOLUMES } from '../data/volumes';
 import Hero from '../components/Hero';
-import { motion } from 'framer-motion';
-import { usePassport } from '../hooks/usePassport';
-import { unlockVolume } from '../data/passportStore';
+import { motion, AnimatePresence } from 'motion/react';
+import { useProgress } from '../hooks/useProgress';
+import { SimpleCrossword } from '../components/games/SimpleCrossword';
+import { EmojiRebusGame } from '../components/games/EmojiRebusGame';
+import { WordScrambleGame } from '../components/games/WordScrambleGame';
 import { 
   MapPin, 
-  Bird, 
-  Info, 
   Utensils, 
   Plane, 
   GraduationCap, 
   ExternalLink,
   ArrowLeft,
   CheckCircle2,
-  Lock
+  Trophy,
+  Gamepad2,
+  Sparkles,
+  ShieldCheck
 } from 'lucide-react';
 
 const BookPage: React.FC = () => {
   const { city } = useParams<{ city: string }>();
-  const book = BOOKS.find(b => b.slug === city);
-  const { isUnlocked } = usePassport();
+  const book = VOLUMES.find(b => b.slug === city);
+  const { progress, updateProgress, calculateBadge } = useProgress();
 
   if (!book) {
     return <Navigate to="/books" replace />;
   }
 
-  const unlocked = isUnlocked(parseInt(book.id));
-
-  const handleUnlock = () => {
-    unlockVolume(parseInt(book.id));
+  const volumeProgress = progress[book.id] || {
+    quiz: { geography: false, culture: false, food: false },
+    games: { crossword: false, rebus: false, scramble: false }
   };
+
+  const badge = calculateBadge(book.id);
 
   return (
     <div className="bg-white min-h-screen">
       <Hero 
-        title={book.title}
+        title={book.city}
         subtitle={`${book.city}, ${book.country}`}
         bgColor="bg-blue-900"
-        image={book.coverImage}
+        image={book.image}
       >
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-          {!unlocked ? (
-            <button 
-              onClick={handleUnlock}
-              className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-blue-600 bg-white rounded-xl hover:bg-slate-50 transition-all shadow-lg"
-            >
-              Unlock Adventure <Lock size={18} />
-            </button>
+          {book.purchaseLink ? (
+            <div className="flex flex-col items-center gap-2">
+              <a 
+                href={book.purchaseLink} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-10 py-5 text-xl font-black text-blue-600 bg-white rounded-2xl hover:bg-slate-50 transition-all shadow-2xl hover:-translate-y-1"
+              >
+                Get the Digital Book ({book.price}) <ExternalLink size={20} />
+              </a>
+              <p className="text-white/70 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <ShieldCheck size={14} />
+                Secure checkout powered by Gumroad
+              </p>
+            </div>
           ) : (
-            <div className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-emerald-600 bg-white rounded-xl shadow-lg">
-              Adventure Unlocked <CheckCircle2 size={18} />
+            <div className="px-10 py-5 text-xl font-black text-slate-400 bg-slate-100 rounded-2xl border-2 border-slate-200">
+              Coming Soon
             </div>
           )}
-          <a 
-            href={book.externalLink} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-white border-2 border-white rounded-xl hover:bg-white/10 transition-all"
-          >
-            Buy Official Book <ExternalLink size={18} />
-          </a>
         </div>
       </Hero>
 
-      {/* Introduction */}
-      <section className="py-20 border-b border-slate-100">
+      {/* Progress & Badge Section */}
+      <section className="py-12 bg-slate-50 border-b border-slate-100">
         <div className="container px-4 mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="mb-8 text-3xl font-bold text-slate-900">Adventure Overview</h2>
-            <p className="text-xl leading-relaxed text-slate-600">{book.description}</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Landmarks & Wildlife */}
-      <section className="py-24 bg-slate-50">
-        <div className="container px-4 mx-auto">
-          <div className="grid gap-12 lg:grid-cols-2">
-            {/* Landmarks */}
-            <div className="p-10 bg-white rounded-3xl shadow-sm border border-slate-100">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
-                  <MapPin size={28} />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900">Landmarks to Explore</h3>
+          <div className="max-w-4xl mx-auto bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex items-center gap-6">
+              <div className={`w-20 h-20 rounded-full flex items-center justify-center border-4 ${
+                badge === 'Gold' ? 'bg-amber-400 border-amber-200' : 
+                badge === 'Silver' ? 'bg-slate-300 border-slate-100' :
+                badge === 'Bronze' ? 'bg-orange-300 border-orange-100' :
+                'bg-slate-50 border-slate-100'
+              } shadow-lg`}>
+                <Trophy className={badge ? 'text-white' : 'text-slate-200'} size={32} />
               </div>
-              <ul className="space-y-4">
-                {book.landmarks.map((landmark, i) => (
-                  <li key={i} className="flex items-center gap-3 text-lg text-slate-700">
-                    <CheckCircle2 className="text-blue-500" size={20} />
-                    {landmark}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Wildlife */}
-            <div className="p-10 bg-white rounded-3xl shadow-sm border border-slate-100">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
-                  <Bird size={28} />
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900">Local Wildlife</h3>
-              </div>
-              <ul className="space-y-4">
-                {book.wildlife.map((animal, i) => (
-                  <li key={i} className="flex items-center gap-3 text-lg text-slate-700">
-                    <CheckCircle2 className="text-emerald-500" size={20} />
-                    {animal}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Cultural Facts */}
-      <section className="py-24 bg-white">
-        <div className="container px-4 mx-auto">
-          <div className="flex flex-col items-center gap-16 lg:flex-row">
-            <div className="flex-1 order-2 lg:order-1">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-purple-50 text-purple-600 rounded-2xl">
-                  <Info size={28} />
-                </div>
-                <h3 className="text-3xl font-bold text-slate-900">Cultural Facts</h3>
-              </div>
-              <div className="space-y-6">
-                {book.culturalFacts.map((fact, i) => (
-                  <div key={i} className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                    <p className="text-lg text-slate-700 leading-relaxed">{fact}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="flex-1 order-1 lg:order-2">
-              <img 
-                src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png" 
-                alt="Professor Owl" 
-                className="w-full h-auto max-w-sm mx-auto drop-shadow-2xl"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Recipe Highlight */}
-      <section className="py-24 bg-slate-900 text-white overflow-hidden">
-        <div className="container px-4 mx-auto">
-          <div className="flex flex-col items-center gap-16 lg:flex-row">
-            <div className="flex-1">
-              <div className="relative">
-                <img 
-                  src={book.recipe.image} 
-                  alt={book.recipe.name} 
-                  className="w-full aspect-video object-cover rounded-3xl shadow-2xl"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-red-600 rounded-full flex items-center justify-center p-4 shadow-xl">
-                  <img 
-                    src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Progetto_senza_titolo__1_-removebg-preview.png" 
-                    alt="Chef" 
-                    className="w-full h-full object-contain"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-red-600/20 text-red-500 rounded-2xl">
-                  <Utensils size={28} />
-                </div>
-                <h3 className="text-3xl font-bold">Chef's Special Recipe</h3>
-              </div>
-              <h4 className="text-4xl font-bold mb-6 text-red-500">{book.recipe.name}</h4>
-              <p className="text-xl text-slate-400 leading-relaxed mb-8">{book.recipe.description}</p>
-              <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
-                <p className="italic text-slate-300">"In every city we visit, I find the best ingredients to teach you how to prepare a typical local dish!" — Chef</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Foxy's Transport */}
-      <section className="py-24 bg-orange-50">
-        <div className="container px-4 mx-auto">
-          <div className="flex flex-col items-center gap-16 lg:flex-row">
-            <div className="flex-1 order-2 lg:order-1">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-orange-100 text-orange-600 rounded-2xl">
-                  <Plane size={28} />
-                </div>
-                <h3 className="text-3xl font-bold text-slate-900">Foxy's Transport</h3>
-              </div>
-              <div className="p-8 bg-white rounded-3xl border-2 border-orange-200 shadow-sm">
-                <p className="text-2xl font-medium text-slate-800 leading-relaxed italic">
-                  "{book.foxyTransport}"
+              <div>
+                <h3 className="text-xl font-black text-slate-900">Adventure Progress</h3>
+                <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">
+                  {badge ? `${badge} Badge Earned!` : 'Start your journey!'}
                 </p>
               </div>
-              <p className="mt-8 text-lg text-slate-600">
-                Foxy is always trying to steal Axel's golden aviator badge, but his complicated plans and absurd vehicles never quite work out!
-              </p>
             </div>
-            <div className="flex-1 order-1 lg:order-2">
-              <img 
-                src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Foxy_2-removebg-preview.png" 
-                alt="Foxy" 
-                className="w-full h-auto max-w-sm mx-auto drop-shadow-2xl"
-                referrerPolicy="no-referrer"
+            <div className="flex gap-2">
+              {[...Array(6)].map((_, i) => {
+                const completedCount = 
+                  Object.values(volumeProgress.quiz).filter(Boolean).length + 
+                  Object.values(volumeProgress.games).filter(Boolean).length;
+                return (
+                  <div 
+                    key={i} 
+                    className={`w-3 h-3 rounded-full ${i < completedCount ? 'bg-emerald-500' : 'bg-slate-100'}`}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Introduction */}
+      <section className="py-20 bg-white">
+        <div className="container px-4 mx-auto">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="mb-8 text-4xl font-black text-slate-900">Explore {book.city}</h2>
+            <p className="text-xl leading-relaxed text-slate-600 font-medium">{book.description}</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Interactive Games Section */}
+      <section className="py-24 bg-slate-50">
+        <div className="container px-4 mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1 bg-orange-100 text-orange-600 rounded-full text-xs font-black uppercase tracking-widest mb-4">
+              <Gamepad2 size={14} />
+              Explorer Games
+            </div>
+            <h2 className="text-4xl font-black text-slate-900">Play & Learn</h2>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-3">
+            {/* Crossword */}
+            <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
+                  <Sparkles size={24} />
+                </div>
+                <h3 className="text-2xl font-black text-slate-900">Crossword</h3>
+              </div>
+              <SimpleCrossword 
+                words={book.games.crossword.words} 
+                isCompleted={volumeProgress.games.crossword}
+                onComplete={() => updateProgress(book.id, 'games', 'crossword')}
+              />
+            </div>
+
+            {/* Rebus */}
+            <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 bg-orange-50 text-orange-600 rounded-2xl">
+                  <Gamepad2 size={24} />
+                </div>
+                <h3 className="text-2xl font-black text-slate-900">Emoji Rebus</h3>
+              </div>
+              <EmojiRebusGame 
+                rebus={book.games.rebus}
+                isCompleted={volumeProgress.games.rebus}
+                onComplete={() => updateProgress(book.id, 'games', 'rebus')}
+              />
+            </div>
+
+            {/* Scramble */}
+            <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
+                  <Utensils size={24} />
+                </div>
+                <h3 className="text-2xl font-black text-slate-900">Word Scramble</h3>
+              </div>
+              <WordScrambleGame 
+                scramble={book.games.scramble}
+                isCompleted={volumeProgress.games.scramble}
+                onComplete={() => updateProgress(book.id, 'games', 'scramble')}
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Learning Focus */}
+      {/* Quizzes Section */}
       <section className="py-24 bg-white">
         <div className="container px-4 mx-auto">
-          <div className="max-w-4xl mx-auto p-12 bg-slate-900 text-white rounded-[3rem] shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-[100px] -z-10" />
-            <div className="flex flex-col items-center text-center">
-              <div className="p-4 bg-blue-600 rounded-2xl mb-8">
-                <GraduationCap size={40} />
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-slate-900">Knowledge Check</h2>
+            <p className="text-slate-500 font-bold uppercase tracking-widest text-sm mt-4">Test what you've learned about {book.city}</p>
+          </div>
+
+          <div className="grid gap-8 md:grid-cols-3">
+            {Object.entries(book.quizzes).map(([key, quiz]) => (
+              <div key={key} className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100">
+                <h4 className="text-xl font-black text-slate-900 mb-6 capitalize">{key} Quiz</h4>
+                <p className="font-bold text-slate-700 mb-6">{quiz.question}</p>
+                <div className="space-y-3">
+                  {quiz.options.map((opt, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        if (idx === quiz.correct) {
+                          updateProgress(book.id, 'quiz', key);
+                        }
+                      }}
+                      disabled={volumeProgress.quiz[key as keyof typeof volumeProgress.quiz]}
+                      className={`w-full p-4 text-left rounded-2xl border-2 font-bold transition-all ${
+                        volumeProgress.quiz[key as keyof typeof volumeProgress.quiz] && idx === quiz.correct
+                          ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
+                          : 'bg-white border-slate-200 hover:border-orange-400'
+                      }`}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <h3 className="text-3xl font-bold mb-6">Learning Focus Summary</h3>
-              <p className="text-lg text-slate-400 mb-12 max-w-2xl">
-                This adventure is designed to help children develop key skills and knowledge in the following areas:
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                {book.learningFocus.map((focus, i) => (
-                  <span key={i} className="px-6 py-3 bg-white/10 rounded-full font-bold text-blue-400 border border-white/10">
-                    {focus}
-                  </span>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* Final CTA */}
       <section className="py-24 bg-blue-600 text-white">
         <div className="container px-4 mx-auto text-center">
-          <h2 className="mb-8 text-4xl font-bold">Start the {book.city} Adventure Today</h2>
-          <p className="max-w-2xl mx-auto mb-12 text-xl opacity-90">
-            Get the full book and join Axel & Tino on their journey through {book.city}.
+          <h2 className="mb-8 text-4xl font-black lg:text-5xl">Ready for the Full Adventure?</h2>
+          <p className="max-w-2xl mx-auto mb-12 text-xl font-medium opacity-90">
+            Get the complete digital book of {book.city} and unlock all the secrets of this amazing place!
           </p>
-          <a 
-            href={book.externalLink} 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-12 py-5 text-xl font-bold text-blue-600 bg-white rounded-2xl hover:bg-slate-50 transition-all shadow-2xl hover:-translate-y-1"
-          >
-            Buy on Gumroad <ExternalLink size={20} />
-          </a>
+          {book.purchaseLink && (
+            <a 
+              href={book.purchaseLink} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-12 py-6 text-2xl font-black text-blue-600 bg-white rounded-2xl hover:bg-slate-50 transition-all shadow-2xl hover:-translate-y-1"
+            >
+              Buy on Gumroad <ExternalLink size={24} />
+            </a>
+          )}
         </div>
       </section>
     </div>
@@ -267,3 +239,4 @@ const BookPage: React.FC = () => {
 };
 
 export default BookPage;
+;

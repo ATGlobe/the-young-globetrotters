@@ -20,6 +20,7 @@ const About: React.FC = () => {
           <div className="flex flex-col items-center gap-16 lg:flex-row">
             <div className="flex-1">
               <h2 className="mb-8 text-4xl font-bold text-slate-900">The Foundation of a Global Brand</h2>
+              <img src="https://i.ibb.co/XZRVQYz0/sezione-about.jpg" alt="The Foundation of a Global Brand" className="w-full h-auto rounded-3xl shadow-xl mb-8" referrerPolicy="no-referrer" />
               <p className="mb-6 text-xl text-slate-600 leading-relaxed">
                 Our mission is to inspire the next generation of global citizens through adventure, education, and culture. We believe that by introducing children to the diversity of our world, we can foster curiosity, empathy, and a lifelong love for learning.
               </p>

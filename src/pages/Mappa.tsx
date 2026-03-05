@@ -1,78 +1,122 @@
-import { motion } from 'motion/react';
-import Map from '../components/Map';
-import Passport from '../components/Passport';
-import { Globe, Compass } from 'lucide-react';
-import { BOOKS } from '../data/books';
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { MapContainer, TileLayer, Marker, Tooltip } from 'react-leaflet';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
+import { useNavigate } from 'react-router-dom';
+import { useProgress } from '../hooks/useProgress';
+import { VOLUMES } from '../data/volumes';
+import Hero from '../components/Hero';
+
+// Fix for default marker icons in Leaflet
+import icon from 'leaflet/dist/images/marker-icon.png';
+import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+
+let DefaultIcon = L.icon({
+  iconUrl: icon,
+  shadowUrl: iconShadow,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41]
+});
+
+L.Marker.prototype.options.icon = DefaultIcon;
+
+const getIcon = (category: string, completed: boolean) => {
+  let color = "#999";
+
+  if (category === "city") color = "#FFD700"; // Yellow
+  if (category === "nature") color = "#2ecc71"; // Green
+  if (category === "special") color = "#3498db"; // Blue
+
+  return L.divIcon({
+    className: "custom-div-icon",
+    html: `
+      <div style="
+        width:24px;
+        height:24px;
+        background:${color};
+        border-radius:50%;
+        border:3px solid ${completed ? "#F59E0B" : "white"};
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+      ">
+        ${completed ? '<div style="width:8px; height:8px; background:white; border-radius:50%;"></div>' : ''}
+      </div>
+    `,
+    iconSize: [24, 24],
+    iconAnchor: [12, 12]
+  });
+};
 
 export default function Mappa() {
+  const navigate = useNavigate();
+  const { isCityCompleted } = useProgress();
+
   return (
-    <div className="bg-[#FFF9F0] min-h-screen py-20">
-      <div className="max-w-7xl mx-auto px-4">
+    <div className="min-h-screen bg-slate-50">
+      <Hero 
+        title="Interactive World Map"
+        subtitle="Click on the cities to discover their stories and start your adventure!"
+        bgColor="bg-blue-600"
+      />
 
-        <div className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="inline-flex items-center px-6 py-2 rounded-full bg-blue-600 text-white text-sm font-black uppercase tracking-widest mb-6"
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="bg-white rounded-[3rem] shadow-2xl border border-slate-100 overflow-hidden h-[70vh] relative z-10">
+          <MapContainer
+            center={[20, 0]}
+            zoom={2}
+            scrollWheelZoom={true}
+            className="h-full w-full"
           >
-            <Compass className="w-4 h-4 mr-2" />
-            World Explorer Tracker
-          </motion.div>
+            <TileLayer
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            />
 
-          <h1 className="text-5xl font-black text-slate-900">
-            Your Global Adventure
-          </h1>
-
-          <p className="text-lg text-slate-500 mt-4">
-            Explore every city with Axel & Tino and track your progress.
-          </p>
-        </div>
-
-        {/* WORLD MAP SECTION */}
-        <section className="py-16 bg-white rounded-[40px] mb-20 shadow-sm">
-          <div className="max-w-7xl mx-auto px-6">
-            
-            <div className="text-center mb-10">
-              <h2 className="text-3xl font-bold text-slate-900 mb-3">
-                Interactive World Map
-              </h2>
-              <p className="text-slate-500">
-                Click on the countries to explore Axel & Tino’s journey.
-              </p>
-            </div>
-
-            <div className="bg-slate-50 rounded-3xl p-8 shadow-inner">
-              <Map />
-            </div>
-
-          </div>
-        </section>
-
-        <div className="mb-20">
-          <Passport />
-        </div>
-
-        <div>
-          <h2 className="text-3xl font-black mb-8">All Destinations</h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {BOOKS.map((volume) => (
-              <Link
-                key={volume.id}
-                to={`/books/${volume.slug}`}
-                className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
+            {VOLUMES.map((vol) => (
+              <Marker
+                key={vol.id}
+                position={[vol.coordinates.lat, vol.coordinates.lng]}
+                icon={getIcon(vol.category, isCityCompleted(vol.id))}
+                eventHandlers={{
+                  click: () => navigate(`/books/${vol.slug}`)
+                }}
               >
-                <Globe className="w-6 h-6 mb-3 text-blue-600" />
-                <p className="font-bold">{volume.city}</p>
-                <p className="text-xs text-slate-400 uppercase">
-                  {volume.country}
-                </p>
-              </Link>
+                <Tooltip direction="top" offset={[0, -10]} opacity={1} permanent={false}>
+                  <div className="text-center">
+                    <p className="font-black text-slate-900">{vol.city}</p>
+                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">{vol.country}</p>
+                    {isCityCompleted(vol.id) && <p className="text-[10px] text-amber-600 font-black mt-1">⭐ COMPLETED</p>}
+                  </div>
+                </Tooltip>
+              </Marker>
             ))}
-          </div>
+          </MapContainer>
         </div>
 
+        {/* Legend */}
+        <div className="mt-12 flex flex-wrap justify-center gap-8 bg-white p-8 rounded-3xl border border-slate-100 shadow-sm">
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-4 rounded-full bg-[#FFD700] border-2 border-white shadow-sm"></div>
+            <span className="text-sm font-bold text-slate-700">Cities</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-4 rounded-full bg-[#2ecc71] border-2 border-white shadow-sm"></div>
+            <span className="text-sm font-bold text-slate-700">Nature</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-4 rounded-full bg-[#3498db] border-2 border-white shadow-sm"></div>
+            <span className="text-sm font-bold text-slate-700">Special</span>
+          </div>
+          <div className="flex items-center gap-3">
+            <div className="w-4 h-4 rounded-full bg-slate-900 border-2 border-[#F59E0B] shadow-sm flex items-center justify-center">
+              <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+            </div>
+            <span className="text-sm font-bold text-slate-700">Completed Volume ⭐</span>
+          </div>
+        </div>
       </div>
     </div>
   );

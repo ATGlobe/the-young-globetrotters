@@ -273,13 +273,13 @@ export default function Activities() {
             <p className="text-slate-500">Fun ways to stay active while exploring the world from home!</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            {[
+            { [
               { title: 'The Pilot Stretch', desc: 'Reach for the clouds! Stretch your arms high and "fly" around the room.', image: 'https://i.ibb.co/Fk1Qqwwj/Generated-Image-March-04-2026-4-50-PM-removebg-preview-1.png' },
               { title: 'The Global Hop', desc: 'Imagine the floor is a map. Hop from "continent" to "continent"!', image: 'https://i.ibb.co/v42XC3xN/Generated-Image-March-04-2026-4-54-PM.png' },
               { title: 'Chef\'s Dance', desc: 'Put on some global music and dance while you "stir" your imaginary pot.', image: 'https://i.ibb.co/pBPz1Tm5/Generated-Image-March-04-2026-4-55-PM-1.png' }
             ].map((act, i) => (
               <div key={i} className="p-8 rounded-[32px] bg-orange-50 border border-orange-100 hover:shadow-xl transition-all group">
-                <div className="w-32 h-32 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:rotate-12 transition-transform overflow-hidden">
+                <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:rotate-12 transition-transform overflow-hidden mx-auto">
                   <img 
                     src={act.image} 
                     alt={act.title} 
@@ -299,7 +299,7 @@ export default function Activities() {
       <section className="py-24 px-4 max-w-7xl mx-auto">
         <h2 className="text-3xl font-bold text-slate-800 mb-12 text-center">How We Travel</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
-          {[
+            { [
             { image: 'https://i.ibb.co/nNkNGNCC/Foxy-drive-plane.png', name: 'Airplane', desc: 'Fastest way to cross oceans.' },
             { image: 'https://i.ibb.co/20LYs180/Foxy-drive-Train.png', name: 'Train', desc: 'Scenic routes through countries.' },
             { image: 'https://i.ibb.co/dJgv6rwq/nave-blu-removebg-preview.png', name: 'Ship', desc: 'Exploring the vast blue seas.' },
@@ -311,7 +311,7 @@ export default function Activities() {
               whileHover={{ scale: 1.05 }}
               className="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 text-center cursor-pointer hover:shadow-md transition-all flex flex-col items-center"
             >
-              <div className="w-32 h-32 bg-orange-50 rounded-2xl flex items-center justify-center mb-4 overflow-hidden">
+              <div className="w-40 h-40 bg-orange-50 rounded-2xl flex items-center justify-center mb-4 overflow-hidden">
                 <img 
                   src={method.image} 
                   alt={method.name} 

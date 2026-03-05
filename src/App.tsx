@@ -11,6 +11,11 @@ import Shop from './pages/Shop';
 import ForTeachers from './pages/ForTeachers';
 import Contact from './pages/Contact';
 import Mappa from './pages/Mappa';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import CookiePolicy from './pages/CookiePolicy';
+import TermsConditions from './pages/TermsConditions';
 import CulinaryTraditions from './pages/CulinaryTraditions';
 import AviationThemes from './pages/AviationThemes';
 import StructuredLearning from './pages/StructuredLearning';
@@ -32,6 +37,11 @@ export default function App() {
           <Route path="teachers" element={<ForTeachers />} />
           <Route path="contact" element={<Contact />} />
           <Route path="map" element={<Mappa />} />
+          <Route path="blog" element={<Blog />} />
+          <Route path="blog/:slug" element={<BlogPost />} />
+          <Route path="privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="cookie-policy" element={<CookiePolicy />} />
+          <Route path="terms-conditions" element={<TermsConditions />} />
           <Route path="culinary-traditions" element={<CulinaryTraditions />} />
           <Route path="aviation-themes" element={<AviationThemes />} />
           <Route path="structured-learning" element={<StructuredLearning />} />

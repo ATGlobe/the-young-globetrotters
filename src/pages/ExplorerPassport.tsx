@@ -1,34 +1,42 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import Hero from '../components/Hero';
-import { VOLUMES } from '../constants';
-import { Award, Lock, CheckCircle2, Trophy, Star } from 'lucide-react';
-import { usePassport } from '../hooks/usePassport';
+import { VOLUMES } from '../data/volumes';
+import { Award, Lock, CheckCircle2, Trophy, Star, MapPin } from 'lucide-react';
+import { useProgress } from '../hooks/useProgress';
 
 const ExplorerPassport: React.FC = () => {
-  const { passport, isUnlocked, getRank, getNextRankThreshold, totalVolumes } = usePassport();
-  const unlockedCount = passport.purchasedVolumes.length;
-  const rank = getRank();
-  const nextThreshold = getNextRankThreshold();
-  const progress = (unlockedCount / totalVolumes) * 100;
+  const { progress, calculateBadge } = useProgress();
+  
+  const completedVolumes = Object.keys(progress).filter(id => calculateBadge(id) === 'Gold');
+  const totalVolumes = VOLUMES.length;
+  const progressPercentage = (completedVolumes.length / totalVolumes) * 100;
+
+  const getRank = () => {
+    const count = completedVolumes.length;
+    if (count >= 20) return 'Global Ambassador';
+    if (count >= 10) return 'World Traveler';
+    if (count >= 5) return 'Junior Explorer';
+    return 'New Globetrotter';
+  };
 
   return (
     <div className="bg-slate-50 min-h-screen">
       <Hero 
         title="Explorer Passport"
-        subtitle="Collect badges as you travel the world with Axel & Tino. Complete quizzes to unlock new achievements and track your progress as a Young Globetrotter."
+        subtitle="Collect stamps as you travel the world with Axel & Tino. Complete all activities in a city to earn your Gold Stamp!"
         bgColor="bg-[#FACC15]" // Gold
         image="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Axel__10_-removebg-preview.png"
       >
         <div className="flex items-center gap-6 mt-8">
           <div className="flex flex-col items-center">
-            <span className="text-3xl font-bold">{unlockedCount}</span>
-            <span className="text-sm font-medium uppercase tracking-wider opacity-80">Badges</span>
+            <span className="text-3xl font-black">{completedVolumes.length}</span>
+            <span className="text-xs font-bold uppercase tracking-widest opacity-80">Gold Stamps</span>
           </div>
           <div className="w-px h-10 bg-white/30" />
           <div className="flex flex-col items-center">
-            <span className="text-3xl font-bold">{totalVolumes}</span>
-            <span className="text-sm font-medium uppercase tracking-wider opacity-80">Total Cities</span>
+            <span className="text-3xl font-black">{totalVolumes}</span>
+            <span className="text-xs font-bold uppercase tracking-widest opacity-80">Total Cities</span>
           </div>
         </div>
       </Hero>
@@ -37,81 +45,94 @@ const ExplorerPassport: React.FC = () => {
       <section className="py-12 bg-white border-b border-slate-100">
         <div className="container px-4 mx-auto">
           <div className="grid gap-8 md:grid-cols-3">
-            <div className="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl">
+            <div className="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100">
               <div className="p-3 bg-yellow-100 text-yellow-600 rounded-xl">
                 <Trophy size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-slate-900">Rank</h4>
-                <p className="text-sm text-slate-600 font-bold text-yellow-600">{rank}</p>
+                <h4 className="font-black text-slate-900">Explorer Rank</h4>
+                <p className="text-sm font-bold text-yellow-600 uppercase tracking-widest">{getRank()}</p>
               </div>
             </div>
-            <div className="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl">
+            <div className="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100">
               <div className="p-3 bg-blue-100 text-blue-600 rounded-xl">
                 <Star size={24} />
               </div>
               <div className="flex-1">
-                <h4 className="font-bold text-slate-900">Next Level</h4>
-                <p className="text-sm text-slate-600 mb-2">{nextThreshold - unlockedCount} more badges needed</p>
-                <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden">
+                <h4 className="font-black text-slate-900">Journey Progress</h4>
+                <div className="w-full h-2 bg-slate-200 rounded-full overflow-hidden mt-2">
                   <motion.div 
                     initial={{ width: 0 }}
-                    animate={{ width: `${(unlockedCount / nextThreshold) * 100}%` }}
+                    animate={{ width: `${progressPercentage}%` }}
                     className="h-full bg-blue-600"
                   />
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl">
+            <div className="flex items-center gap-4 p-6 bg-slate-50 rounded-2xl border border-slate-100">
               <div className="p-3 bg-emerald-100 text-emerald-600 rounded-xl">
                 <CheckCircle2 size={24} />
               </div>
               <div>
-                <h4 className="font-bold text-slate-900">Quizzes Done</h4>
-                <p className="text-sm text-slate-600">{passport.completedQuizzes.length} Completed</p>
+                <h4 className="font-black text-slate-900">Total Activities</h4>
+                <p className="text-sm text-slate-600 font-bold">
+                  {Object.values(progress).reduce((acc, vol) => {
+                    return acc + Object.values(vol.quiz).filter(Boolean).length + Object.values(vol.games).filter(Boolean).length;
+                  }, 0)} Completed
+                </p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Badge Collection */}
-      <section className="py-20">
+      {/* Passport Stamps Collection */}
+      <section className="py-24">
         <div className="container px-4 mx-auto">
-          <div className="max-w-3xl mx-auto mb-16 text-center">
-            <h2 className="mb-6 text-4xl font-bold text-slate-900">Your Badge Collection</h2>
-            <p className="text-lg text-slate-600">Complete the city quizzes in the Activities section to unlock these beautiful digital badges.</p>
+          <div className="max-w-3xl mx-auto mb-20 text-center">
+            <h2 className="mb-6 text-4xl font-black text-slate-900">Your Passport Stamps</h2>
+            <p className="text-lg text-slate-600 font-medium">Earn a Gold Stamp for each city by completing all quizzes and games!</p>
           </div>
 
-          <div className="grid gap-8 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-            {VOLUMES.map((book) => {
-              const unlocked = isUnlocked(parseInt(book.id));
+          <div className="grid gap-10 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+            {VOLUMES.map((vol) => {
+              const badge = calculateBadge(vol.id);
+              const isGold = badge === 'Gold';
+              
               return (
                 <motion.div
-                  key={book.id}
-                  whileHover={unlocked ? { scale: 1.05, rotate: 2 } : {}}
-                  className={`relative aspect-square rounded-full flex flex-col items-center justify-center p-6 text-center transition-all ${
-                    unlocked 
-                      ? 'bg-white shadow-xl border-4 border-yellow-400' 
-                      : 'bg-slate-200 opacity-50 border-4 border-dashed border-slate-300 grayscale'
+                  key={vol.id}
+                  whileHover={isGold ? { scale: 1.05, rotate: 2 } : {}}
+                  className={`relative aspect-[3/4] rounded-3xl flex flex-col items-center justify-center p-6 text-center transition-all overflow-hidden border-2 ${
+                    isGold 
+                      ? 'bg-white shadow-xl border-amber-400' 
+                      : 'bg-slate-100 border-dashed border-slate-300 opacity-60 grayscale'
                   }`}
                 >
-                  {unlocked ? (
+                  {isGold ? (
                     <>
-                      <motion.div 
-                        initial={{ scale: 0 }}
-                        animate={{ scale: 1 }}
-                        className="absolute -top-2 -right-2 bg-emerald-500 text-white p-1 rounded-full shadow-lg"
-                      >
-                        <CheckCircle2 size={16} />
-                      </motion.div>
-                      <Award size={48} className="text-yellow-500 mb-2" />
-                      <span className="text-xs font-bold text-slate-900 uppercase tracking-tighter">{book.city}</span>
+                      <div className="absolute top-4 right-4 text-amber-500">
+                        <Award size={24} />
+                      </div>
+                      <div className="w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center mb-4 border-4 border-amber-100 shadow-inner">
+                        <img 
+                          src={vol.image} 
+                          alt={vol.city} 
+                          className="w-16 h-16 object-contain"
+                          referrerPolicy="no-referrer"
+                        />
+                      </div>
+                      <h4 className="text-lg font-black text-slate-900 leading-tight mb-1">{vol.city}</h4>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{vol.country}</p>
+                      <div className="mt-4 px-3 py-1 bg-amber-400 text-white text-[10px] font-black rounded-full shadow-sm uppercase tracking-widest">
+                        GOLD STAMP
+                      </div>
                     </>
                   ) : (
                     <>
-                      <Lock size={32} className="text-slate-400 mb-2" />
-                      <span className="text-[10px] font-bold text-slate-500 uppercase tracking-tighter">{book.city}</span>
+                      <Lock size={32} className="text-slate-300 mb-4" />
+                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest">{vol.city}</h4>
+                      <p className="text-[10px] font-bold text-slate-300 mt-2">LOCKED</p>
                     </>
                   )}
                 </motion.div>
@@ -121,41 +142,41 @@ const ExplorerPassport: React.FC = () => {
         </div>
       </section>
 
-      {/* How to Unlock */}
+      {/* Unlock Guide */}
       <section className="py-24 bg-slate-900 text-white">
         <div className="container px-4 mx-auto">
           <div className="flex flex-col items-center gap-16 lg:flex-row">
             <div className="flex-1">
-              <h2 className="mb-8 text-4xl font-bold">How to Unlock Badges</h2>
-              <div className="space-y-8">
+              <h2 className="mb-12 text-4xl font-black">How to Earn Stamps</h2>
+              <div className="space-y-10">
                 {[
-                  { step: '1', title: 'Read the Book', text: 'Learn all about the city, its landmarks, and culture.' },
-                  { step: '2', title: 'Take the Quiz', text: 'Head to the Activities section and test your knowledge.' },
-                  { step: '3', title: 'Earn Your Badge', text: 'Get a perfect score to unlock the city badge for your passport!' },
+                  { step: '01', title: 'Pick a City', text: 'Select a city from the Map or Books section to start your adventure.' },
+                  { step: '02', title: 'Complete Activities', text: 'Finish all 3 Quizzes and all 3 Games (Crossword, Rebus, Scramble).' },
+                  { step: '03', title: 'Get Your Stamp', text: 'Once all 6 activities are done, your Gold Stamp will appear here!' },
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-6">
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-yellow-500 flex items-center justify-center font-bold text-slate-900">
+                  <div key={i} className="flex gap-8">
+                    <div className="flex-shrink-0 w-14 h-14 rounded-2xl bg-blue-600 flex items-center justify-center font-black text-2xl shadow-lg">
                       {item.step}
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold mb-2">{item.title}</h4>
-                      <p className="text-slate-400">{item.text}</p>
+                      <h4 className="text-2xl font-black mb-2">{item.title}</h4>
+                      <p className="text-slate-400 font-medium leading-relaxed">{item.text}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <div className="flex-1 relative">
-              <div className="p-12 bg-white/5 rounded-[3rem] border border-white/10 backdrop-blur-sm">
+            <div className="flex-1">
+              <div className="p-12 bg-white/5 rounded-[4rem] border border-white/10 backdrop-blur-md text-center">
                 <img 
                   src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png" 
                   alt="Professor Owl" 
-                  className="w-full h-auto max-w-xs mx-auto drop-shadow-2xl"
+                  className="w-full h-auto max-w-xs mx-auto drop-shadow-2xl mb-8"
                   referrerPolicy="no-referrer"
                 />
-                <div className="mt-8 text-center">
-                  <p className="text-xl italic text-slate-300">"Every badge you earn represents a new culture you've understood and a new part of the world you've explored!"</p>
-                </div>
+                <p className="text-2xl font-medium italic text-slate-300">
+                  "Your passport is a record of your curiosity. Fill it with stamps and become a true Global Citizen!"
+                </p>
               </div>
             </div>
           </div>

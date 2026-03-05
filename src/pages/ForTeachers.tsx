@@ -9,7 +9,7 @@ const ForTeachers: React.FC = () => {
         title="For Educators"
         subtitle="Professional resources and educational philosophy for the classroom. Position the Young Globetrotters series as structured educational content."
         bgColor="bg-[#1E3A8A]" // Navy
-        image="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png"
+        image="https://i.ibb.co/ycBYt9HR/Generated-Image-March-03-2026-3-31-PM.png"
       />
 
       {/* Educational Philosophy */}
