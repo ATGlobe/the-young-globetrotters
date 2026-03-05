@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'motion/react';
 import Hero from '../components/Hero';
 import { VOLUMES } from '../data/volumes';
+import { BOOKS } from '../data/books';
 import { Award, Lock, CheckCircle2, Trophy, Star, MapPin } from 'lucide-react';
 import { useProgress } from '../hooks/useProgress';
 
@@ -9,7 +10,7 @@ const ExplorerPassport: React.FC = () => {
   const { progress, calculateBadge } = useProgress();
   
   const completedVolumes = Object.keys(progress).filter(id => calculateBadge(id) === 'Gold');
-  const totalVolumes = VOLUMES.length;
+  const totalVolumes = BOOKS.length;
   const progressPercentage = (completedVolumes.length / totalVolumes) * 100;
 
   const getRank = () => {
@@ -95,13 +96,14 @@ const ExplorerPassport: React.FC = () => {
           </div>
 
           <div className="grid gap-10 grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-            {VOLUMES.map((vol) => {
-              const badge = calculateBadge(vol.id);
+            {BOOKS.map((book) => {
+              const vol = VOLUMES.find(v => v.slug === book.slug);
+              const badge = vol ? calculateBadge(vol.id) : calculateBadge(book.id);
               const isGold = badge === 'Gold';
               
               return (
                 <motion.div
-                  key={vol.id}
+                  key={book.id}
                   whileHover={isGold ? { scale: 1.05, rotate: 2 } : {}}
                   className={`relative aspect-[3/4] rounded-3xl flex flex-col items-center justify-center p-6 text-center transition-all overflow-hidden border-2 ${
                     isGold 
@@ -116,14 +118,14 @@ const ExplorerPassport: React.FC = () => {
                       </div>
                       <div className="w-24 h-24 bg-amber-50 rounded-full flex items-center justify-center mb-4 border-4 border-amber-100 shadow-inner">
                         <img 
-                          src={vol.image} 
-                          alt={vol.city} 
+                          src={book.coverImage} 
+                          alt={book.city} 
                           className="w-16 h-16 object-contain"
                           referrerPolicy="no-referrer"
                         />
                       </div>
-                      <h4 className="text-lg font-black text-slate-900 leading-tight mb-1">{vol.city}</h4>
-                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{vol.country}</p>
+                      <h4 className="text-lg font-black text-slate-900 leading-tight mb-1">{book.city}</h4>
+                      <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">{book.country}</p>
                       <div className="mt-4 px-3 py-1 bg-amber-400 text-white text-[10px] font-black rounded-full shadow-sm uppercase tracking-widest">
                         GOLD STAMP
                       </div>
@@ -131,7 +133,7 @@ const ExplorerPassport: React.FC = () => {
                   ) : (
                     <>
                       <Lock size={32} className="text-slate-300 mb-4" />
-                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest">{vol.city}</h4>
+                      <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest">{book.city}</h4>
                       <p className="text-[10px] font-bold text-slate-300 mt-2">LOCKED</p>
                     </>
                   )}

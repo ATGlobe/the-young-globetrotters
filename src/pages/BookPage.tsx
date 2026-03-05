@@ -1,237 +1,252 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
 import { VOLUMES } from '../data/volumes';
-import Hero from '../components/Hero';
-import { motion, AnimatePresence } from 'motion/react';
-import { useProgress } from '../hooks/useProgress';
-import { SimpleCrossword } from '../components/games/SimpleCrossword';
-import { EmojiRebusGame } from '../components/games/EmojiRebusGame';
-import { WordScrambleGame } from '../components/games/WordScrambleGame';
+import { BOOKS } from '../data/books';
+import { citiesData } from '../data/citiesData';
+import { motion } from 'motion/react';
 import { 
-  MapPin, 
+  Globe, 
   Utensils, 
   Plane, 
   GraduationCap, 
   ExternalLink,
   ArrowLeft,
-  CheckCircle2,
-  Trophy,
   Gamepad2,
-  Sparkles,
-  ShieldCheck
+  ShieldCheck,
+  History,
+  BookOpen,
+  FileText,
+  Download,
+  Lightbulb
 } from 'lucide-react';
 
 const BookPage: React.FC = () => {
   const { city } = useParams<{ city: string }>();
-  const book = VOLUMES.find(b => b.slug === city);
-  const { progress, updateProgress, calculateBadge } = useProgress();
+  const book = BOOKS.find(b => b.slug === city);
+  const vol = VOLUMES.find(v => v.slug === city);
+  const cityInfo = city ? citiesData[city.toLowerCase()] : null;
 
   if (!book) {
-    return <Navigate to="/books" replace />;
+    return <Navigate to="/map" replace />;
   }
-
-  const volumeProgress = progress[book.id] || {
-    quiz: { geography: false, culture: false, food: false },
-    games: { crossword: false, rebus: false, scramble: false }
-  };
-
-  const badge = calculateBadge(book.id);
 
   return (
     <div className="bg-white min-h-screen">
-      <Hero 
-        title={book.city}
-        subtitle={`${book.city}, ${book.country}`}
-        bgColor="bg-blue-900"
-        image={book.image}
-      >
-        <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
-          {book.purchaseLink ? (
-            <div className="flex flex-col items-center gap-2">
-              <a 
-                href={book.purchaseLink} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-3 px-10 py-5 text-xl font-black text-blue-600 bg-white rounded-2xl hover:bg-slate-50 transition-all shadow-2xl hover:-translate-y-1"
+      {/* 1️⃣ COVER SECTION */}
+      <section className="relative bg-blue-900 text-white py-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.1),transparent)]" />
+        </div>
+        
+        <div className="container mx-auto px-4 relative z-10">
+          <Link to="/map" className="inline-flex items-center gap-2 text-white/70 hover:text-white font-bold mb-12 transition-all">
+            <ArrowLeft size={20} /> Back to Map
+          </Link>
+          
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1 text-center lg:text-left">
+              <motion.h1 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="text-5xl lg:text-7xl font-black mb-6 leading-tight"
               >
-                Get the Digital Book ({book.price}) <ExternalLink size={20} />
-              </a>
-              <p className="text-white/70 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                <ShieldCheck size={14} />
-                Secure checkout powered by Gumroad
+                Axel & Tino in {book.city}
+              </motion.h1>
+              <motion.p 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-xl lg:text-2xl font-medium opacity-90 max-w-2xl mb-8"
+              >
+                Explore history, food and adventure in the {book.city === 'Rome' ? 'Eternal City' : 'beautiful city of ' + book.city}.
+              </motion.p>
+              
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
+                <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-bold">
+                  <FileText size={16} /> PDF
+                </div>
+                <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-bold">
+                  <Download size={16} /> EPUB
+                </div>
+                <div className="flex items-center gap-2 bg-white/10 px-4 py-2 rounded-full text-sm font-bold">
+                  <Globe size={16} /> Digital Download
+                </div>
+              </div>
+
+              <p className="text-lg opacity-80 max-w-xl mb-10">
+                {book.description}
               </p>
-            </div>
-          ) : (
-            <div className="px-10 py-5 text-xl font-black text-slate-400 bg-slate-100 rounded-2xl border-2 border-slate-200">
-              Coming Soon
-            </div>
-          )}
-        </div>
-      </Hero>
 
-      {/* Progress & Badge Section */}
-      <section className="py-12 bg-slate-50 border-b border-slate-100">
-        <div className="container px-4 mx-auto">
-          <div className="max-w-4xl mx-auto bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-6">
-              <div className={`w-20 h-20 rounded-full flex items-center justify-center border-4 ${
-                badge === 'Gold' ? 'bg-amber-400 border-amber-200' : 
-                badge === 'Silver' ? 'bg-slate-300 border-slate-100' :
-                badge === 'Bronze' ? 'bg-orange-300 border-orange-100' :
-                'bg-slate-50 border-slate-100'
-              } shadow-lg`}>
-                <Trophy className={badge ? 'text-white' : 'text-slate-200'} size={32} />
-              </div>
-              <div>
-                <h3 className="text-xl font-black text-slate-900">Adventure Progress</h3>
-                <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">
-                  {badge ? `${badge} Badge Earned!` : 'Start your journey!'}
-                </p>
-              </div>
+              {book.externalLink ? (
+                <a 
+                  href={book.externalLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-2xl font-black text-xl hover:bg-blue-700 transition-all shadow-2xl hover:-translate-y-1"
+                >
+                  Buy the Ebook <ExternalLink size={24} />
+                </a>
+              ) : (
+                <div className="inline-block px-10 py-5 bg-white/5 border-2 border-white/10 rounded-2xl font-black text-xl text-white/30">
+                  Coming Soon
+                </div>
+              )}
             </div>
-            <div className="flex gap-2">
-              {[...Array(6)].map((_, i) => {
-                const completedCount = 
-                  Object.values(volumeProgress.quiz).filter(Boolean).length + 
-                  Object.values(volumeProgress.games).filter(Boolean).length;
-                return (
-                  <div 
-                    key={i} 
-                    className={`w-3 h-3 rounded-full ${i < completedCount ? 'bg-emerald-500' : 'bg-slate-100'}`}
-                  />
-                );
-              })}
-            </div>
+            
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, rotate: -5 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              className="flex-shrink-0 w-full max-w-[350px] aspect-[3/4] bg-white rounded-[2rem] shadow-2xl overflow-hidden border-8 border-white/20"
+            >
+              <img 
+                src={book.coverImage} 
+                alt={book.city} 
+                className="w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Introduction */}
-      <section className="py-20 bg-white">
-        <div className="container px-4 mx-auto">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="mb-8 text-4xl font-black text-slate-900">Explore {book.city}</h2>
-            <p className="text-xl leading-relaxed text-slate-600 font-medium">{book.description}</p>
+      {/* 2️⃣ STORY DESCRIPTION */}
+      <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-2xl flex items-center justify-center">
+                <BookOpen size={24} />
+              </div>
+              <h2 className="text-3xl font-black text-slate-900">The Adventure Begins</h2>
+            </div>
+            <p className="text-2xl leading-relaxed text-slate-600 font-medium italic mb-8">
+              Join Axel and Tino as they land in {book.city}!
+            </p>
+            <p className="text-lg leading-relaxed text-slate-500">
+              Axel and Tino arrive in {book.city}, a city full of wonders. 
+              Professor Owl explains the local landmarks and history, 
+              while Chef prepares a delicious traditional dish. 
+              But Foxy is already planning a new attempt to steal Axel's golden aviator badge!
+              In this adventure, children will discover the magic of {book.city} through the eyes of our young globetrotters.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* Interactive Games Section */}
+      {/* 3️⃣ IN THE KITCHEN WITH CHEF */}
       <section className="py-24 bg-slate-50">
-        <div className="container px-4 mx-auto">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-1 bg-orange-100 text-orange-600 rounded-full text-xs font-black uppercase tracking-widest mb-4">
-              <Gamepad2 size={14} />
-              Explorer Games
-            </div>
-            <h2 className="text-4xl font-black text-slate-900">Play & Learn</h2>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-3">
-            {/* Crossword */}
-            <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto flex flex-col lg:flex-row items-center gap-16">
+            <div className="flex-1">
               <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-blue-50 text-blue-600 rounded-2xl">
-                  <Sparkles size={24} />
-                </div>
-                <h3 className="text-2xl font-black text-slate-900">Crossword</h3>
-              </div>
-              <SimpleCrossword 
-                words={book.games.crossword.words} 
-                isCompleted={volumeProgress.games.crossword}
-                onComplete={() => updateProgress(book.id, 'games', 'crossword')}
-              />
-            </div>
-
-            {/* Rebus */}
-            <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-orange-50 text-orange-600 rounded-2xl">
-                  <Gamepad2 size={24} />
-                </div>
-                <h3 className="text-2xl font-black text-slate-900">Emoji Rebus</h3>
-              </div>
-              <EmojiRebusGame 
-                rebus={book.games.rebus}
-                isCompleted={volumeProgress.games.rebus}
-                onComplete={() => updateProgress(book.id, 'games', 'rebus')}
-              />
-            </div>
-
-            {/* Scramble */}
-            <div className="bg-white p-10 rounded-[3rem] shadow-sm border border-slate-100">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="p-3 bg-emerald-50 text-emerald-600 rounded-2xl">
+                <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-2xl flex items-center justify-center">
                   <Utensils size={24} />
                 </div>
-                <h3 className="text-2xl font-black text-slate-900">Word Scramble</h3>
+                <h2 className="text-3xl font-black text-slate-900">In the Kitchen with Chef</h2>
               </div>
-              <WordScrambleGame 
-                scramble={book.games.scramble}
-                isCompleted={volumeProgress.games.scramble}
-                onComplete={() => updateProgress(book.id, 'games', 'scramble')}
+              
+              {cityInfo ? (
+                <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100">
+                  <h3 className="text-2xl font-black text-slate-900 mb-4">{cityInfo.dish.name}</h3>
+                  <p className="text-slate-600 font-medium mb-8 leading-relaxed">
+                    {cityInfo.dish.description}
+                  </p>
+                  
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-sm font-black text-slate-400 uppercase tracking-widest mb-4">Ingredients</h4>
+                      <ul className="grid grid-cols-2 gap-3">
+                        {cityInfo.dish.ingredients.map((ing, i) => (
+                          <li key={i} className="flex items-center gap-2 text-slate-700 font-bold">
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full" />
+                            {ing}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-white p-10 rounded-[3rem] shadow-xl border border-slate-100 text-center">
+                  <p className="text-slate-400 font-bold">Recipe coming soon!</p>
+                </div>
+              )}
+            </div>
+            
+            <div className="flex-1 w-full max-w-md">
+              <img 
+                src="https://i.ibb.co/C35LtMmm/Chat-GPT-Image-5-mar-2026-16-22-15-removebg-preview.png" 
+                alt="Chef" 
+                className="w-full h-auto drop-shadow-2xl"
+                referrerPolicy="no-referrer"
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Quizzes Section */}
+      {/* 4️⃣ PROFESSOR OWL CORNER */}
       <section className="py-24 bg-white">
-        <div className="container px-4 mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-black text-slate-900">Knowledge Check</h2>
-            <p className="text-slate-500 font-bold uppercase tracking-widest text-sm mt-4">Test what you've learned about {book.city}</p>
-          </div>
-
-          <div className="grid gap-8 md:grid-cols-3">
-            {Object.entries(book.quizzes).map(([key, quiz]) => (
-              <div key={key} className="p-8 bg-slate-50 rounded-[2.5rem] border border-slate-100">
-                <h4 className="text-xl font-black text-slate-900 mb-6 capitalize">{key} Quiz</h4>
-                <p className="font-bold text-slate-700 mb-6">{quiz.question}</p>
-                <div className="space-y-3">
-                  {quiz.options.map((opt, idx) => (
-                    <button
-                      key={idx}
-                      onClick={() => {
-                        if (idx === quiz.correct) {
-                          updateProgress(book.id, 'quiz', key);
-                        }
-                      }}
-                      disabled={volumeProgress.quiz[key as keyof typeof volumeProgress.quiz]}
-                      className={`w-full p-4 text-left rounded-2xl border-2 font-bold transition-all ${
-                        volumeProgress.quiz[key as keyof typeof volumeProgress.quiz] && idx === quiz.correct
-                          ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
-                          : 'bg-white border-slate-200 hover:border-orange-400'
-                      }`}
-                    >
-                      {opt}
-                    </button>
-                  ))}
+        <div className="container mx-auto px-4">
+          <div className="max-w-5xl mx-auto flex flex-col lg:flex-row-reverse items-center gap-16">
+            <div className="flex-1">
+              <div className="flex items-center gap-4 mb-8">
+                <div className="w-12 h-12 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center">
+                  <GraduationCap size={24} />
                 </div>
+                <h2 className="text-3xl font-black text-slate-900">Professor Owl Corner</h2>
               </div>
-            ))}
+              
+              {cityInfo ? (
+                <div className="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl relative overflow-hidden">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl" />
+                  <h3 className="text-2xl font-black mb-4 flex items-center gap-2">
+                    <Lightbulb className="text-amber-400" /> Did you know?
+                  </h3>
+                  <p className="text-xl leading-relaxed text-slate-300 font-medium">
+                    {cityInfo.monument.history}
+                  </p>
+                  <div className="mt-8 pt-8 border-t border-white/10">
+                    <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">
+                      Featured Landmark: {cityInfo.monument.name}
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div className="bg-slate-900 text-white p-10 rounded-[3rem] shadow-2xl text-center">
+                  <p className="text-slate-500 font-bold">Fun facts coming soon!</p>
+                </div>
+              )}
+            </div>
+            
+            <div className="flex-1 w-full max-w-md">
+              <img 
+                src="https://i.ibb.co/q3CbWNLP/Generated-Image-March-05-2026-4-06-PM.png" 
+                alt="Professor Owl" 
+                className="w-full h-auto drop-shadow-2xl"
+                referrerPolicy="no-referrer"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24 bg-blue-600 text-white">
-        <div className="container px-4 mx-auto text-center">
-          <h2 className="mb-8 text-4xl font-black lg:text-5xl">Ready for the Full Adventure?</h2>
-          <p className="max-w-2xl mx-auto mb-12 text-xl font-medium opacity-90">
-            Get the complete digital book of {book.city} and unlock all the secrets of this amazing place!
-          </p>
-          {book.purchaseLink && (
-            <a 
-              href={book.purchaseLink} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-12 py-6 text-2xl font-black text-blue-600 bg-white rounded-2xl hover:bg-slate-50 transition-all shadow-2xl hover:-translate-y-1"
+      {/* 5️⃣ UNLOCK YOUR PASSPORT BADGE SECTION */}
+      <section className="py-24 bg-orange-500">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <h2 className="text-4xl md:text-5xl font-black mb-6">Unlock Your Passport Badge</h2>
+            <p className="text-xl md:text-2xl font-medium opacity-90 mb-12 max-w-2xl mx-auto">
+              Ready to earn your city stamp? Complete the quizzes and games for this city to unlock your badge in the Explorer Passport.
+            </p>
+            
+            <Link 
+              to={`/activities/${city?.toLowerCase()}`}
+              className="inline-flex items-center gap-3 px-12 py-6 bg-white text-orange-600 rounded-2xl font-black text-2xl hover:bg-orange-50 transition-all shadow-2xl hover:-translate-y-1"
             >
-              Buy on Gumroad <ExternalLink size={24} />
-            </a>
-          )}
+              <Gamepad2 size={28} /> Start Activities
+            </Link>
+          </div>
         </div>
       </section>
     </div>

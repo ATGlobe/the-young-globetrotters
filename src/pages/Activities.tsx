@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useNavigate } from 'react-router-dom';
+import { VOLUMES } from '../data/volumes';
+import { BOOKS } from '../data/books';
 import { 
   Globe, 
   Utensils, 
@@ -157,9 +159,13 @@ export default function Activities() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  className="text-center space-y-12"
+                  className="space-y-16"
                 >
-                  <h2 className="text-4xl font-bold text-slate-800">Choose Your Category</h2>
+                  <div className="text-center">
+                    <h2 className="text-4xl font-black text-slate-800 mb-4">Choose Your Challenge</h2>
+                    <p className="text-lg text-slate-500 font-medium">Select a category or a specific city to start your adventure!</p>
+                  </div>
+
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {[
                       { name: 'Geography', icon: Globe, color: 'bg-blue-500', path: 'geography' },
@@ -176,12 +182,23 @@ export default function Activities() {
                           <cat.icon className="w-8 h-8" />
                         </div>
                         <span className="font-bold text-slate-700">{cat.name}</span>
-                        <div className="mt-4 flex items-center gap-1 text-orange-500 font-bold text-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span>Explore</span>
-                          <ArrowRight size={12} />
-                        </div>
                       </Link>
                     ))}
+                  </div>
+
+                  <div className="pt-12 border-t border-slate-100">
+                    <h3 className="text-2xl font-black text-slate-800 mb-8 text-center">City Challenges</h3>
+                    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                      {BOOKS.map((book) => (
+                        <Link 
+                          key={book.id}
+                          to={`/activities/${book.slug}`}
+                          className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-orange-500 hover:text-white transition-all text-center font-bold"
+                        >
+                          {book.city}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               )}

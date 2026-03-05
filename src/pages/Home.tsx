@@ -119,7 +119,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col items-center gap-16 lg:flex-row">
             <div className="flex-1">
               <img 
-                src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png" 
+                src="https://i.ibb.co/2YP0SnwN/Generated-Image-March-03-2026-3-39-PM-removebg-preview.png" 
                 alt="Professor Owl" 
                 className="w-full h-auto max-w-md mx-auto drop-shadow-2xl"
                 referrerPolicy="no-referrer"
@@ -127,7 +127,7 @@ const Home: React.FC = () => {
             </div>
             <div className="flex-1">
               <h2 className="mb-8 text-4xl font-bold text-slate-900">Learning Through Adventure</h2>
-              <img src="https://i.ibb.co/tPb1gSvg/Generated-Image-March-03-2026-10-00-PM.png" alt="Learning Through Adventure" className="w-full h-auto rounded-3xl shadow-xl mb-8" referrerPolicy="no-referrer" />
+              <img src="https://i.ibb.co/99FtzDLK/Home.jpg" alt="Learning Through Adventure" className="w-full h-auto rounded-3xl shadow-xl mb-8" referrerPolicy="no-referrer" />
               <p className="mb-8 text-lg text-slate-600">
                 Our series is more than just stories. It\'s a structured educational platform that covers multiple disciplines:
               </p>

@@ -11,6 +11,7 @@ import Shop from './pages/Shop';
 import ForTeachers from './pages/ForTeachers';
 import Contact from './pages/Contact';
 import Mappa from './pages/Mappa';
+import CityActivities from './pages/CityActivities';
 import Blog from './pages/Blog';
 import BlogPost from './pages/BlogPost';
 import PrivacyPolicy from './pages/PrivacyPolicy';
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="books" element={<Books />} />
           <Route path="books/:city" element={<BookPage />} />
           <Route path="activities" element={<Activities />} />
+          <Route path="activities/:city" element={<CityActivities />} />
           <Route path="activities/:category" element={<ActivityCategory />} />
           <Route path="passport" element={<ExplorerPassport />} />
           <Route path="shop" element={<Shop />} />

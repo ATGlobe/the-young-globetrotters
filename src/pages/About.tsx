@@ -50,8 +50,8 @@ const About: React.FC = () => {
               <div className="p-12 bg-blue-50 rounded-[3rem] border border-blue-100 relative overflow-hidden">
                 <div className="absolute top-0 right-0 w-64 h-64 bg-blue-200/50 blur-[100px] -z-10" />
                 <img 
-                  src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png" 
-                  alt="Professor Owl" 
+                  src="https://i.ibb.co/HwLXd3V/Axel-e-Foxy.png" 
+                  alt="Axel and Foxy" 
                   className="w-full h-auto max-w-xs mx-auto drop-shadow-2xl"
                   referrerPolicy="no-referrer"
                 />
