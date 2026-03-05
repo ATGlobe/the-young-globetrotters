@@ -19,7 +19,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Vespa Scooter',
     learningFocus: ['History', 'Architecture'],
-    externalLink: 'https://tuosito.com/rome'
+    externalLink: 'https://tuosito.com/rome',
+    coordinates: { lat: 41.9028, lng: 12.4964 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Which river flows through Rome?",
+        options: ["Tiber", "Arno", "Po", "Danube"],
+        correct: 0
+      },
+      culture: {
+        question: "What is the name of the famous ancient amphitheater in Rome?",
+        options: ["Parthenon", "Colosseum", "Pantheon", "Forum"],
+        correct: 1
+      },
+      food: {
+        question: "Which of these is a famous Roman pasta dish?",
+        options: ["Pesto", "Carbonara", "Lasagna", "Tortellini"],
+        correct: 1
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "COLOSSEUM", clue: "The giant ancient arena.", orientation: 'across' },
+          { word: "TIBER", clue: "The river of Rome.", orientation: 'across' },
+          { word: "PIZZA", clue: "A favorite Italian food.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🏛️🏟️🇮🇹", answer: "ROME" }
+      ],
+      scramble: [
+        { letters: "EMOR", answer: "ROME" }
+      ]
+    }
   },
   {
     id: '2',
@@ -39,7 +73,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Hot Air Balloon',
     learningFocus: ['Art', 'History'],
-    externalLink: 'https://tuosito.com/paris'
+    externalLink: 'https://tuosito.com/paris',
+    coordinates: { lat: 48.8566, lng: 2.3522 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Which river flows through Paris?",
+        options: ["Rhine", "Seine", "Loire", "Rhone"],
+        correct: 1
+      },
+      culture: {
+        question: "What is the most famous museum in Paris?",
+        options: ["British Museum", "Prado", "Louvre", "Uffizi"],
+        correct: 2
+      },
+      food: {
+        question: "What is a popular French crescent-shaped pastry?",
+        options: ["Bagel", "Croissant", "Donut", "Muffin"],
+        correct: 1
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "EIFFEL", clue: "The famous iron tower.", orientation: 'across' },
+          { word: "LOUVRE", clue: "A giant art museum.", orientation: 'across' },
+          { word: "SEINE", clue: "The river in Paris.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🗼🥐🎨", answer: "PARIS" }
+      ],
+      scramble: [
+        { letters: "SIPAR", answer: "PARIS" }
+      ]
+    }
   },
   {
     id: '3',
@@ -59,7 +127,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Double-Decker Bus',
     learningFocus: ['Culture', 'Geography'],
-    externalLink: 'https://tuosito.com/london'
+    externalLink: 'https://tuosito.com/london',
+    coordinates: { lat: 51.5074, lng: -0.1278 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Which river flows through London?",
+        options: ["Thames", "Mersey", "Severn", "Trent"],
+        correct: 0
+      },
+      culture: {
+        question: "What is the name of the famous clock tower in London?",
+        options: ["Big Ben", "Eiffel Tower", "Leaning Tower", "Empire State"],
+        correct: 0
+      },
+      food: {
+        question: "What is a traditional British meal often eaten on Fridays?",
+        options: ["Pizza", "Fish and Chips", "Tacos", "Sushi"],
+        correct: 1
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "THAMES", clue: "The river of London.", orientation: 'across' },
+          { word: "BEN", clue: "The nickname of the big clock.", orientation: 'across' },
+          { word: "BUS", clue: "A red double-decker vehicle.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🎡💂‍♂️☕", answer: "LONDON" }
+      ],
+      scramble: [
+        { letters: "NODNOL", answer: "LONDON" }
+      ]
+    }
   },
   {
     id: '4',
@@ -79,7 +181,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Skateboard',
     learningFocus: ['Architecture', 'Art'],
-    externalLink: 'https://tuosito.com/barcelona'
+    externalLink: 'https://tuosito.com/barcelona',
+    coordinates: { lat: 41.3851, lng: 2.1734 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Barcelona is located on the coast of which sea?",
+        options: ["Red Sea", "Mediterranean Sea", "Black Sea", "Caspian Sea"],
+        correct: 1
+      },
+      culture: {
+        question: "Who was the famous architect of the Sagrada Família?",
+        options: ["Picasso", "Dalí", "Gaudí", "Miró"],
+        correct: 2
+      },
+      food: {
+        question: "What is a famous Spanish rice dish from this region?",
+        options: ["Risotto", "Paella", "Biryani", "Pilaf"],
+        correct: 1
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "GAUDI", clue: "The famous architect.", orientation: 'across' },
+          { word: "TAPAS", clue: "Small Spanish snacks.", orientation: 'across' },
+          { word: "BEACH", clue: "Where you swim in Barcelona.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "⛪🥘☀️", answer: "BARCELONA" }
+      ],
+      scramble: [
+        { letters: "CELABRONA", answer: "BARCELONA" }
+      ]
+    }
   },
   {
     id: '5',
@@ -99,7 +235,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Bicycle',
     learningFocus: ['Engineering', 'History'],
-    externalLink: 'https://tuosito.com/amsterdam'
+    externalLink: 'https://tuosito.com/amsterdam',
+    coordinates: { lat: 52.3676, lng: 4.9041 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Amsterdam is famous for its many what?",
+        options: ["Mountains", "Canals", "Deserts", "Volcanoes"],
+        correct: 1
+      },
+      culture: {
+        question: "What is a common way people get around Amsterdam?",
+        options: ["Subway", "Bicycle", "Helicopter", "Camel"],
+        correct: 1
+      },
+      food: {
+        question: "What are famous Dutch mini pancakes called?",
+        options: ["Crepes", "Poffertjes", "Waffles", "Blinis"],
+        correct: 1
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "CANAL", clue: "A water path in the city.", orientation: 'across' },
+          { word: "BIKE", clue: "How people travel here.", orientation: 'across' },
+          { word: "TULIP", clue: "A famous Dutch flower.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🚲🌷🧀", answer: "AMSTERDAM" }
+      ],
+      scramble: [
+        { letters: "DAMRETSMA", answer: "AMSTERDAM" }
+      ]
+    }
   },
   {
     id: '6',
@@ -119,7 +289,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Speedboat',
     learningFocus: ['History', 'Geography'],
-    externalLink: 'https://tuosito.com/stockholm'
+    externalLink: 'https://tuosito.com/stockholm',
+    coordinates: { lat: 59.3293, lng: 18.0686 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Stockholm is built on how many islands?",
+        options: ["1", "7", "14", "50"],
+        correct: 2
+      },
+      culture: {
+        question: "What is the name of the historic Old Town in Stockholm?",
+        options: ["Gamla Stan", "Nyhavn", "Plaka", "Alfama"],
+        correct: 0
+      },
+      food: {
+        question: "What is a famous Swedish meat dish?",
+        options: ["Meatballs", "Schnitzel", "Steak", "Burger"],
+        correct: 0
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "ISLAND", clue: "Stockholm is built on many.", orientation: 'across' },
+          { word: "VASA", clue: "The famous sunken ship.", orientation: 'across' },
+          { word: "FIKA", clue: "A Swedish coffee break.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🇸🇪❄️🚢", answer: "STOCKHOLM" }
+      ],
+      scramble: [
+        { letters: "HOLMSTOCK", answer: "STOCKHOLM" }
+      ]
+    }
   },
   {
     id: '7',
@@ -139,7 +343,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Vintage Car',
     learningFocus: ['History', 'Legends'],
-    externalLink: 'https://tuosito.com/prague'
+    externalLink: 'https://tuosito.com/prague',
+    coordinates: { lat: 50.0755, lng: 14.4378 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Which river flows through Prague?",
+        options: ["Danube", "Vltava", "Elbe", "Oder"],
+        correct: 1
+      },
+      culture: {
+        question: "What is the name of the famous bridge with many statues?",
+        options: ["London Bridge", "Charles Bridge", "Golden Gate", "Rialto"],
+        correct: 1
+      },
+      food: {
+        question: "What is a popular sweet pastry in Prague?",
+        options: ["Trdelník", "Baklava", "Cannoli", "Eclair"],
+        correct: 0
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "CASTLE", clue: "The big building on the hill.", orientation: 'across' },
+          { word: "CLOCK", clue: "It shows the stars and time.", orientation: 'across' },
+          { word: "BRIDGE", clue: "The stone path over the river.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🏰🌉🇨🇿", answer: "PRAGUE" }
+      ],
+      scramble: [
+        { letters: "GUEPRA", answer: "PRAGUE" }
+      ]
+    }
   },
   {
     id: '8',
@@ -159,7 +397,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Chariot',
     learningFocus: ['History', 'Philosophy'],
-    externalLink: 'https://tuosito.com/athens'
+    externalLink: 'https://tuosito.com/athens',
+    coordinates: { lat: 37.9838, lng: 23.7275 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Athens is the capital of which country?",
+        options: ["Italy", "Greece", "Turkey", "Egypt"],
+        correct: 1
+      },
+      culture: {
+        question: "What is the name of the ancient temple on the Acropolis?",
+        options: ["Parthenon", "Pantheon", "Colosseum", "Pyramid"],
+        correct: 0
+      },
+      food: {
+        question: "What is a famous Greek dip made with yogurt and cucumber?",
+        options: ["Hummus", "Tzatziki", "Guacamole", "Salsa"],
+        correct: 1
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "GREECE", clue: "The country of Athens.", orientation: 'across' },
+          { word: "TEMPLE", clue: "An ancient holy building.", orientation: 'across' },
+          { word: "OLIVE", clue: "A small fruit from here.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🏛️🇬🇷🏺", answer: "ATHENS" }
+      ],
+      scramble: [
+        { letters: "THENSA", answer: "ATHENS" }
+      ]
+    }
   },
   {
     id: '9',
@@ -179,7 +451,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Trabant Car',
     learningFocus: ['History', 'Politics'],
-    externalLink: 'https://tuosito.com/berlin'
+    externalLink: 'https://tuosito.com/berlin',
+    coordinates: { lat: 52.5200, lng: 13.4050 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Berlin is the capital of which country?",
+        options: ["Austria", "Germany", "Poland", "Belgium"],
+        correct: 1
+      },
+      culture: {
+        question: "What is the name of the famous gate in Berlin?",
+        options: ["Golden Gate", "Brandenburg Gate", "Lion Gate", "India Gate"],
+        correct: 1
+      },
+      food: {
+        question: "What is a popular street food in Berlin?",
+        options: ["Currywurst", "Taco", "Sushi", "Pizza"],
+        correct: 0
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "WALL", clue: "It used to divide the city.", orientation: 'across' },
+          { word: "GATE", clue: "The Brandenburg landmark.", orientation: 'across' },
+          { word: "BEAR", clue: "The symbol of Berlin.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🇩🇪🥨🐻", answer: "BERLIN" }
+      ],
+      scramble: [
+        { letters: "LINBER", answer: "BERLIN" }
+      ]
+    }
   },
   {
     id: '10',
@@ -199,7 +505,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Horse Carriage',
     learningFocus: ['Music', 'History'],
-    externalLink: 'https://tuosito.com/vienna'
+    externalLink: 'https://tuosito.com/vienna',
+    coordinates: { lat: 48.2082, lng: 16.3738 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Which river flows through Vienna?",
+        options: ["Rhine", "Danube", "Elbe", "Seine"],
+        correct: 1
+      },
+      culture: {
+        question: "Vienna is famous for which type of music?",
+        options: ["Jazz", "Classical", "Rock", "Reggae"],
+        correct: 1
+      },
+      food: {
+        question: "What is a famous chocolate cake from Vienna?",
+        options: ["Cheesecake", "Sachertorte", "Brownie", "Tiramisu"],
+        correct: 1
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "PALACE", clue: "A grand royal home.", orientation: 'across' },
+          { word: "MUSIC", clue: "Vienna is the city of this.", orientation: 'across' },
+          { word: "CAKE", clue: "Sachertorte is a type of.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🇦🇹🎻🍰", answer: "VIENNA" }
+      ],
+      scramble: [
+        { letters: "NAVIEN", answer: "VIENNA" }
+      ]
+    }
   },
   {
     id: '11',
@@ -219,7 +559,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Yellow Tram',
     learningFocus: ['History', 'Exploration'],
-    externalLink: 'https://tuosito.com/lisbon'
+    externalLink: 'https://tuosito.com/lisbon',
+    coordinates: { lat: 38.7223, lng: -9.1393 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Lisbon is located on the coast of which ocean?",
+        options: ["Pacific", "Indian", "Atlantic", "Arctic"],
+        correct: 2
+      },
+      culture: {
+        question: "What is the name of the famous yellow transport in Lisbon?",
+        options: ["Bus", "Tram", "Subway", "Gondola"],
+        correct: 1
+      },
+      food: {
+        question: "What is a famous Portuguese custard tart?",
+        options: ["Pastel de Nata", "Baklava", "Cannoli", "Eclair"],
+        correct: 0
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "TRAM", clue: "The yellow hill climber.", orientation: 'across' },
+          { word: "TOWER", clue: "The Belém landmark.", orientation: 'across' },
+          { word: "OCEAN", clue: "Lisbon is by the Atlantic.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🇵🇹🚋🥧", answer: "LISBON" }
+      ],
+      scramble: [
+        { letters: "BONLIS", answer: "LISBON" }
+      ]
+    }
   },
   {
     id: '12',
@@ -239,7 +613,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Bicycle',
     learningFocus: ['Literature', 'History'],
-    externalLink: 'https://tuosito.com/dublin'
+    externalLink: 'https://tuosito.com/dublin',
+    coordinates: { lat: 53.3498, lng: -6.2603 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Ireland is often called the what Isle?",
+        options: ["Blue", "Emerald", "Golden", "Silver"],
+        correct: 1
+      },
+      culture: {
+        question: "What is a famous mythical creature from Irish folklore?",
+        options: ["Dragon", "Leprechaun", "Unicorn", "Mermaid"],
+        correct: 1
+      },
+      food: {
+        question: "What is a traditional Irish potato dish?",
+        options: ["Colcannon", "Pasta", "Rice", "Taco"],
+        correct: 0
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "GREEN", clue: "The color of Ireland.", orientation: 'across' },
+          { word: "HARP", clue: "A musical symbol of Ireland.", orientation: 'across' },
+          { word: "BOOK", clue: "The Book of Kells is here.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🇮🇪🍀🏰", answer: "DUBLIN" }
+      ],
+      scramble: [
+        { letters: "LINDUB", answer: "DUBLIN" }
+      ]
+    }
   },
   {
     id: '13',
@@ -259,7 +667,41 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Steam Train',
     learningFocus: ['History', 'Geology'],
-    externalLink: 'https://tuosito.com/edinburgh'
+    externalLink: 'https://tuosito.com/edinburgh',
+    coordinates: { lat: 55.9533, lng: -3.1883 },
+    category: 'city',
+    quizzes: {
+      geography: {
+        question: "Edinburgh is the capital of which country?",
+        options: ["Wales", "Scotland", "England", "Ireland"],
+        correct: 1
+      },
+      culture: {
+        question: "What is the name of the famous castle in the city center?",
+        options: ["Edinburgh Castle", "Windsor Castle", "Stirling Castle", "Balmoral"],
+        correct: 0
+      },
+      food: {
+        question: "What is a traditional Scottish savory pudding?",
+        options: ["Haggis", "Pizza", "Sushi", "Taco"],
+        correct: 0
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "CASTLE", clue: "The big fort on the rock.", orientation: 'across' },
+          { word: "KILT", clue: "Traditional Scottish skirt.", orientation: 'across' },
+          { word: "PIPES", clue: "Bagpipes make loud music.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🏴󠁧󠁢󠁳󠁣󠁴󠁿🏰🐉", answer: "EDINBURGH" }
+      ],
+      scramble: [
+        { letters: "BURGHEDIN", answer: "EDINBURGH" }
+      ]
+    }
   },
   {
     id: '14',
@@ -279,7 +721,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'River Boat',
     learningFocus: ['History', 'Architecture'],
-    externalLink: 'https://tuosito.com/budapest'
+    externalLink: 'https://tuosito.com/budapest',
+    coordinates: { lat: 47.4979, lng: 19.0402 },
+    category: 'city'
   },
   {
     id: '15',
@@ -299,7 +743,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Cargo Bike',
     learningFocus: ['Literature', 'Design'],
-    externalLink: 'https://tuosito.com/copenhagen'
+    externalLink: 'https://tuosito.com/copenhagen',
+    coordinates: { lat: 55.6761, lng: 12.5683 },
+    category: 'city'
   },
   {
     id: '16',
@@ -319,7 +765,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Electric Car',
     learningFocus: ['History', 'Environment'],
-    externalLink: 'https://tuosito.com/oslo'
+    externalLink: 'https://tuosito.com/oslo',
+    coordinates: { lat: 59.9139, lng: 10.7522 },
+    category: 'city'
   },
   {
     id: '17',
@@ -339,7 +787,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Icebreaker Ship',
     learningFocus: ['Design', 'History'],
-    externalLink: 'https://tuosito.com/helsinki'
+    externalLink: 'https://tuosito.com/helsinki',
+    coordinates: { lat: 60.1699, lng: 24.9384 },
+    category: 'city'
   },
   {
     id: '18',
@@ -359,7 +809,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: '4x4 Jeep',
     learningFocus: ['Geology', 'Nature'],
-    externalLink: 'https://tuosito.com/reykjavik'
+    externalLink: 'https://tuosito.com/reykjavik',
+    coordinates: { lat: 64.1466, -21.9426 },
+    category: 'city'
   },
   {
     id: '19',
@@ -379,7 +831,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Ferry',
     learningFocus: ['History', 'Geography'],
-    externalLink: 'https://tuosito.com/istanbul'
+    externalLink: 'https://tuosito.com/istanbul',
+    coordinates: { lat: 41.0082, lng: 28.9784 },
+    category: 'city'
   },
   {
     id: '20',
@@ -399,7 +853,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Troika Sled',
     learningFocus: ['Art', 'History'],
-    externalLink: 'https://tuosito.com/saint-petersburg'
+    externalLink: 'https://tuosito.com/saint-petersburg',
+    coordinates: { lat: 59.9343, lng: 30.3351 },
+    category: 'city'
   },
   {
     id: '21',
@@ -419,7 +875,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Yellow Taxi',
     learningFocus: ['History', 'Urbanization'],
-    externalLink: 'https://tuosito.com/new-york'
+    externalLink: 'https://tuosito.com/new-york',
+    coordinates: { lat: 40.7128, lng: -74.0060 },
+    category: 'city'
   },
   {
     id: '22',
@@ -439,7 +897,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Streetcar',
     learningFocus: ['Geography', 'Culture'],
-    externalLink: 'https://tuosito.com/toronto'
+    externalLink: 'https://tuosito.com/toronto',
+    coordinates: { lat: 43.6532, lng: -79.3832 },
+    category: 'city'
   },
   {
     id: '23',
@@ -459,7 +919,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'L-Train',
     learningFocus: ['Architecture', 'History'],
-    externalLink: 'https://tuosito.com/chicago'
+    externalLink: 'https://tuosito.com/chicago',
+    coordinates: { lat: 41.8781, lng: -87.6298 },
+    category: 'city'
   },
   {
     id: '24',
@@ -479,7 +941,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Hang Glider',
     learningFocus: ['Culture', 'Geography'],
-    externalLink: 'https://tuosito.com/rio-de-janeiro'
+    externalLink: 'https://tuosito.com/rio-de-janeiro',
+    coordinates: { lat: -22.9068, lng: -43.1729 },
+    category: 'city'
   },
   {
     id: '25',
@@ -499,7 +963,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Trajinera Boat',
     learningFocus: ['History', 'Archaeology'],
-    externalLink: 'https://tuosito.com/mexico-city'
+    externalLink: 'https://tuosito.com/mexico-city',
+    coordinates: { lat: 19.4326, lng: -99.1332 },
+    category: 'city'
   },
   {
     id: '26',
@@ -519,7 +985,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Horse',
     learningFocus: ['Geology', 'Wildlife'],
-    externalLink: 'https://tuosito.com/patagonia'
+    externalLink: 'https://tuosito.com/patagonia',
+    coordinates: { lat: -50.3200, lng: -72.3300 },
+    category: 'nature'
   },
   {
     id: '27',
@@ -539,7 +1007,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Llama',
     learningFocus: ['History', 'Archaeology'],
-    externalLink: 'https://tuosito.com/machu-picchu'
+    externalLink: 'https://tuosito.com/machu-picchu',
+    coordinates: { lat: -13.1631, lng: -72.5450 },
+    category: 'special'
   },
   {
     id: '28',
@@ -559,7 +1029,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Airboat',
     learningFocus: ['Environment', 'Architecture'],
-    externalLink: 'https://tuosito.com/miami'
+    externalLink: 'https://tuosito.com/miami',
+    coordinates: { lat: 25.7617, lng: -80.1918 },
+    category: 'city'
   },
   {
     id: '29',
@@ -579,7 +1051,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Seaplane',
     learningFocus: ['Geography', 'Nature'],
-    externalLink: 'https://tuosito.com/vancouver'
+    externalLink: 'https://tuosito.com/vancouver',
+    coordinates: { lat: 49.2827, lng: -123.1207 },
+    category: 'city'
   },
   {
     id: '30',
@@ -599,7 +1073,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Cable Car',
     learningFocus: ['History', 'Technology'],
-    externalLink: 'https://tuosito.com/san-francisco'
+    externalLink: 'https://tuosito.com/san-francisco',
+    coordinates: { lat: 37.7749, lng: -122.4194 },
+    category: 'city'
   },
   {
     id: '31',
@@ -619,7 +1095,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Bullet Train',
     learningFocus: ['Technology', 'Tradition'],
-    externalLink: 'https://tuosito.com/tokyo'
+    externalLink: 'https://tuosito.com/tokyo',
+    coordinates: { lat: 35.6762, lng: 139.6503 },
+    category: 'city'
   },
   {
     id: '32',
@@ -639,7 +1117,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Rickshaw',
     learningFocus: ['History', 'Culture'],
-    externalLink: 'https://tuosito.com/kyoto'
+    externalLink: 'https://tuosito.com/kyoto',
+    coordinates: { lat: 35.0116, lng: 135.7681 },
+    category: 'city'
   },
   {
     id: '33',
@@ -659,7 +1139,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Scooter',
     learningFocus: ['Culture', 'Environment'],
-    externalLink: 'https://tuosito.com/bali'
+    externalLink: 'https://tuosito.com/bali',
+    coordinates: { lat: -8.3405, lng: 115.0920 },
+    category: 'nature'
   },
   {
     id: '34',
@@ -679,7 +1161,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Surfboard',
     learningFocus: ['History', 'Geography'],
-    externalLink: 'https://tuosito.com/sydney'
+    externalLink: 'https://tuosito.com/sydney',
+    coordinates: { lat: -33.8688, lng: 151.2093 },
+    category: 'city'
   },
   {
     id: '35',
@@ -699,7 +1183,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Sailboat',
     learningFocus: ['Geology', 'Culture'],
-    externalLink: 'https://tuosito.com/auckland'
+    externalLink: 'https://tuosito.com/auckland',
+    coordinates: { lat: -36.8485, lng: 174.7633 },
+    category: 'city'
   },
   {
     id: '36',
@@ -719,7 +1205,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Cable Car',
     learningFocus: ['Urban Planning', 'Culture'],
-    externalLink: 'https://tuosito.com/singapore'
+    externalLink: 'https://tuosito.com/singapore',
+    coordinates: { lat: 1.3521, lng: 103.8198 },
+    category: 'city'
   },
   {
     id: '37',
@@ -739,7 +1227,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Subway',
     learningFocus: ['History', 'Technology'],
-    externalLink: 'https://tuosito.com/seoul'
+    externalLink: 'https://tuosito.com/seoul',
+    coordinates: { lat: 37.5665, lng: 126.9780 },
+    category: 'city'
   },
   {
     id: '38',
@@ -759,7 +1249,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Peak Tram',
     learningFocus: ['Geography', 'History'],
-    externalLink: 'https://tuosito.com/hong-kong'
+    externalLink: 'https://tuosito.com/hong-kong',
+    coordinates: { lat: 22.3193, lng: 114.1694 },
+    category: 'city'
   },
   {
     id: '39',
@@ -779,7 +1271,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Auto Rickshaw',
     learningFocus: ['Culture', 'History'],
-    externalLink: 'https://tuosito.com/mumbai'
+    externalLink: 'https://tuosito.com/mumbai',
+    coordinates: { lat: 19.0760, lng: 72.8777 },
+    category: 'city'
   },
   {
     id: '40',
@@ -799,7 +1293,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Supercar',
     learningFocus: ['Technology', 'Geography'],
-    externalLink: 'https://tuosito.com/dubai'
+    externalLink: 'https://tuosito.com/dubai',
+    coordinates: { lat: 25.2048, lng: 55.2708 },
+    category: 'city'
   },
   {
     id: '41',
@@ -819,7 +1315,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Dog Sled',
     learningFocus: ['Science', 'Environment'],
-    externalLink: 'https://tuosito.com/north-pole'
+    externalLink: 'https://tuosito.com/north-pole',
+    coordinates: { lat: 90.0000, lng: 0.0000 },
+    category: 'nature'
   },
   {
     id: '42',
@@ -839,7 +1337,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Snowmobile',
     learningFocus: ['Science', 'History'],
-    externalLink: 'https://tuosito.com/antarctic'
+    externalLink: 'https://tuosito.com/antarctic',
+    coordinates: { lat: -90.0000, lng: 0.0000 },
+    category: 'nature'
   },
   {
     id: '43',
@@ -859,7 +1359,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Camel',
     learningFocus: ['Geography', 'Culture'],
-    externalLink: 'https://tuosito.com/sahara'
+    externalLink: 'https://tuosito.com/sahara',
+    coordinates: { lat: 23.4162, lng: 25.6628 },
+    category: 'nature'
   },
   {
     id: '44',
@@ -879,7 +1381,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Off-Road Truck',
     learningFocus: ['Culture', 'Nature'],
-    externalLink: 'https://tuosito.com/outback'
+    externalLink: 'https://tuosito.com/outback',
+    coordinates: { lat: -23.6980, lng: 133.8807 },
+    category: 'nature'
   },
   {
     id: '45',
@@ -899,7 +1403,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Canoe',
     learningFocus: ['Environment', 'Biology'],
-    externalLink: 'https://tuosito.com/amazon'
+    externalLink: 'https://tuosito.com/amazon',
+    coordinates: { lat: -3.4653, lng: -62.2159 },
+    category: 'nature'
   },
   {
     id: '46',
@@ -919,7 +1425,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Outrigger Canoe',
     learningFocus: ['Geology', 'Culture'],
-    externalLink: 'https://tuosito.com/hawaii'
+    externalLink: 'https://tuosito.com/hawaii',
+    coordinates: { lat: 19.8968, lng: -155.5828 },
+    category: 'nature'
   },
   {
     id: '47',
@@ -939,7 +1447,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Zebu Cart',
     learningFocus: ['Biology', 'History'],
-    externalLink: 'https://tuosito.com/madagascar'
+    externalLink: 'https://tuosito.com/madagascar',
+    coordinates: { lat: -18.7669, lng: 46.8691 },
+    category: 'nature'
   },
   {
     id: '48',
@@ -959,7 +1469,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Submarine',
     learningFocus: ['Science', 'Environment'],
-    externalLink: 'https://tuosito.com/galapagos'
+    externalLink: 'https://tuosito.com/galapagos',
+    coordinates: { lat: -0.8293, lng: -90.9821 },
+    category: 'nature'
   },
   {
     id: '49',
@@ -979,7 +1491,9 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Raft',
     learningFocus: ['Archaeology', 'Culture'],
-    externalLink: 'https://tuosito.com/easter-island'
+    externalLink: 'https://tuosito.com/easter-island',
+    coordinates: { lat: -27.1127, lng: -109.3497 },
+    category: 'special'
   },
   {
     id: '50',
@@ -999,6 +1513,40 @@ export const BOOKS: Book[] = [
     },
     foxyTransport: 'Donkey',
     learningFocus: ['Geology', 'History'],
-    externalLink: 'https://tuosito.com/santorini'
+    externalLink: 'https://tuosito.com/santorini',
+    coordinates: { lat: 36.3932, lng: 25.4615 },
+    category: 'nature',
+    quizzes: {
+      geography: {
+        question: "Santorini is part of which island group?",
+        options: ["Cyclades", "Ionian", "Dodecanese", "Sporades"],
+        correct: 0
+      },
+      culture: {
+        question: "What color are the famous church domes in Santorini?",
+        options: ["Red", "Blue", "Green", "Yellow"],
+        correct: 1
+      },
+      food: {
+        question: "What is a famous Greek salad ingredient?",
+        options: ["Feta Cheese", "Cheddar", "Mozzarella", "Parmesan"],
+        correct: 0
+      }
+    },
+    games: {
+      crossword: {
+        words: [
+          { word: "BLUE", clue: "The color of the domes.", orientation: 'across' },
+          { word: "ISLAND", clue: "Santorini is a Greek.", orientation: 'across' },
+          { word: "SEA", clue: "The Aegean is a.", orientation: 'across' }
+        ]
+      },
+      rebus: [
+        { emojis: "🇬🇷⛪🌊", answer: "SANTORINI" }
+      ],
+      scramble: [
+        { letters: "TORINISAN", answer: "SANTORINI" }
+      ]
+    }
   }
 ];

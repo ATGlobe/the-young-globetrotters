@@ -84,20 +84,20 @@ export default function Mappa() {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             />
 
-            {VOLUMES.map((vol) => (
+            {BOOKS.map((book) => (
               <Marker
-                key={vol.id}
-                position={[vol.coordinates.lat, vol.coordinates.lng]}
-                icon={getIcon(vol.category, isCityCompleted(vol.id))}
+                key={book.id}
+                position={[book.coordinates.lat, book.coordinates.lng]}
+                icon={getIcon(book.category, isCityCompleted(book.id))}
                 eventHandlers={{
-                  click: () => navigate(`/books/${vol.slug}`)
+                  click: () => navigate(`/books/${book.slug}`)
                 }}
               >
                 <Tooltip direction="top" offset={[0, -10]} opacity={1} permanent={false}>
                   <div className="text-center">
-                    <p className="font-black text-slate-900">{vol.city}</p>
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">{vol.country}</p>
-                    {isCityCompleted(vol.id) && <p className="text-[10px] text-amber-600 font-black mt-1">⭐ COMPLETED</p>}
+                    <p className="font-black text-slate-900">{book.city}</p>
+                    <p className="text-xs text-slate-500 font-bold uppercase tracking-widest">{book.country}</p>
+                    {isCityCompleted(book.id) && <p className="text-[10px] text-amber-600 font-black mt-1">⭐ COMPLETED</p>}
                   </div>
                 </Tooltip>
               </Marker>

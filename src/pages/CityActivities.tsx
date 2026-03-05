@@ -26,7 +26,45 @@ const CityActivities: React.FC = () => {
     return <Navigate to="/map" replace />;
   }
 
-  const volumeId = vol?.id || book.id;
+  const volumeId = book.id;
+
+  // Default challenges if not provided in BOOKS data
+  const defaultQuizzes = {
+    geography: {
+      question: `Where is ${book.city} located?`,
+      options: [book.country, "Somewhere else", "Far away", "Nearby"],
+      correct: 0
+    },
+    culture: {
+      question: `What is a famous landmark in ${book.city}?`,
+      options: [book.landmarks[0] || "A famous building", "A park", "A museum", "A bridge"],
+      correct: 0
+    },
+    food: {
+      question: `What is a traditional food in ${book.city}?`,
+      options: [book.recipe.name || "A local dish", "Pizza", "Burger", "Salad"],
+      correct: 0
+    }
+  };
+
+  const defaultGames = {
+    crossword: {
+      words: [
+        { word: book.city.toUpperCase().replace(/\s/g, ''), clue: `The name of this city.`, orientation: 'across' as const },
+        { word: book.country.toUpperCase().replace(/\s/g, ''), clue: `The country where ${book.city} is.`, orientation: 'across' as const },
+        { word: (book.landmarks[0] || "LANDMARK").toUpperCase().replace(/\s/g, ''), clue: `A famous place here.`, orientation: 'across' as const }
+      ]
+    },
+    rebus: [
+      { emojis: "🌍✈️🎒", answer: book.city.toUpperCase() }
+    ],
+    scramble: [
+      { letters: book.city.toUpperCase().split('').sort(() => Math.random() - 0.5).join(''), answer: book.city.toUpperCase() }
+    ]
+  };
+
+  const quizzes = book.quizzes || vol?.quizzes || defaultQuizzes;
+  const games = book.games || vol?.games || defaultGames;
 
   const volumeProgress = progress[volumeId] || {
     quiz: { geography: false, culture: false, food: false },
@@ -41,7 +79,7 @@ const CityActivities: React.FC = () => {
       <header className="bg-orange-500 text-white py-12 px-4 shadow-lg">
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-4">
-            <Link to={`/books/${book.slug}`} className="p-2 bg-white/20 rounded-xl hover:bg-white/30 transition-all">
+            <Link to={`/activities`} className="p-2 bg-white/20 rounded-xl hover:bg-white/30 transition-all">
               <ArrowLeft size={24} />
             </Link>
             <div>
@@ -84,15 +122,11 @@ const CityActivities: React.FC = () => {
                 <h3 className="text-xl font-black text-slate-900">Crossword</h3>
                 {volumeProgress.games.crossword && <CheckCircle2 className="text-emerald-500" size={24} />}
               </div>
-              {vol?.games?.crossword ? (
-                <SimpleCrossword 
-                  words={vol.games.crossword.words} 
-                  isCompleted={volumeProgress.games.crossword}
-                  onComplete={() => updateProgress(volumeId, 'games', 'crossword')}
-                />
-              ) : (
-                <p className="text-slate-400 font-bold text-center py-10">Coming soon!</p>
-              )}
+              <SimpleCrossword 
+                words={games.crossword.words} 
+                isCompleted={volumeProgress.games.crossword}
+                onComplete={() => updateProgress(volumeId, 'games', 'crossword')}
+              />
             </div>
 
             {/* Rebus */}
@@ -101,15 +135,11 @@ const CityActivities: React.FC = () => {
                 <h3 className="text-xl font-black text-slate-900">Emoji Rebus</h3>
                 {volumeProgress.games.rebus && <CheckCircle2 className="text-emerald-500" size={24} />}
               </div>
-              {vol?.games?.rebus ? (
-                <EmojiRebusGame 
-                  rebus={vol.games.rebus}
-                  isCompleted={volumeProgress.games.rebus}
-                  onComplete={() => updateProgress(volumeId, 'games', 'rebus')}
-                />
-              ) : (
-                <p className="text-slate-400 font-bold text-center py-10">Coming soon!</p>
-              )}
+              <EmojiRebusGame 
+                rebus={games.rebus}
+                isCompleted={volumeProgress.games.rebus}
+                onComplete={() => updateProgress(volumeId, 'games', 'rebus')}
+              />
             </div>
 
             {/* Scramble */}
@@ -118,15 +148,11 @@ const CityActivities: React.FC = () => {
                 <h3 className="text-xl font-black text-slate-900">Word Scramble</h3>
                 {volumeProgress.games.scramble && <CheckCircle2 className="text-emerald-500" size={24} />}
               </div>
-              {vol?.games?.scramble ? (
-                <WordScrambleGame 
-                  scramble={vol.games.scramble}
-                  isCompleted={volumeProgress.games.scramble}
-                  onComplete={() => updateProgress(volumeId, 'games', 'scramble')}
-                />
-              ) : (
-                <p className="text-slate-400 font-bold text-center py-10">Coming soon!</p>
-              )}
+              <WordScrambleGame 
+                scramble={games.scramble}
+                isCompleted={volumeProgress.games.scramble}
+                onComplete={() => updateProgress(volumeId, 'games', 'scramble')}
+              />
             </div>
           </div>
         </div>
@@ -141,7 +167,7 @@ const CityActivities: React.FC = () => {
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {vol?.quizzes ? Object.entries(vol.quizzes).map(([key, quiz]) => (
+            {Object.entries(quizzes).map(([key, quiz]) => (
               <div key={key} className="p-8 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm">
                 <div className="flex items-center justify-between mb-6">
                   <h4 className="text-lg font-black text-slate-900 capitalize">{key} Quiz</h4>
@@ -169,11 +195,7 @@ const CityActivities: React.FC = () => {
                   ))}
                 </div>
               </div>
-            )) : (
-              <div className="col-span-full p-12 bg-white rounded-[2.5rem] border border-slate-100 text-center">
-                <p className="text-slate-400 font-bold">Quizzes coming soon!</p>
-              </div>
-            )}
+            ))}
           </div>
         </div>
       </div>

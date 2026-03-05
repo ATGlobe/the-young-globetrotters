@@ -171,8 +171,8 @@ const ExplorerPassport: React.FC = () => {
             <div className="flex-1">
               <div className="p-12 bg-white/5 rounded-[4rem] border border-white/10 backdrop-blur-md text-center">
                 <img 
-                  src="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png" 
-                  alt="Professor Owl" 
+                  src="https://i.ibb.co/6Jw4BgMd/Generated-Image-March-03-2026-3-30-AM-removebg-preview.png" 
+                  alt="Explorer Passport Illustration" 
                   className="w-full h-auto max-w-xs mx-auto drop-shadow-2xl mb-8"
                   referrerPolicy="no-referrer"
                 />

@@ -26,6 +26,20 @@ export type Book = {
   foxyTransport: string;
   learningFocus: string[];
   externalLink: string;
+  coordinates: { lat: number; lng: number };
+  category: 'city' | 'nature' | 'special';
+  quizzes?: {
+    geography: { question: string; options: string[]; correct: number };
+    culture: { question: string; options: string[]; correct: number };
+    food: { question: string; options: string[]; correct: number };
+  };
+  games?: {
+    crossword: {
+      words: { word: string; clue: string; orientation: 'across' }[];
+    };
+    rebus: { emojis: string; answer: string }[];
+    scramble: { letters: string; answer: string }[];
+  };
 };
 
 export type QuizQuestion = {
