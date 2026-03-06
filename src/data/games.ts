@@ -1,5 +1,26 @@
-export const GAMES: Record<string, GameData> = {
+export interface CrosswordClue {
+  clue: string;
+  answer: string;
+}
 
+export interface QuizQuestion {
+  question: string;
+  answer: string;
+}
+
+export interface GameData {
+  emoji: string;
+  emojiAnswer: string;
+
+  scramble: string;
+  scrambleAnswer: string;
+
+  crossword: CrosswordClue[];
+
+  geography: QuizQuestion;
+  culture: QuizQuestion;
+  food: QuizQuestion;
+}
 rome: {
 emoji: "🏛️👑🦁",
 emojiAnswer: "COLOSSEUM",
