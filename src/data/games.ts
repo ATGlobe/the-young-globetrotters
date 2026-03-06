@@ -21,178 +21,181 @@ export interface GameData {
   culture: QuizQuestion;
   food: QuizQuestion;
 }
-rome: {
-emoji: "🏛️👑🦁",
-emojiAnswer: "COLOSSEUM",
 
-scramble: "RIFUOTN",
-scrambleAnswer: "FOUNTAIN",
+export const GAMES: Record<string, GameData> = {
 
-crossword: [
-{ clue: "The name of the city where you can toss a coin in the Trevi Fountain.", answer: "ROME" },
-{ clue: "The ancient amphitheater where Foxy tried to grab Axel's pin.", answer: "COLOSSEUM" },
-{ clue: "Classic Roman pasta dish with eggs and cheese.", answer: "CARBONARA" }
-],
+  rome: {
+    emoji: "🏛️👑🦁",
+    emojiAnswer: "COLOSSEUM",
 
-geography: {
-question: "The Tiber River flows through which Italian city?",
-answer: "ROME"
-},
+    scramble: "RIFUOTN",
+    scrambleAnswer: "FOUNTAIN",
 
-culture: {
-question: "What happens if you toss a coin in the Trevi Fountain?",
-answer: "YOU WILL RETURN TO ROME"
-},
+    crossword: [
+      { clue: "The name of the city where you can toss a coin in the Trevi Fountain.", answer: "ROME" },
+      { clue: "The ancient amphitheater where Foxy tried to grab Axel's pin.", answer: "COLOSSEUM" },
+      { clue: "Classic Roman pasta dish with eggs and cheese.", answer: "CARBONARA" }
+    ],
 
-food: {
-question: "What cheese is used in Spaghetti alla Carbonara?",
-answer: "PECORINO ROMANO"
-}
-},
+    geography: {
+      question: "The Tiber River flows through which Italian city?",
+      answer: "ROME"
+    },
 
-paris: {
-emoji: "🗼🥐🎨",
-emojiAnswer: "EIFFEL TOWER",
+    culture: {
+      question: "What happens if you toss a coin in the Trevi Fountain?",
+      answer: "YOU WILL RETURN TO ROME"
+    },
 
-scramble: "VROUEL",
-scrambleAnswer: "LOUVRE",
+    food: {
+      question: "What cheese is used in Spaghetti alla Carbonara?",
+      answer: "PECORINO ROMANO"
+    }
+  },
 
-crossword: [
-{ clue: "The City of Light.", answer: "PARIS" },
-{ clue: "Famous iron tower.", answer: "EIFFEL" },
-{ clue: "Classic French pancake.", answer: "CREPE" }
-],
+  paris: {
+    emoji: "🗼🥐🎨",
+    emojiAnswer: "EIFFEL TOWER",
 
-geography: {
-question: "What river flows through Paris?",
-answer: "SEINE"
-},
+    scramble: "VROUEL",
+    scrambleAnswer: "LOUVRE",
 
-culture: {
-question: "What word should you say when entering a French shop?",
-answer: "BONJOUR"
-},
+    crossword: [
+      { clue: "The City of Light.", answer: "PARIS" },
+      { clue: "Famous iron tower.", answer: "EIFFEL" },
+      { clue: "Classic French pancake.", answer: "CREPE" }
+    ],
 
-food: {
-question: "What is key to smooth crepe batter?",
-answer: "WHISKING CONSTANTLY"
-}
-},
+    geography: {
+      question: "What river flows through Paris?",
+      answer: "SEINE"
+    },
 
-london: {
-emoji: "👑🏰🚇",
-emojiAnswer: "BUCKINGHAM PALACE",
+    culture: {
+      question: "What word should you say when entering a French shop?",
+      answer: "BONJOUR"
+    },
 
-scramble: "MESATH",
-scrambleAnswer: "THAMES",
+    food: {
+      question: "What is key to smooth crepe batter?",
+      answer: "WHISKING CONSTANTLY"
+    }
+  },
 
-crossword: [
-{ clue: "Capital city on the River Thames.", answer: "LONDON" },
-{ clue: "Famous clock tower.", answer: "BIG BEN" },
-{ clue: "Traditional British dish of battered fish.", answer: "FISH AND CHIPS" }
-],
+  london: {
+    emoji: "👑🏰🚇",
+    emojiAnswer: "BUCKINGHAM PALACE",
 
-geography: {
-question: "London is located on which river?",
-answer: "THAMES"
-},
+    scramble: "MESATH",
+    scrambleAnswer: "THAMES",
 
-culture: {
-question: "What is the traditional British afternoon meal with tea and scones?",
-answer: "AFTERNOON TEA"
-},
+    crossword: [
+      { clue: "Capital city on the River Thames.", answer: "LONDON" },
+      { clue: "Famous clock tower.", answer: "BIG BEN" },
+      { clue: "Traditional British dish of battered fish.", answer: "FISH AND CHIPS" }
+    ],
 
-food: {
-question: "What condiment is traditionally sprinkled on Fish and Chips?",
-answer: "MALT VINEGAR"
-}
-},
+    geography: {
+      question: "London is located on which river?",
+      answer: "THAMES"
+    },
 
-barcelona: {
-emoji: "🦎🎨🏞️",
-emojiAnswer: "PARK GUELL",
+    culture: {
+      question: "What is the traditional British afternoon meal with tea and scones?",
+      answer: "AFTERNOON TEA"
+    },
 
-scramble: "DIAGUA",
-scrambleAnswer: "GAUDI",
+    food: {
+      question: "What condiment is traditionally sprinkled on Fish and Chips?",
+      answer: "MALT VINEGAR"
+    }
+  },
 
-crossword: [
-{ clue: "Vibrant Spanish city.", answer: "BARCELONA" },
-{ clue: "Gaudi's unfinished basilica.", answer: "SAGRADA FAMILIA" },
-{ clue: "Catalan snack with tomato bread.", answer: "PA AMB TOMAQUET" }
-],
+  barcelona: {
+    emoji: "🦎🎨🏞️",
+    emojiAnswer: "PARK GUELL",
 
-geography: {
-question: "Barcelona is on the coast of which sea?",
-answer: "MEDITERRANEAN SEA"
-},
+    scramble: "DIAGUA",
+    scrambleAnswer: "GAUDI",
 
-culture: {
-question: "What are the human towers built in Catalonia called?",
-answer: "CASTELLS"
-},
+    crossword: [
+      { clue: "Vibrant Spanish city.", answer: "BARCELONA" },
+      { clue: "Gaudi's unfinished basilica.", answer: "SAGRADA FAMILIA" },
+      { clue: "Catalan snack with tomato bread.", answer: "PA AMB TOMAQUET" }
+    ],
 
-food: {
-question: "What ingredient is rubbed on bread for Pa amb Tomaquet?",
-answer: "TOMATO"
-}
-},
+    geography: {
+      question: "Barcelona is on the coast of which sea?",
+      answer: "MEDITERRANEAN SEA"
+    },
 
-amsterdam: {
-emoji: "🚲🌷💧",
-emojiAnswer: "AMSTERDAM",
+    culture: {
+      question: "What are the human towers built in Catalonia called?",
+      answer: "CASTELLS"
+    },
 
-scramble: "LANACA",
-scrambleAnswer: "CANAL",
+    food: {
+      question: "What ingredient is rubbed on bread for Pa amb Tomaquet?",
+      answer: "TOMATO"
+    }
+  },
 
-crossword: [
-{ clue: "Dutch city famous for canals.", answer: "AMSTERDAM" },
-{ clue: "Large Dutch pancake.", answer: "PANNENKOEKEN" },
-{ clue: "Flowers Foxy crashed into.", answer: "TULIPS" }
-],
+  amsterdam: {
+    emoji: "🚲🌷💧",
+    emojiAnswer: "AMSTERDAM",
 
-geography: {
-question: "Amsterdam is famous for its ring of what?",
-answer: "CANALS"
-},
+    scramble: "LANACA",
+    scrambleAnswer: "CANAL",
 
-culture: {
-question: "Main transportation in Amsterdam?",
-answer: "BICYCLES"
-},
+    crossword: [
+      { clue: "Dutch city famous for canals.", answer: "AMSTERDAM" },
+      { clue: "Large Dutch pancake.", answer: "PANNENKOEKEN" },
+      { clue: "Flowers Foxy crashed into.", answer: "TULIPS" }
+    ],
 
-food: {
-question: "Pannenkoeken can be sweet or what?",
-answer: "SAVORY"
-}
-},
+    geography: {
+      question: "Amsterdam is famous for its ring of what?",
+      answer: "CANALS"
+    },
 
-stockholm: {
-emoji: "🏰🚢🏝️",
-emojiAnswer: "STOCKHOLM",
+    culture: {
+      question: "Main transportation in Amsterdam?",
+      answer: "BICYCLES"
+    },
 
-scramble: "KIFA",
-scrambleAnswer: "FIKA",
+    food: {
+      question: "Pannenkoeken can be sweet or what?",
+      answer: "SAVORY"
+    }
+  },
 
-crossword: [
-{ clue: "Capital built on 14 islands.", answer: "STOCKHOLM" },
-{ clue: "Famous sunken warship museum.", answer: "VASA" },
-{ clue: "Swedish meatballs.", answer: "KOTTBULLAR" }
-],
+  stockholm: {
+    emoji: "🏰🚢🏝️",
+    emojiAnswer: "STOCKHOLM",
 
-geography: {
-question: "Stockholm is the Venice of the ____.",
-answer: "NORTH"
-},
+    scramble: "KIFA",
+    scrambleAnswer: "FIKA",
 
-culture: {
-question: "Swedish coffee break tradition?",
-answer: "FIKA"
-},
+    crossword: [
+      { clue: "Capital built on 14 islands.", answer: "STOCKHOLM" },
+      { clue: "Famous sunken warship museum.", answer: "VASA" },
+      { clue: "Swedish meatballs.", answer: "KOTTBULLAR" }
+    ],
 
-food: {
-question: "Jam served with Swedish meatballs?",
-answer: "LINGONBERRY"
-}
-}
+    geography: {
+      question: "Stockholm is the Venice of the ____.",
+      answer: "NORTH"
+    },
 
-}
+    culture: {
+      question: "Swedish coffee break tradition?",
+      answer: "FIKA"
+    },
+
+    food: {
+      question: "Jam served with Swedish meatballs?",
+      answer: "LINGONBERRY"
+    }
+  }
+
+};
