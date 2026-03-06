@@ -86,8 +86,13 @@ export const QUIZZES: Record<string, CityQuizzes> = {
 
 };
 
-// Helper to get quizzes for any city (with defaults)
-export const getCityQuizzes = (cityId: string, cityName: string): CityQuizzes => {
+
+// fallback quiz se una città non ha ancora domande
+export const getCityQuizzes = (
+  cityId: string,
+  cityName: string
+): CityQuizzes => {
+
   return QUIZZES[cityId] || {
     geography: {
       question: `Where is ${cityName} located?`,
@@ -105,4 +110,5 @@ export const getCityQuizzes = (cityId: string, cityName: string): CityQuizzes =>
       answer: "A local dish"
     }
   };
+
 };
