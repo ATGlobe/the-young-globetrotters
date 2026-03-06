@@ -1,7 +1,7 @@
 export interface QuizQuestion {
   question: string;
   options: string[];
-  correct: number;
+  answer: string;
 }
 
 export interface CityQuizzes {
@@ -14,192 +14,275 @@ export const QUIZZES: Record<string, CityQuizzes> = {
 
   rome: {
     geography: {
-      question: "The Tiber River flows through which Italian city?",
-      options: ["Rome", "Milan", "Florence", "Venice"],
-      correct: 0
+      question: "Which river flows through Rome?",
+      options: ["Tiber", "Po", "Danube", "Arno"],
+      answer: "Tiber"
     },
     culture: {
-      question: "According to legend, what happens if you toss a coin into the Trevi Fountain?",
-      options: [
-        "You will return to Rome",
-        "You will become rich",
-        "You will find treasure",
-        "You will meet the Pope"
-      ],
-      correct: 0
+      question: "What is the famous Roman amphitheater?",
+      options: ["Pantheon", "Colosseum", "Forum", "Acropolis"],
+      answer: "Colosseum"
     },
     food: {
-      question: "What cheese is used in the original Spaghetti alla Carbonara?",
-      options: [
-        "Pecorino Romano",
-        "Parmesan",
-        "Mozzarella",
-        "Ricotta"
-      ],
-      correct: 0
+      question: "Which pasta dish is Roman?",
+      options: ["Carbonara", "Lasagna", "Ramen", "Sushi"],
+      answer: "Carbonara"
     }
   },
 
   paris: {
     geography: {
       question: "What river flows through Paris?",
-      options: ["The Seine", "The Thames", "The Rhine", "The Danube"],
-      correct: 0
+      options: ["Seine", "Thames", "Danube", "Rhine"],
+      answer: "Seine"
     },
     culture: {
-      question: "What polite word should you say when entering a shop in France?",
-      options: ["Bonjour", "Merci", "Salut", "Bonsoir"],
-      correct: 0
+      question: "What famous tower is in Paris?",
+      options: ["Eiffel Tower", "CN Tower", "Tokyo Tower", "Big Ben"],
+      answer: "Eiffel Tower"
     },
     food: {
-      question: "What tool helps make crêpe batter smooth?",
-      options: [
-        "A whisk",
-        "A spoon",
-        "A fork",
-        "A spatula"
-      ],
-      correct: 0
+      question: "Which bread is French?",
+      options: ["Baguette", "Bagel", "Tortilla", "Naan"],
+      answer: "Baguette"
     }
   },
 
   london: {
     geography: {
-      question: "London is located on which river?",
-      options: [
-        "The Thames",
-        "The Seine",
-        "The Danube",
-        "The Rhine"
-      ],
-      correct: 0
+      question: "Which river flows through London?",
+      options: ["Thames", "Severn", "Tyne", "Mersey"],
+      answer: "Thames"
     },
     culture: {
-      question: "What is the traditional British afternoon meal with tea and pastries called?",
-      options: [
-        "Afternoon Tea",
-        "Royal Lunch",
-        "Tea Break",
-        "London Snack"
-      ],
-      correct: 0
+      question: "What famous clock tower is in London?",
+      options: ["Big Ben", "Eiffel Tower", "Colosseum", "Statue of Liberty"],
+      answer: "Big Ben"
     },
     food: {
-      question: "What condiment is traditionally sprinkled on Fish and Chips?",
-      options: [
-        "Malt vinegar",
-        "Ketchup",
-        "Mayonnaise",
-        "Soy sauce"
-      ],
-      correct: 0
+      question: "Which British dish includes fried fish and potatoes?",
+      options: ["Fish and Chips", "Tacos", "Ramen", "Pizza"],
+      answer: "Fish and Chips"
     }
   },
 
   barcelona: {
     geography: {
-      question: "Barcelona sits on the coast of which sea?",
-      options: [
-        "Mediterranean Sea",
-        "Atlantic Ocean",
-        "Baltic Sea",
-        "Black Sea"
-      ],
-      correct: 0
+      question: "Barcelona is located in which region of Spain?",
+      options: ["Catalonia", "Andalusia", "Galicia", "Madrid"],
+      answer: "Catalonia"
     },
     culture: {
-      question: "What are the human towers built during Catalan festivals called?",
-      options: [
-        "Castells",
-        "Torres",
-        "Pilares",
-        "Escalas"
-      ],
-      correct: 0
+      question: "Which famous basilica is in Barcelona?",
+      options: ["Sagrada Familia", "Notre Dame", "St Peter's", "Duomo"],
+      answer: "Sagrada Familia"
     },
     food: {
-      question: "Pa amb Tomàquet is bread rubbed with what ingredient?",
-      options: [
-        "Tomato",
-        "Garlic",
-        "Cheese",
-        "Butter"
-      ],
-      correct: 0
+      question: "Which Spanish dish often includes rice and seafood?",
+      options: ["Paella", "Burger", "Sushi", "Curry"],
+      answer: "Paella"
+    }
+  },
+
+  amsterdam: {
+    geography: {
+      question: "Amsterdam is famous for its many...",
+      options: ["Canals", "Volcanoes", "Deserts", "Glaciers"],
+      answer: "Canals"
+    },
+    culture: {
+      question: "Which vehicle is very common in Amsterdam?",
+      options: ["Bicycle", "Camel", "Elephant", "Snowmobile"],
+      answer: "Bicycle"
+    },
+    food: {
+      question: "Which sweet Dutch treat is made with two thin waffles?",
+      options: ["Stroopwafel", "Donut", "Croissant", "Brownie"],
+      answer: "Stroopwafel"
+    }
+  },
+
+  stockholm: {
+    geography: {
+      question: "Stockholm is built on many...",
+      options: ["Islands", "Mountains", "Volcanoes", "Deserts"],
+      answer: "Islands"
+    },
+    culture: {
+      question: "Which Swedish furniture company is famous worldwide?",
+      options: ["IKEA", "LEGO", "Samsung", "Sony"],
+      answer: "IKEA"
+    },
+    food: {
+      question: "Which Swedish dish uses small meatballs?",
+      options: ["Swedish Meatballs", "Paella", "Sushi", "Tacos"],
+      answer: "Swedish Meatballs"
+    }
+  },
+
+  prague: {
+    geography: {
+      question: "Which river flows through Prague?",
+      options: ["Vltava", "Danube", "Seine", "Thames"],
+      answer: "Vltava"
+    },
+    culture: {
+      question: "Prague is famous for its medieval...",
+      options: ["Castle", "Pyramid", "Temple", "Pagoda"],
+      answer: "Castle"
+    },
+    food: {
+      question: "Which sweet pastry is popular in Prague?",
+      options: ["Trdelník", "Croissant", "Donut", "Waffle"],
+      answer: "Trdelník"
+    }
+  },
+
+  athens: {
+    geography: {
+      question: "Athens is located in which country?",
+      options: ["Greece", "Italy", "Spain", "Turkey"],
+      answer: "Greece"
+    },
+    culture: {
+      question: "Which ancient temple stands on the Acropolis?",
+      options: ["Parthenon", "Colosseum", "Pantheon", "Temple of Heaven"],
+      answer: "Parthenon"
+    },
+    food: {
+      question: "Which Greek dish uses layers of eggplant and meat?",
+      options: ["Moussaka", "Pizza", "Ramen", "Burger"],
+      answer: "Moussaka"
+    }
+  },
+
+  berlin: {
+    geography: {
+      question: "Berlin is the capital of which country?",
+      options: ["Germany", "Austria", "Poland", "Switzerland"],
+      answer: "Germany"
+    },
+    culture: {
+      question: "Which famous wall once divided Berlin?",
+      options: ["Berlin Wall", "Great Wall", "Hadrian's Wall", "Stone Wall"],
+      answer: "Berlin Wall"
+    },
+    food: {
+      question: "Which sausage snack is famous in Berlin?",
+      options: ["Currywurst", "Hot Dog", "Bratwurst Soup", "Salami"],
+      answer: "Currywurst"
+    }
+  },
+
+  vienna: {
+    geography: {
+      question: "Vienna is the capital of...",
+      options: ["Austria", "Hungary", "Germany", "Poland"],
+      answer: "Austria"
+    },
+    culture: {
+      question: "Vienna is famous for classical...",
+      options: ["Music", "Surfing", "Volcanoes", "Safari"],
+      answer: "Music"
+    },
+    food: {
+      question: "Which famous cake comes from Vienna?",
+      options: ["Sachertorte", "Cheesecake", "Brownie", "Cupcake"],
+      answer: "Sachertorte"
+    }
+  },
+
+  new_york: {
+    geography: {
+      question: "New York City is in which country?",
+      options: ["USA", "Canada", "UK", "Mexico"],
+      answer: "USA"
+    },
+    culture: {
+      question: "Which statue stands in New York Harbor?",
+      options: ["Statue of Liberty", "Christ the Redeemer", "Big Ben", "Colosseum"],
+      answer: "Statue of Liberty"
+    },
+    food: {
+      question: "Which street food is famous in New York?",
+      options: ["Hot Dog", "Paella", "Ramen", "Tacos"],
+      answer: "Hot Dog"
     }
   },
 
   miami: {
     geography: {
-      question: "Miami is located on the coast of which ocean?",
-      options: [
-        "Atlantic Ocean",
-        "Pacific Ocean",
-        "Indian Ocean",
-        "Arctic Ocean"
-      ],
-      correct: 0
+      question: "Miami is located in which U.S. state?",
+      options: ["Florida", "California", "Texas", "Nevada"],
+      answer: "Florida"
     },
     culture: {
-      question: "Miami's famous Cuban neighborhood is called?",
-      options: [
-        "Little Havana",
-        "South Beach",
-        "Brickell",
-        "Downtown"
-      ],
-      correct: 0
+      question: "Which colorful district in Miami celebrates Cuban culture?",
+      options: ["Little Havana", "Brooklyn", "Queens", "Soho"],
+      answer: "Little Havana"
     },
     food: {
-      question: "What ingredient makes Key Lime Pie creamy?",
-      options: [
-        "Sweetened condensed milk",
-        "Cream cheese",
-        "Butter",
-        "Yogurt"
-      ],
-      correct: 0
+      question: "Which famous dessert uses small Key limes?",
+      options: ["Key Lime Pie", "Apple Pie", "Cheesecake", "Brownie"],
+      answer: "Key Lime Pie"
+    }
+  },
+
+  tokyo: {
+    geography: {
+      question: "Tokyo is the capital of...",
+      options: ["Japan", "China", "South Korea", "Thailand"],
+      answer: "Japan"
+    },
+    culture: {
+      question: "Which spring flowers are famous in Japan?",
+      options: ["Cherry Blossoms", "Tulips", "Roses", "Sunflowers"],
+      answer: "Cherry Blossoms"
+    },
+    food: {
+      question: "Which Japanese dish uses raw fish and rice?",
+      options: ["Sushi", "Pizza", "Burger", "Tacos"],
+      answer: "Sushi"
+    }
+  },
+
+  sydney: {
+    geography: {
+      question: "Sydney is located in which country?",
+      options: ["Australia", "New Zealand", "USA", "Canada"],
+      answer: "Australia"
+    },
+    culture: {
+      question: "Which famous building looks like giant shells?",
+      options: ["Sydney Opera House", "Colosseum", "Louvre", "Big Ben"],
+      answer: "Sydney Opera House"
+    },
+    food: {
+      question: "Which sweet dessert is popular in Australia?",
+      options: ["Pavlova", "Donut", "Brownie", "Cupcake"],
+      answer: "Pavlova"
     }
   }
 
 };
 
+// Default fallback if city not yet added
 export const getCityQuizzes = (cityId: string, cityName: string): CityQuizzes => {
-
-  if (QUIZZES[cityId]) {
-    return QUIZZES[cityId];
-  }
-
-  return {
+  return QUIZZES[cityId] || {
     geography: {
       question: `Where is ${cityName} located?`,
-      options: [
-        "Europe",
-        "Asia",
-        "Africa",
-        "America"
-      ],
-      correct: 3
+      options: ["Europe", "Asia", "Africa", "America"],
+      answer: "America"
     },
     culture: {
-      question: `What is something famous in ${cityName}?`,
-      options: [
-        "A famous building",
-        "A park",
-        "A museum",
-        "A bridge"
-      ],
-      correct: 0
+      question: `What is a famous landmark in ${cityName}?`,
+      options: ["A famous building", "A park", "A museum", "A bridge"],
+      answer: "A famous building"
     },
     food: {
-      question: `What kind of food could you try in ${cityName}?`,
-      options: [
-        "A local dish",
-        "Pizza",
-        "Burger",
-        "Salad"
-      ],
-      correct: 0
+      question: `What is a traditional food in ${cityName}?`,
+      options: ["A local dish", "Pizza", "Burger", "Salad"],
+      answer: "A local dish"
     }
   };
 };
