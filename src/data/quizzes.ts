@@ -11,6 +11,7 @@ export interface CityQuizzes {
 }
 
 export const QUIZZES: Record<string, CityQuizzes> = {
+
   rome: {
     geography: {
       question: "Which river flows through Rome?",
@@ -28,6 +29,7 @@ export const QUIZZES: Record<string, CityQuizzes> = {
       answer: "Carbonara"
     }
   },
+
   paris: {
     geography: {
       question: "What river flows through Paris?",
@@ -44,8 +46,44 @@ export const QUIZZES: Record<string, CityQuizzes> = {
       options: ["Baguette", "Bagel", "Tortilla", "Naan"],
       answer: "Baguette"
     }
+  },
+
+  london: {
+    geography: {
+      question: "Which river flows through London?",
+      options: ["Thames", "Severn", "Tyne", "Mersey"],
+      answer: "Thames"
+    },
+    culture: {
+      question: "What famous clock tower is in London?",
+      options: ["Big Ben", "Eiffel Tower", "Colosseum", "Statue of Liberty"],
+      answer: "Big Ben"
+    },
+    food: {
+      question: "Which traditional British dish includes fried fish and potatoes?",
+      options: ["Fish and Chips", "Sushi", "Tacos", "Curry"],
+      answer: "Fish and Chips"
+    }
+  },
+
+  barcelona: {
+    geography: {
+      question: "Barcelona is located in which region of Spain?",
+      options: ["Catalonia", "Andalusia", "Galicia", "Madrid"],
+      answer: "Catalonia"
+    },
+    culture: {
+      question: "Which famous basilica is still under construction in Barcelona?",
+      options: ["Sagrada Familia", "Notre Dame", "St Peter's", "Duomo"],
+      answer: "Sagrada Familia"
+    },
+    food: {
+      question: "Which Catalan dish is toasted bread rubbed with tomato?",
+      options: ["Pa amb Tomàquet", "Tapas", "Gazpacho", "Churros"],
+      answer: "Pa amb Tomàquet"
+    }
   }
-  // Add more cities as needed...
+
 };
 
 // Helper to get quizzes for any city (with defaults)
