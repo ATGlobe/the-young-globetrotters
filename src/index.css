@@ -90,3 +90,58 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #cbd5e1;
 }
+
+/* Badge Color Level System */
+.badge-img {
+  width: 55px;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.badge-bronze {
+  filter: sepia(0.9) hue-rotate(-20deg) saturate(3);
+}
+
+.badge-silver {
+  filter: grayscale(100%) brightness(1.2);
+}
+
+.badge-gold {
+  filter: saturate(1.5) brightness(1.1);
+}
+
+.badge-platinum {
+  filter: grayscale(40%) brightness(1.3);
+}
+
+.badge-diamond {
+  filter: drop-shadow(0 0 12px #7df9ff) brightness(1.2);
+}
+
+.passport-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: 2px solid #f1f5f9;
+  transition: all 0.3s ease;
+}
+
+.passport-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.passport-card.completed {
+  border-color: #facc15;
+}
+
+.passport-card.locked {
+  opacity: 0.6;
+  background: #f8fafc;
+  border-style: dashed;
+}
