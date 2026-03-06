@@ -64,51 +64,6 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* Meet the Characters */}
-      <section className="py-24 bg-slate-50">
-        <div className="container px-4 mx-auto">
-          <div className="max-w-3xl mx-auto mb-20 text-center">
-            <h2 className="mb-6 text-4xl font-bold text-slate-900">Meet the Team</h2>
-            <p className="text-lg text-slate-600">The characters that bring our educational vision to life in every city.</p>
-          </div>
-          <div className="space-y-24">
-            {CHARACTERS.map((char, i) => (
-              <motion.div
-                key={char.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                className={`flex flex-col items-center gap-12 lg:flex-row ${i % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
-              >
-                <div className="flex-1">
-                  <div className={`aspect-square rounded-[3rem] overflow-hidden ${char.color} bg-opacity-10 flex items-center justify-center p-12`}>
-                    <img 
-                      src={char.image} 
-                      alt={char.name} 
-                      className="w-full h-full object-contain drop-shadow-2xl"
-                      referrerPolicy="no-referrer"
-                    />
-                  </div>
-                </div>
-                <div className="flex-1 text-center lg:text-left">
-                  <span className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-4 block">{char.role}</span>
-                  <h3 className="mb-6 text-4xl font-bold text-slate-900">{char.name}</h3>
-                  <p className="text-xl text-slate-600 leading-relaxed mb-8">{char.description}</p>
-                  <div className="flex flex-wrap gap-4 justify-center lg:justify-start">
-                    <div className="px-4 py-2 bg-white rounded-xl border border-slate-200 text-sm font-medium text-slate-700 shadow-sm">
-                      Core Character
-                    </div>
-                    <div className="px-4 py-2 bg-white rounded-xl border border-slate-200 text-sm font-medium text-slate-700 shadow-sm">
-                      Educational Role
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Our Values */}
       <section className="py-24 bg-slate-900 text-white">
         <div className="container px-4 mx-auto">

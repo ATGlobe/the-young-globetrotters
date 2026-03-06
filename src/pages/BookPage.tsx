@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { VOLUMES } from '../data/volumes';
+import { CITIES } from '../data/cities';
 import { BOOKS } from '../data/books';
 import { citiesData } from '../data/citiesData';
 import { motion } from 'motion/react';
@@ -17,18 +17,29 @@ import {
   BookOpen,
   FileText,
   Download,
-  Lightbulb
+  Lightbulb,
+  Wind,
+  Award
 } from 'lucide-react';
 
 const BookPage: React.FC = () => {
-  const { city } = useParams<{ city: string }>();
-  const book = BOOKS.find(b => b.slug === city);
-  const vol = VOLUMES.find(v => v.slug === city);
-  const cityInfo = city ? citiesData[city.toLowerCase()] : null;
+  const { city: cityId } = useParams<{ city: string }>();
+  const city = CITIES.find(c => c.id === cityId);
+  const book = BOOKS.find(b => b.slug === cityId);
+  const cityInfo = cityId ? citiesData[cityId.toLowerCase()] : null;
 
-  if (!book) {
-    return <Navigate to="/map" replace />;
+  if (!city) {
+    return <Navigate to="/books" replace />;
   }
+
+  const displayBook = book || {
+    title: `Adventure in ${city.name}`,
+    city: city.name,
+    country: city.country,
+    coverImage: `https://picsum.photos/seed/${city.id}/600/800`,
+    description: `Join Axel and Tino as they explore the wonders of ${city.name}, ${city.country}. Discover local culture, history, and delicious food!`,
+    externalLink: null
+  };
 
   return (
     <div className="bg-white min-h-screen">
@@ -39,8 +50,8 @@ const BookPage: React.FC = () => {
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <Link to="/map" className="inline-flex items-center gap-2 text-white/70 hover:text-white font-bold mb-12 transition-all">
-            <ArrowLeft size={20} /> Back to Map
+          <Link to="/books" className="inline-flex items-center gap-2 text-white/70 hover:text-white font-bold mb-12 transition-all">
+            <ArrowLeft size={20} /> Back to Library
           </Link>
           
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -50,7 +61,7 @@ const BookPage: React.FC = () => {
                 animate={{ opacity: 1, y: 0 }}
                 className="text-5xl lg:text-7xl font-black mb-6 leading-tight"
               >
-                Axel & Tino in {book.city}
+                Axel & Tino in {displayBook.city}
               </motion.h1>
               <motion.p 
                 initial={{ opacity: 0, y: 20 }}
@@ -58,7 +69,7 @@ const BookPage: React.FC = () => {
                 transition={{ delay: 0.1 }}
                 className="text-xl lg:text-2xl font-medium opacity-90 max-w-2xl mb-8"
               >
-                Explore history, food and adventure in the {book.city === 'Rome' ? 'Eternal City' : 'beautiful city of ' + book.city}.
+                Explore history, food and adventure in {displayBook.city}.
               </motion.p>
               
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 mb-8">
@@ -74,12 +85,12 @@ const BookPage: React.FC = () => {
               </div>
 
               <p className="text-lg opacity-80 max-w-xl mb-10">
-                {book.description}
+                {displayBook.description}
               </p>
 
-              {book.externalLink ? (
+              {displayBook.externalLink ? (
                 <a 
-                  href={book.externalLink} 
+                  href={displayBook.externalLink} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 px-10 py-5 bg-blue-600 text-white rounded-2xl font-black text-xl hover:bg-blue-700 transition-all shadow-2xl hover:-translate-y-1"
@@ -88,7 +99,7 @@ const BookPage: React.FC = () => {
                 </a>
               ) : (
                 <div className="inline-block px-10 py-5 bg-white/5 border-2 border-white/10 rounded-2xl font-black text-xl text-white/30">
-                  Coming Soon
+                  Ebook Coming Soon
                 </div>
               )}
             </div>
@@ -99,8 +110,8 @@ const BookPage: React.FC = () => {
               className="flex-shrink-0 w-full max-w-[350px] aspect-[3/4] bg-white rounded-[2rem] shadow-2xl overflow-hidden border-8 border-white/20"
             >
               <img 
-                src={book.coverImage} 
-                alt={book.city} 
+                src={displayBook.coverImage} 
+                alt={displayBook.city} 
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
@@ -120,14 +131,14 @@ const BookPage: React.FC = () => {
               <h2 className="text-3xl font-black text-slate-900">The Adventure Begins</h2>
             </div>
             <p className="text-2xl leading-relaxed text-slate-600 font-medium italic mb-8">
-              Join Axel and Tino as they land in {book.city}!
+              Join Axel and Tino as they land in {displayBook.city}!
             </p>
             <p className="text-lg leading-relaxed text-slate-500">
-              Axel and Tino arrive in {book.city}, a city full of wonders. 
+              Axel and Tino arrive in {displayBook.city}, a city full of wonders. 
               Professor Owl explains the local landmarks and history, 
               while Chef prepares a delicious traditional dish. 
-              But Foxy is already planning a new attempt to steal Axel's golden aviator badge!
-              In this adventure, children will discover the magic of {book.city} through the eyes of our young globetrotters.
+              But Foxy is already planning a new attempt to steal Axel's winged aviator badge!
+              In this adventure, children will discover the magic of {displayBook.city} through the eyes of our young globetrotters.
             </p>
           </div>
         </div>
@@ -231,17 +242,24 @@ const BookPage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5️⃣ UNLOCK YOUR PASSPORT BADGE SECTION */}
+      {/* 5️⃣ UNLOCK YOUR WINGED BADGE SECTION */}
       <section className="py-24 bg-orange-500">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center text-white">
-            <h2 className="text-4xl md:text-5xl font-black mb-6">Unlock Your Passport Badge</h2>
+            <div className="inline-flex items-center justify-center p-6 bg-white/20 rounded-full mb-8">
+              <div className="relative flex items-center justify-center">
+                <Wind className="absolute -left-8 text-white opacity-50" size={32} />
+                <Award className="w-16 h-16 text-white" />
+                <Wind className="absolute -right-8 scale-x-[-1] text-white opacity-50" size={32} />
+              </div>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black mb-6">Unlock Your Winged Badge</h2>
             <p className="text-xl md:text-2xl font-medium opacity-90 mb-12 max-w-2xl mx-auto">
-              Ready to earn your city stamp? Complete the quizzes and games for this city to unlock your badge in the Explorer Passport.
+              Ready to earn your {city.level} wings? Complete the quizzes and games for this city to unlock your badge in the Explorer Passport.
             </p>
             
             <Link 
-              to={`/activities/${city?.toLowerCase()}`}
+              to={`/activities/${cityId?.toLowerCase()}`}
               className="inline-flex items-center gap-3 px-12 py-6 bg-white text-orange-600 rounded-2xl font-black text-2xl hover:bg-orange-50 transition-all shadow-2xl hover:-translate-y-1"
             >
               <Gamepad2 size={28} /> Start Activities
@@ -254,4 +272,4 @@ const BookPage: React.FC = () => {
 };
 
 export default BookPage;
-;
+

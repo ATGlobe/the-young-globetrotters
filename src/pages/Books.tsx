@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
+import { CITIES } from '../data/cities';
 import { BOOKS } from '../data/books';
 import Hero from '../components/Hero';
 import BookCard from '../components/BookCard';
@@ -9,15 +10,14 @@ const Books: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCountry, setSelectedCountry] = useState<string>('All');
 
-  const countries = ['All', ...Array.from(new Set(BOOKS.map(b => b.country)))].sort();
+  const countries = ['All', ...Array.from(new Set(CITIES.map(b => b.country)))].sort();
 
-  const filteredBooks = BOOKS.filter(book => {
+  const filteredDestinations = CITIES.filter(city => {
     const matchesSearch = 
-      book.city.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      book.title.toLowerCase().includes(searchTerm.toLowerCase());
+      city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      city.country.toLowerCase().includes(searchTerm.toLowerCase());
     
-    const matchesCountry = selectedCountry === 'All' || book.country === selectedCountry;
+    const matchesCountry = selectedCountry === 'All' || city.country === selectedCountry;
     
     return matchesSearch && matchesCountry;
   });
@@ -26,7 +26,7 @@ const Books: React.FC = () => {
     <div className="bg-slate-50 min-h-screen">
       <Hero 
         title="Our Global Adventures"
-        subtitle="Explore the world city by city with Axel & Tino. Each book is a structured educational journey into culture, history, and culinary traditions."
+        subtitle="Explore the world city by city with Axel & Tino. Discover 50 amazing destinations across the globe!"
         bgColor="bg-emerald-500"
         image="https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Axel__10_-removebg-preview.png"
       >
@@ -61,20 +61,39 @@ const Books: React.FC = () => {
         <div className="container px-4 mx-auto">
           <div className="flex items-center justify-between mb-12">
             <div>
-              <h2 className="text-4xl font-black text-slate-900 tracking-tight">Available Volumes</h2>
-              <p className="text-slate-500 mt-2 font-medium">Showing {filteredBooks.length} educational adventures</p>
+              <h2 className="text-4xl font-black text-slate-900 tracking-tight">All Destinations</h2>
+              <p className="text-slate-500 mt-2 font-medium">Showing {filteredDestinations.length} global adventures</p>
             </div>
           </div>
 
           <AnimatePresence mode="popLayout">
-            {filteredBooks.length > 0 ? (
+            {filteredDestinations.length > 0 ? (
               <motion.div 
                 layout
                 className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
               >
-                {filteredBooks.map((book) => (
-                  <BookCard key={book.id} book={book} />
-                ))}
+                {filteredDestinations.map((city) => {
+                  const book = BOOKS.find(b => b.slug === city.id);
+                  const displayBook = book || {
+                    id: city.id,
+                    slug: city.id,
+                    title: `Adventure in ${city.name}`,
+                    city: city.name,
+                    country: city.country,
+                    coverImage: `https://picsum.photos/seed/${city.id}/600/800`,
+                    description: `Join Axel and Tino as they explore the wonders of ${city.name}, ${city.country}.`,
+                    landmarks: [],
+                    wildlife: [],
+                    culturalFacts: [],
+                    recipe: { name: '', description: '', image: '' },
+                    foxyTransport: '',
+                    learningFocus: [],
+                    externalLink: '#',
+                    coordinates: city.coordinates,
+                    category: 'city'
+                  };
+                  return <BookCard key={city.id} book={displayBook as any} />;
+                })}
               </motion.div>
             ) : (
               <motion.div 
@@ -106,3 +125,4 @@ const Books: React.FC = () => {
 };
 
 export default Books;
+

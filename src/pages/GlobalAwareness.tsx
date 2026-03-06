@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { cities, City } from '../data/cities';
+import { CITIES } from '../data/cities';
+import { citiesData } from '../data/citiesData';
 import { Link } from 'react-router-dom';
 import { Search, Globe, MapPin, History, Music, GraduationCap, ChevronDown, ChevronUp, ArrowRight } from 'lucide-react';
 
@@ -8,21 +9,18 @@ export default function GlobalAwareness() {
   const [searchTerm, setSearchTerm] = useState('');
   const [expandedCityId, setExpandedCityId] = useState<string | null>(null);
 
-  const filteredCities = cities.filter(city => 
+  const filteredCities = CITIES.filter(city => 
     city.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     city.country.toLowerCase().includes(searchTerm.toLowerCase()) ||
     city.continent.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const continents = Array.from(new Set(cities.map(c => c.continent)));
+  const continents = Array.from(new Set(CITIES.map(c => c.continent)));
 
   return (
     <div className="min-h-screen bg-indigo-50/30">
       {/* Hero Section */}
       <section className="relative py-32 px-4 bg-indigo-900 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          {/* Image removed */}
-        </div>
         <div className="relative z-10 text-center px-4 max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -113,86 +111,95 @@ export default function GlobalAwareness() {
                     <div className="flex-1 h-px bg-indigo-100"></div>
                   </div>
                   <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {continentCities.map(city => (
-                      <div key={city.id} className="group">
-                        <motion.button 
-                          onClick={() => setExpandedCityId(expandedCityId === city.id ? null : city.id)}
-                          className={`w-full text-left p-6 rounded-3xl border transition-all duration-300 flex items-center justify-between ${
-                            expandedCityId === city.id 
-                            ? 'bg-indigo-900 border-indigo-900 text-white shadow-xl' 
-                            : 'bg-white border-slate-100 hover:border-indigo-200 hover:shadow-lg text-indigo-900'
-                          }`}
-                        >
-                          <div className="flex items-center gap-4">
-                            <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${expandedCityId === city.id ? 'bg-indigo-800' : 'bg-indigo-50'}`}>
-                              <MapPin className={`w-6 h-6 ${expandedCityId === city.id ? 'text-amber-400' : 'text-indigo-600'}`} />
-                            </div>
-                            <div>
-                              <h4 className="font-bold text-lg">{city.name}</h4>
-                              <p className={`text-sm ${expandedCityId === city.id ? 'text-indigo-300' : 'text-slate-500'}`}>{city.country}</p>
-                            </div>
-                          </div>
-                          {expandedCityId === city.id ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
-                        </motion.button>
-
-                        <AnimatePresence>
-                          {expandedCityId === city.id && (
-                            <motion.div 
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: 'auto', opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              className="overflow-hidden"
-                            >
-                              <div className="p-8 bg-indigo-50 rounded-b-[32px] border-x border-b border-indigo-100 -mt-8 pt-16 space-y-8">
-                                <div className="grid md:grid-cols-2 gap-8">
-                                  <div className="space-y-6">
-                                    <div className="flex gap-4">
-                                      <Globe className="w-6 h-6 text-indigo-600 flex-shrink-0" />
-                                      <div>
-                                        <h5 className="font-bold text-indigo-900 mb-1">Geography</h5>
-                                        <p className="text-sm text-slate-600 leading-relaxed">{city.geography}</p>
-                                      </div>
-                                    </div>
-                                    <div className="flex gap-4">
-                                      <History className="w-6 h-6 text-amber-500 flex-shrink-0" />
-                                      <div>
-                                        <h5 className="font-bold text-indigo-900 mb-1">History</h5>
-                                        <p className="text-sm text-slate-600 leading-relaxed">{city.history}</p>
-                                      </div>
-                                    </div>
-                                    <div className="flex gap-4">
-                                      <Music className="w-6 h-6 text-purple-500 flex-shrink-0" />
-                                      <div>
-                                        <h5 className="font-bold text-indigo-900 mb-1">Culture</h5>
-                                        <p className="text-sm text-slate-600 leading-relaxed">{city.culture}</p>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div className="relative">
-                                    <img 
-                                      src={city.image} 
-                                      alt={city.name} 
-                                      className="w-full h-64 object-cover rounded-2xl shadow-lg"
-                                      referrerPolicy="no-referrer"
-                                    />
-                                    <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white p-2 rounded-2xl shadow-xl border border-indigo-100">
-                                      <img src="https://picsum.photos/seed/owl-mini/100/100" alt="Owl" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
-                                    </div>
-                                  </div>
-                                </div>
-                                <Link 
-                                  to={`/books/${city.bookSlug}`}
-                                  className="flex items-center justify-center gap-3 w-full bg-indigo-900 text-white font-black py-5 rounded-2xl hover:bg-indigo-800 transition-colors"
-                                >
-                                  Go to {city.name} Adventure
-                                  <ArrowRight className="w-5 h-5" />
-                                </Link>
+                    {continentCities.map(city => {
+                      const info = citiesData[city.id];
+                      return (
+                        <div key={city.id} className="group">
+                          <motion.button 
+                            onClick={() => setExpandedCityId(expandedCityId === city.id ? null : city.id)}
+                            className={`w-full text-left p-6 rounded-3xl border transition-all duration-300 flex items-center justify-between ${
+                              expandedCityId === city.id 
+                              ? 'bg-indigo-900 border-indigo-900 text-white shadow-xl' 
+                              : 'bg-white border-slate-100 hover:border-indigo-200 hover:shadow-lg text-indigo-900'
+                            }`}
+                          >
+                            <div className="flex items-center gap-4">
+                              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center ${expandedCityId === city.id ? 'bg-indigo-800' : 'bg-indigo-50'}`}>
+                                <MapPin className={`w-6 h-6 ${expandedCityId === city.id ? 'text-amber-400' : 'text-indigo-600'}`} />
                               </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    ))}
+                              <div>
+                                <h4 className="font-bold text-lg">{city.name}</h4>
+                                <p className={`text-sm ${expandedCityId === city.id ? 'text-indigo-300' : 'text-slate-500'}`}>{city.country}</p>
+                              </div>
+                            </div>
+                            {expandedCityId === city.id ? <ChevronUp className="w-6 h-6" /> : <ChevronDown className="w-6 h-6" />}
+                          </motion.button>
+
+                          <AnimatePresence>
+                            {expandedCityId === city.id && (
+                              <motion.div 
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                className="overflow-hidden"
+                              >
+                                <div className="p-8 bg-indigo-50 rounded-b-[32px] border-x border-b border-indigo-100 -mt-8 pt-16 space-y-8">
+                                  <div className="grid md:grid-cols-2 gap-8">
+                                    <div className="space-y-6">
+                                      <div className="flex gap-4">
+                                        <Globe className="w-6 h-6 text-indigo-600 flex-shrink-0" />
+                                        <div>
+                                          <h5 className="font-bold text-indigo-900 mb-1">Geography</h5>
+                                          <p className="text-sm text-slate-600 leading-relaxed">
+                                            {info ? info.monument.history : `Explore the geography of ${city.name} in our educational books.`}
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div className="flex gap-4">
+                                        <History className="w-6 h-6 text-amber-500 flex-shrink-0" />
+                                        <div>
+                                          <h5 className="font-bold text-indigo-900 mb-1">History</h5>
+                                          <p className="text-sm text-slate-600 leading-relaxed">
+                                            {info ? info.monument.history : `Discover the rich history of ${city.name} with Axel and Tino.`}
+                                          </p>
+                                        </div>
+                                      </div>
+                                      <div className="flex gap-4">
+                                        <Music className="w-6 h-6 text-purple-500 flex-shrink-0" />
+                                        <div>
+                                          <h5 className="font-bold text-indigo-900 mb-1">Culture</h5>
+                                          <p className="text-sm text-slate-600 leading-relaxed">
+                                            {info ? info.dish.description : `Learn about the unique culture and traditions of ${city.name}.`}
+                                          </p>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div className="relative">
+                                      <img 
+                                        src={info ? info.monument.image : `https://picsum.photos/seed/${city.id}/600/400`} 
+                                        alt={city.name} 
+                                        className="w-full h-64 object-cover rounded-2xl shadow-lg"
+                                        referrerPolicy="no-referrer"
+                                      />
+                                      <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-white p-2 rounded-2xl shadow-xl border border-indigo-100">
+                                        <img src="https://picsum.photos/seed/owl-mini/100/100" alt="Owl" className="w-full h-full object-contain" referrerPolicy="no-referrer" />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <Link 
+                                    to={`/books/${city.id}`}
+                                    className="flex items-center justify-center gap-3 w-full bg-indigo-900 text-white font-black py-5 rounded-2xl hover:bg-indigo-800 transition-colors"
+                                  >
+                                    Go to {city.name} Adventure
+                                    <ArrowRight className="w-5 h-5" />
+                                  </Link>
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               );
@@ -219,3 +226,4 @@ export default function GlobalAwareness() {
     </div>
   );
 }
+

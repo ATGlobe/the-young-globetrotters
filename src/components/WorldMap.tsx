@@ -1,60 +1,8 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useNavigate } from "react-router-dom";
-import { citiesData } from "../data/citiesData";
-
-const CITY_COORDS: Record<string, { lat: number; lng: number; type: 'city' | 'nature' | 'special' }> = {
-  "rome": { lat: 41.9028, lng: 12.4964, type: 'city' },
-  "paris": { lat: 48.8566, lng: 2.3522, type: 'city' },
-  "london": { lat: 51.5074, lng: -0.1278, type: 'city' },
-  "barcelona": { lat: 41.3851, lng: 2.1734, type: 'city' },
-  "amsterdam": { lat: 52.3702, lng: 4.8952, type: 'city' },
-  "stockholm": { lat: 59.3293, lng: 18.0686, type: 'city' },
-  "prague": { lat: 50.0755, lng: 14.4378, type: 'city' },
-  "athens": { lat: 37.9838, lng: 23.7275, type: 'city' },
-  "berlin": { lat: 52.5200, lng: 13.4050, type: 'city' },
-  "vienna": { lat: 48.2082, lng: 16.3738, type: 'city' },
-  "lisbon": { lat: 38.7223, lng: -9.1393, type: 'city' },
-  "dublin": { lat: 53.3498, lng: -6.2603, type: 'city' },
-  "edinburgh": { lat: 55.9533, lng: -3.1883, type: 'city' },
-  "budapest": { lat: 47.4979, lng: 19.0402, type: 'city' },
-  "copenhagen": { lat: 55.6761, lng: 12.5683, type: 'city' },
-  "oslo": { lat: 59.9139, lng: 10.7522, type: 'city' },
-  "helsinki": { lat: 60.1699, lng: 24.9384, type: 'city' },
-  "reykjavik": { lat: 64.1466, lng: -21.9426, type: 'city' },
-  "istanbul": { lat: 41.0082, lng: 28.9784, type: 'city' },
-  "saint-petersburg": { lat: 59.9343, lng: 30.3351, type: 'city' },
-  "new-york": { lat: 40.7128, lng: -74.0060, type: 'city' },
-  "toronto": { lat: 43.6532, lng: -79.3832, type: 'city' },
-  "chicago": { lat: 41.8781, lng: -87.6298, type: 'city' },
-  "rio-de-janeiro": { lat: -22.9068, lng: -43.1729, type: 'city' },
-  "mexico-city": { lat: 19.4326, lng: -99.1332, type: 'city' },
-  "patagonia": { lat: -41.8101, lng: -68.9063, type: 'nature' },
-  "machu-picchu": { lat: -13.1631, lng: -72.5450, type: 'special' },
-  "miami": { lat: 25.7617, lng: -80.1918, type: 'city' },
-  "vancouver": { lat: 49.2827, lng: -123.1207, type: 'city' },
-  "san-francisco": { lat: 37.7749, lng: -122.4194, type: 'city' },
-  "tokyo": { lat: 35.6762, lng: 139.6503, type: 'city' },
-  "kyoto": { lat: 35.0116, lng: 135.7681, type: 'city' },
-  "bali": { lat: -8.4095, lng: 115.1889, type: 'nature' },
-  "sydney": { lat: -33.8688, lng: 151.2093, type: 'city' },
-  "auckland": { lat: -36.8485, lng: 174.7633, type: 'city' },
-  "singapore": { lat: 1.3521, lng: 103.8198, type: 'city' },
-  "seoul": { lat: 37.5665, lng: 126.9780, type: 'city' },
-  "hong-kong": { lat: 22.3193, lng: 114.1694, type: 'city' },
-  "mumbai": { lat: 19.0760, lng: 72.8777, type: 'city' },
-  "dubai": { lat: 25.2048, lng: 55.2708, type: 'city' },
-  "north-pole": { lat: 90.0, lng: 0.0, type: 'nature' },
-  "antarctic": { lat: -82.8628, lng: 135.0, type: 'nature' },
-  "sahara": { lat: 23.4162, lng: 25.6628, type: 'nature' },
-  "outback": { lat: -25.0, lng: 133.0, type: 'nature' },
-  "amazon": { lat: -3.4653, lng: -62.2159, type: 'nature' },
-  "hawaii": { lat: 19.8968, lng: -155.5828, type: 'nature' },
-  "madagascar": { lat: -18.7669, lng: 46.8691, type: 'nature' },
-  "galápagos": { lat: -0.6, lng: -90.5, type: 'nature' },
-  "easter-island": { lat: -27.1127, lng: -109.3497, type: 'special' },
-  "santorini": { lat: 36.3932, lng: 25.4615, type: 'city' }
-};
+import { CITIES } from "../data/cities";
+import { useProgress } from "../hooks/useProgress";
 
 const CONTINENTS = [
   {
@@ -102,6 +50,7 @@ const TYPE_COLORS = {
 
 export default function WorldMap() {
   const navigate = useNavigate();
+  const { isCityCompleted, isCityInProgress } = useProgress();
   const [hoveredCity, setHoveredCity] = useState<string | null>(null);
 
   const project = (lat: number, lng: number) => {
@@ -109,12 +58,6 @@ export default function WorldMap() {
     const y = (90 - lat) * (500 / 180);
     return { x, y };
   };
-
-  const destinations = Object.keys(citiesData).map(slug => ({
-    slug,
-    name: citiesData[slug].name,
-    ...CITY_COORDS[slug]
-  })).filter(d => d.lat !== undefined);
 
   return (
     <div className="w-full bg-[#162447] rounded-[2rem] p-4 md:p-8 shadow-2xl border border-white/10 overflow-hidden">
@@ -126,10 +69,7 @@ export default function WorldMap() {
           preserveAspectRatio="xMidYMid meet"
           className="w-full h-auto"
         >
-          {/* Ocean Background */}
           <rect width="1000" height="500" fill="#162447" />
-
-          {/* Continents */}
           {CONTINENTS.map((continent) => (
             <path
               key={continent.id}
@@ -139,22 +79,21 @@ export default function WorldMap() {
               stroke="none"
             />
           ))}
-
-          {/* Markers */}
-          {destinations.map((dest) => {
-            const { x, y } = project(dest.lat, dest.lng);
-            const color = TYPE_COLORS[dest.type] || TYPE_COLORS.city;
-            const isHovered = hoveredCity === dest.slug;
+          {CITIES.map((city) => {
+            const { x, y } = project(city.coordinates.lat, city.coordinates.lng);
+            const color = TYPE_COLORS.city;
+            const isHovered = hoveredCity === city.id;
+            const completed = isCityCompleted(city.id);
+            const inProgress = isCityInProgress(city.id);
 
             return (
               <g
-                key={dest.slug}
+                key={city.id}
                 className="cursor-pointer"
-                onMouseEnter={() => setHoveredCity(dest.slug)}
+                onMouseEnter={() => setHoveredCity(city.id)}
                 onMouseLeave={() => setHoveredCity(null)}
-                onClick={() => navigate(`/books/${dest.slug}`)}
+                onClick={() => navigate(`/books/${city.id}`)}
               >
-                {/* Glow Effect */}
                 <AnimatePresence>
                   {isHovered && (
                     <motion.circle
@@ -168,15 +107,13 @@ export default function WorldMap() {
                     />
                   )}
                 </AnimatePresence>
-
-                {/* Main Marker */}
                 <motion.circle
                   cx={x}
                   cy={y}
-                  r={6}
+                  r={completed ? 8 : 6}
                   fill={color}
-                  stroke="white"
-                  strokeWidth={1.5}
+                  stroke={completed ? "#F59E0B" : inProgress ? "#3B82F6" : "white"}
+                  strokeWidth={completed ? 3 : 1.5}
                   initial={false}
                   animate={{
                     scale: isHovered ? 1.3 : 1,
@@ -186,8 +123,24 @@ export default function WorldMap() {
                     filter: isHovered ? `drop-shadow(0 0 8px ${color})` : 'none'
                   }}
                 />
-
-                {/* Tooltip */}
+                {completed && (
+                  <circle
+                    cx={x}
+                    cy={y}
+                    r={2}
+                    fill="white"
+                    className="pointer-events-none"
+                  />
+                )}
+                {inProgress && !completed && (
+                  <circle
+                    cx={x}
+                    cy={y}
+                    r={2}
+                    fill="#3B82F6"
+                    className="pointer-events-none"
+                  />
+                )}
                 <AnimatePresence>
                   {isHovered && (
                     <motion.g
@@ -200,7 +153,7 @@ export default function WorldMap() {
                         x={x - 60}
                         y={y - 40}
                         width={120}
-                        height={24}
+                        height={32}
                         rx={6}
                         fill="white"
                         className="shadow-xl"
@@ -210,10 +163,20 @@ export default function WorldMap() {
                         y={y - 24}
                         textAnchor="middle"
                         fill="#0f172a"
-                        fontSize="12"
+                        fontSize="10"
                         fontWeight="bold"
                       >
-                        {dest.name}
+                        {city.name}
+                      </text>
+                      <text
+                        x={x}
+                        y={y - 12}
+                        textAnchor="middle"
+                        fill={completed ? "#F59E0B" : inProgress ? "#3B82F6" : "#94a3b8"}
+                        fontSize="8"
+                        fontWeight="black"
+                      >
+                        {completed ? "⭐ COMPLETED" : inProgress ? "🔄 IN PROGRESS" : "UNVISITED"}
                       </text>
                     </motion.g>
                   )}
@@ -223,22 +186,22 @@ export default function WorldMap() {
           })}
         </svg>
       </div>
-
-      {/* Legend */}
       <div className="mt-6 flex flex-wrap justify-center gap-6 text-[10px] font-bold uppercase tracking-widest">
         <div className="flex items-center gap-2 text-slate-400">
           <div className="w-2.5 h-2.5 rounded-full bg-[#FFD600]" />
           <span>Cities</span>
         </div>
-        <div className="flex items-center gap-2 text-slate-400">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#4CAF50]" />
-          <span>Nature</span>
+        <div className="w-px h-4 bg-white/10" />
+        <div className="flex items-center gap-2 text-amber-400">
+          <div className="w-2.5 h-2.5 rounded-full bg-amber-400 border border-white" />
+          <span>Completed ⭐</span>
         </div>
-        <div className="flex items-center gap-2 text-slate-400">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#00E5FF]" />
-          <span>Special</span>
+        <div className="flex items-center gap-2 text-blue-400">
+          <div className="w-2.5 h-2.5 rounded-full bg-blue-400 border border-white" />
+          <span>In Progress 🔄</span>
         </div>
       </div>
     </div>
   );
 }
+

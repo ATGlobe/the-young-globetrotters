@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { Globe, ArrowRight, ShoppingCart } from 'lucide-react';
 import { Book } from '../types';
@@ -56,14 +56,20 @@ const BookCard: React.FC<BookCardProps> = ({ book }) => {
             View Details <ArrowRight size={16} />
           </Link>
           
-          <a 
-            href={book.externalLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 w-full py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-2xl font-bold text-sm hover:bg-blue-50 transition-all"
-          >
-            Buy Now <ShoppingCart size={16} />
-          </a>
+          {book.externalLink ? (
+            <a 
+              href={book.externalLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 w-full py-4 bg-white text-blue-600 border-2 border-blue-600 rounded-2xl font-bold text-sm hover:bg-blue-50 transition-all"
+            >
+              Buy Now <ShoppingCart size={16} />
+            </a>
+          ) : (
+            <div className="flex items-center justify-center gap-2 w-full py-4 bg-slate-50 text-slate-400 border-2 border-slate-100 rounded-2xl font-bold text-sm cursor-not-allowed">
+              Ebook Coming Soon
+            </div>
+          )}
         </div>
       </div>
     </motion.div>

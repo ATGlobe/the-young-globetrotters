@@ -1,14 +1,16 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { CHARACTERS } from '../constants';
 import { BOOKS } from '../data/books';
 import Hero from '../components/Hero';
 import BookCard from '../components/BookCard';
-import { Globe, BookOpen, Utensils, Plane, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Modal } from '../components/Modal';
+import { Globe, BookOpen, Utensils, Plane, ArrowRight, CheckCircle2, X } from 'lucide-react';
 
 const Home: React.FC = () => {
   const featuredBooks = BOOKS.slice(0, 3);
+  const [selectedCharacter, setSelectedCharacter] = useState<typeof CHARACTERS[0] | null>(null);
 
   return (
     <div className="overflow-hidden">
@@ -56,14 +58,15 @@ const Home: React.FC = () => {
         <div className="container px-4 mx-auto">
           <div className="max-w-3xl mx-auto mb-16 text-center">
             <h2 className="mb-6 text-4xl font-bold text-slate-900">Meet the Globetrotters</h2>
-            <p className="text-lg text-slate-600">The characters that bring every adventure to life.</p>
+            <p className="text-lg text-slate-600">The characters that bring every adventure to life. Click on them to learn more!</p>
           </div>
           <div className="grid gap-8 md:grid-cols-3 lg:grid-cols-5">
             {CHARACTERS.map((char) => (
               <motion.div
                 key={char.id}
                 whileHover={{ y: -10 }}
-                className="group relative flex flex-col items-center text-center"
+                onClick={() => setSelectedCharacter(char)}
+                className="group relative flex flex-col items-center text-center cursor-pointer"
               >
                 <div className={`w-full aspect-square rounded-3xl mb-6 overflow-hidden ${char.color} bg-opacity-10 group-hover:bg-opacity-20 transition-all`}>
                   <img 
@@ -75,12 +78,43 @@ const Home: React.FC = () => {
                 </div>
                 <h3 className="mb-2 text-xl font-bold text-slate-900">{char.name}</h3>
                 <p className="text-sm font-medium text-blue-600 uppercase tracking-wider mb-3">{char.role}</p>
-                <p className="text-slate-600 text-sm">{char.description}</p>
+                <p className="text-slate-600 text-sm line-clamp-2">{char.description}</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
+      {/* Character Modal */}
+      <Modal isOpen={!!selectedCharacter} onClose={() => setSelectedCharacter(null)}>
+        {selectedCharacter && (
+          <div className="flex flex-col md:flex-row">
+            <div className={`w-full md:w-1/2 aspect-square flex items-center justify-center p-12 ${selectedCharacter.color} bg-opacity-10`}>
+              <img 
+                src={selectedCharacter.image} 
+                alt={selectedCharacter.name} 
+                className="w-full h-full object-contain drop-shadow-2xl"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+            <div className="w-full md:w-1/2 p-10 flex flex-col justify-center">
+              <span className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-4 block">
+                {selectedCharacter.role}
+              </span>
+              <h3 className="text-4xl font-black text-slate-900 mb-6">{selectedCharacter.name}</h3>
+              <p className="text-lg text-slate-600 font-medium leading-relaxed mb-8">
+                {selectedCharacter.description}
+              </p>
+              <button 
+                onClick={() => setSelectedCharacter(null)}
+                className="mt-auto w-full py-4 bg-slate-900 text-white font-black rounded-2xl hover:bg-blue-600 transition-all shadow-lg"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
+      </Modal>
 
       {/* How Each Adventure Works */}
       <section className="py-24 bg-slate-900 text-white">
@@ -98,7 +132,7 @@ const Home: React.FC = () => {
                 { step: '01', title: 'The Arrival', text: 'Axel & Tino land in a new city and begin their exploration.' },
                 { step: '02', title: 'Discovery', text: 'Professor Owl explains landmarks, history, and local wildlife.' },
                 { step: '03', title: 'The Recipe', text: 'Chef introduces a traditional local dish for kids to try.' },
-                { step: '04', title: 'The Chase', text: 'Foxy tries a new transport method to steal Axel\'s badge.' },
+                { step: '04', title: 'The Chase', text: 'Foxy tries a new transport method to steal Axel\'s winged badge.' },
               ].map((item, i) => (
                 <div key={i} className="relative z-10 flex flex-col items-center text-center lg:items-start lg:text-left">
                   <div className="w-12 h-12 mb-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xl">

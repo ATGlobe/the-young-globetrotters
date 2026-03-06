@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { BOOKS } from '../data/books';
 
 // Simplified World Map Paths (ISO Alpha-2 codes)
-// In a real production app, this would be a separate JSON or SVG file.
-// Here we provide a selection of major countries to demonstrate the functionality.
 const COUNTRY_PATHS: Record<string, { name: string; path: string }> = {
   "US": { name: "United States", path: "M160,140 L240,140 L240,200 L160,200 Z" },
   "CA": { name: "Canada", path: "M160,80 L260,80 L260,140 L160,140 Z" },
@@ -59,58 +57,23 @@ const COUNTRY_PATHS: Record<string, { name: string; path: string }> = {
   "TH": { name: "Thailand", path: "M800,240 L830,240 L830,280 L800,280 Z" },
   "VN": { name: "Vietnam", path: "M830,240 L850,240 L850,300 L830,300 Z" },
   "PH": { name: "Philippines", path: "M880,250 L910,250 L910,300 L880,300 Z" },
-  // ... more countries would be added here
 };
-
-// For a truly "political" map, we would use a full GeoJSON converted to SVG paths.
-// Since the user asked for a "fully interactive SVG political world map", 
-// I will provide a more comprehensive set of paths or use a standard source.
-// However, providing 200 paths here is impractical. 
-// I will use a high-quality simplified world map SVG structure.
 
 export default function Map() {
   const navigate = useNavigate();
   const [hoveredCountry, setHoveredCountry] = useState<string | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Map countries from BOOKS to their ISO codes
   const adventureCountries = useMemo(() => {
     const countryMap: Record<string, string> = {
-      'Italy': 'IT',
-      'France': 'FR',
-      'United Kingdom': 'GB',
-      'Spain': 'ES',
-      'Netherlands': 'NL',
-      'Sweden': 'SE',
-      'Czech Republic': 'CZ',
-      'Greece': 'GR',
-      'Germany': 'DE',
-      'Austria': 'AT',
-      'Portugal': 'PT',
-      'Ireland': 'IE',
-      'Scotland': 'GB', // Mapping Scotland to UK for simplicity
-      'Hungary': 'HU',
-      'Denmark': 'DK',
-      'Norway': 'NO',
-      'Finland': 'FI',
-      'Iceland': 'IS',
-      'Turkey': 'TR',
-      'Russia': 'RU',
-      'USA': 'US',
-      'Canada': 'CA',
-      'Brazil': 'BR',
-      'Mexico': 'MX',
-      'Argentina/Chile': 'AR', // Simplified
-      'Peru': 'PE',
-      'Japan': 'JP',
-      'Indonesia': 'ID',
-      'Australia': 'AU',
-      'New Zealand': 'NZ',
-      'Singapore': 'SG',
-      'South Korea': 'KR',
-      'China': 'CN',
-      'India': 'IN',
-      'UAE': 'AE',
+      'Italy': 'IT', 'France': 'FR', 'United Kingdom': 'GB', 'Spain': 'ES',
+      'Netherlands': 'NL', 'Sweden': 'SE', 'Czech Republic': 'CZ', 'Greece': 'GR',
+      'Germany': 'DE', 'Austria': 'AT', 'Portugal': 'PT', 'Ireland': 'IE',
+      'Hungary': 'HU', 'Denmark': 'DK', 'Norway': 'NO', 'Finland': 'FI',
+      'Iceland': 'IS', 'Turkey': 'TR', 'Russia': 'RU', 'USA': 'US',
+      'Canada': 'CA', 'Brazil': 'BR', 'Mexico': 'MX', 'Peru': 'PE',
+      'Japan': 'JP', 'Indonesia': 'ID', 'Australia': 'AU', 'New Zealand': 'NZ',
+      'Singapore': 'SG', 'South Korea': 'KR', 'China': 'CN', 'India': 'IN', 'UAE': 'AE'
     };
 
     const adventureSet = new Set<string>();
@@ -127,7 +90,6 @@ export default function Map() {
 
   const handleCountryClick = (iso: string) => {
     const book = BOOKS.find(b => {
-      // This is a simplified lookup
       const countryMap: Record<string, string> = {
         'Italy': 'IT', 'France': 'FR', 'United Kingdom': 'GB', 'Spain': 'ES',
         'Netherlands': 'NL', 'Sweden': 'SE', 'Czech Republic': 'CZ', 'Greece': 'GR',
@@ -153,10 +115,7 @@ export default function Map() {
         className="w-full h-auto"
         preserveAspectRatio="xMidYMid meet"
       >
-        {/* Ocean */}
         <rect width="1000" height="500" fill="#162447" />
-        
-        {/* Countries */}
         {Object.entries(COUNTRY_PATHS).map(([iso, data]) => {
           const hasAdventure = adventureCountries.has(iso);
           const isHovered = hoveredCountry === iso;
@@ -177,7 +136,6 @@ export default function Map() {
         })}
       </svg>
 
-      {/* Tooltip */}
       <AnimatePresence>
         {hoveredCountry && (
           <motion.div
@@ -195,7 +153,6 @@ export default function Map() {
         )}
       </AnimatePresence>
 
-      {/* Legend */}
       <div className="mt-6 flex flex-wrap justify-center gap-6 text-[10px] font-bold uppercase tracking-widest">
         <div className="flex items-center gap-2 text-slate-400">
           <div className="w-2.5 h-2.5 rounded-full bg-[#3E5F9E]" />

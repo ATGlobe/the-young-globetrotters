@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useNavigate } from 'react-router-dom';
-import { VOLUMES } from '../data/volumes';
-import { BOOKS } from '../data/books';
+import { CITIES } from '../data/cities';
 import { 
   Globe, 
   Utensils, 
@@ -19,7 +18,9 @@ import {
   Heart,
   Lightbulb,
   Sparkles,
-  ArrowRight
+  ArrowRight,
+  Wind,
+  Award
 } from 'lucide-react';
 
 interface Question {
@@ -116,7 +117,7 @@ export default function Activities() {
             animate={{ opacity: 1, x: 0 }}
           >
             <h1 className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight">
-              The Great Golden <br />
+              The Great Winged <br />
               <span className="text-orange-200">Badge Challenge</span>
             </h1>
             <p className="text-xl text-orange-100 font-medium mb-10 max-w-lg leading-relaxed">
@@ -142,7 +143,11 @@ export default function Activities() {
               referrerPolicy="no-referrer"
             />
             <div className="absolute -top-4 -right-4 bg-amber-400 p-6 rounded-full shadow-2xl animate-bounce">
-              <Trophy className="w-10 h-10 text-orange-600" />
+              <div className="relative flex items-center justify-center">
+                <Wind className="absolute -left-6 text-orange-600 opacity-50" size={24} />
+                <Award className="w-10 h-10 text-orange-600" />
+                <Wind className="absolute -right-6 scale-x-[-1] text-orange-600 opacity-50" size={24} />
+              </div>
             </div>
           </motion.div>
         </div>
@@ -189,13 +194,13 @@ export default function Activities() {
                   <div className="pt-12 border-t border-slate-100">
                     <h3 className="text-2xl font-black text-slate-800 mb-8 text-center">City Challenges</h3>
                     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-                      {BOOKS.map((book) => (
+                      {CITIES.map((city) => (
                         <Link 
-                          key={book.id}
-                          to={`/activities/${book.slug}`}
+                          key={city.id}
+                          to={`/activities/${city.id}`}
                           className="p-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-orange-500 hover:text-white transition-all text-center font-bold"
                         >
-                          {book.city}
+                          {city.name}
                         </Link>
                       ))}
                     </div>
@@ -390,3 +395,4 @@ export default function Activities() {
     </div>
   );
 }
+

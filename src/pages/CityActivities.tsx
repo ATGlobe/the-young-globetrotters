@@ -1,77 +1,102 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { VOLUMES } from '../data/volumes';
-import { BOOKS } from '../data/books';
+import { CITIES } from '../data/cities';
+import { getCityGames } from '../data/games';
+import { getCityQuizzes } from '../data/quizzes';
 import { motion, AnimatePresence } from 'motion/react';
 import { useProgress } from '../hooks/useProgress';
 import { SimpleCrossword } from '../components/games/SimpleCrossword';
 import { EmojiRebusGame } from '../components/games/EmojiRebusGame';
 import { WordScrambleGame } from '../components/games/WordScrambleGame';
+import { CityCompletionModal } from '../components/CityCompletionModal';
 import { 
   Utensils, 
   Gamepad2, 
   Sparkles, 
   Trophy,
   ArrowLeft,
-  CheckCircle2
+  CheckCircle2,
+  Award,
+  Wind
 } from 'lucide-react';
 
 const CityActivities: React.FC = () => {
-  const { city } = useParams<{ city: string }>();
-  const vol = VOLUMES.find(b => b.slug === city);
-  const book = BOOKS.find(b => b.slug === city);
-  const { progress, updateProgress, calculateBadge } = useProgress();
+  const { city: cityId } = useParams<{ city: string }>();
+  const city = CITIES.find(c => c.id === cityId);
+  const { progress, updateProgress, getCityBadge, isCityCompleted } = useProgress();
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
+  const [hasShownModal, setHasShownModal] = useState(false);
 
-  if (!book) {
+  useEffect(() => {
+    if (cityId && isCityCompleted(cityId) && !hasShownModal) {
+      setShowCompletionModal(true);
+      setHasShownModal(true);
+    }
+  }, [progress, cityId, isCityCompleted, hasShownModal]);
+
+  if (!city) {
     return <Navigate to="/map" replace />;
   }
 
-  const volumeId = book.id;
+  const gamesData = getCityGames(city.id);
+  const quizzesData = getCityQuizzes(city.id, city.name);
 
-  // Default challenges if not provided in BOOKS data
-  const defaultQuizzes = {
-    geography: {
-      question: `Where is ${book.city} located?`,
-      options: [book.country, "Somewhere else", "Far away", "Nearby"],
-      correct: 0
-    },
-    culture: {
-      question: `What is a famous landmark in ${book.city}?`,
-      options: [book.landmarks[0] || "A famous building", "A park", "A museum", "A bridge"],
-      correct: 0
-    },
-    food: {
-      question: `What is a traditional food in ${book.city}?`,
-      options: [book.recipe.name || "A local dish", "Pizza", "Burger", "Salad"],
-      correct: 0
-    }
-  };
-
-  const defaultGames = {
+  // Adapt games data for components
+  const adaptedGames = {
     crossword: {
-      words: [
-        { word: book.city.toUpperCase().replace(/\s/g, ''), clue: `The name of this city.`, orientation: 'across' as const },
-        { word: book.country.toUpperCase().replace(/\s/g, ''), clue: `The country where ${book.city} is.`, orientation: 'across' as const },
-        { word: (book.landmarks[0] || "LANDMARK").toUpperCase().replace(/\s/g, ''), clue: `A famous place here.`, orientation: 'across' as const }
-      ]
+      words: gamesData.crossword.map(w => ({ word: w.answer, clue: w.clue, orientation: 'across' as const }))
     },
     rebus: [
-      { emojis: "🌍✈️🎒", answer: book.city.toUpperCase() }
+      { emojis: gamesData.emoji, answer: gamesData.emojiAnswer }
     ],
     scramble: [
-      { letters: book.city.toUpperCase().split('').sort(() => Math.random() - 0.5).join(''), answer: book.city.toUpperCase() }
+      { letters: gamesData.scramble, answer: gamesData.scrambleAnswer }
     ]
   };
 
-  const quizzes = book.quizzes || vol?.quizzes || defaultQuizzes;
-  const games = book.games || vol?.games || defaultGames;
+  // Adapt quiz data for component
+  const adaptedQuizzes = {
+    geography: {
+      question: quizzesData.geography.question,
+      options: quizzesData.geography.options,
+      correct: quizzesData.geography.options.indexOf(quizzesData.geography.answer)
+    },
+    culture: {
+      question: quizzesData.culture.question,
+      options: quizzesData.culture.options,
+      correct: quizzesData.culture.options.indexOf(quizzesData.culture.answer)
+    },
+    food: {
+      question: quizzesData.food.question,
+      options: quizzesData.food.options,
+      correct: quizzesData.food.options.indexOf(quizzesData.food.answer)
+    }
+  };
 
-  const volumeProgress = progress[volumeId] || {
+  const cityProgress = progress[city.id] || {
     quiz: { geography: false, culture: false, food: false },
     games: { crossword: false, rebus: false, scramble: false }
   };
 
-  const badge = calculateBadge(volumeId);
+  const badgeLevel = getCityBadge(city.id);
+
+  const WingedBadgeIcon = ({ level }: { level: string }) => {
+    const colors: Record<string, string> = {
+      bronze: 'text-orange-700',
+      silver: 'text-slate-400',
+      gold: 'text-amber-500',
+      platinum: 'text-blue-400',
+      diamond: 'text-cyan-400'
+    };
+
+    return (
+      <div className="relative flex items-center justify-center">
+        <Wind className={`absolute -left-4 ${colors[level]} opacity-50`} size={16} />
+        <Award className={`${colors[level]}`} size={24} />
+        <Wind className={`absolute -right-4 scale-x-[-1] ${colors[level]} opacity-50`} size={16} />
+      </div>
+    );
+  };
 
   return (
     <div className="bg-slate-50 min-h-screen pb-20">
@@ -83,23 +108,20 @@ const CityActivities: React.FC = () => {
               <ArrowLeft size={24} />
             </Link>
             <div>
-              <h1 className="text-3xl font-black">{book.city} Activities</h1>
-              <p className="font-bold opacity-90">Complete all challenges to earn your Gold Stamp!</p>
+              <h1 className="text-3xl font-black">{city.name} Activities</h1>
+              <p className="font-bold opacity-90">Complete all challenges to earn your Winged Badge!</p>
             </div>
           </div>
           
           <div className="flex items-center gap-4 bg-white/10 p-4 rounded-2xl backdrop-blur-sm">
             <div className={`w-12 h-12 rounded-full flex items-center justify-center border-2 ${
-              badge === 'Gold' ? 'bg-amber-400 border-amber-200' : 
-              badge === 'Silver' ? 'bg-slate-300 border-slate-100' :
-              badge === 'Bronze' ? 'bg-orange-300 border-orange-100' :
-              'bg-white/20 border-white/10'
+              badgeLevel ? 'bg-white border-white/20' : 'bg-white/20 border-white/10'
             }`}>
-              <Trophy className={badge ? 'text-white' : 'text-white/30'} size={24} />
+              {badgeLevel ? <WingedBadgeIcon level={badgeLevel} /> : <Trophy className="text-white/30" size={24} />}
             </div>
             <div>
               <p className="text-xs font-black uppercase tracking-widest opacity-70">Current Badge</p>
-              <p className="font-black">{badge || 'No Badge Yet'}</p>
+              <p className="font-black">{badgeLevel ? `${city.name} Explorer` : 'No Badge Yet'}</p>
             </div>
           </div>
         </div>
@@ -120,12 +142,12 @@ const CityActivities: React.FC = () => {
             <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-black text-slate-900">Crossword</h3>
-                {volumeProgress.games.crossword && <CheckCircle2 className="text-emerald-500" size={24} />}
+                {cityProgress.games.crossword && <CheckCircle2 className="text-emerald-500" size={24} />}
               </div>
               <SimpleCrossword 
-                words={games.crossword.words} 
-                isCompleted={volumeProgress.games.crossword}
-                onComplete={() => updateProgress(volumeId, 'games', 'crossword')}
+                words={adaptedGames.crossword.words} 
+                isCompleted={cityProgress.games.crossword}
+                onComplete={() => updateProgress(city.id, 'games', 'crossword')}
               />
             </div>
 
@@ -133,12 +155,12 @@ const CityActivities: React.FC = () => {
             <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-black text-slate-900">Emoji Rebus</h3>
-                {volumeProgress.games.rebus && <CheckCircle2 className="text-emerald-500" size={24} />}
+                {cityProgress.games.rebus && <CheckCircle2 className="text-emerald-500" size={24} />}
               </div>
               <EmojiRebusGame 
-                rebus={games.rebus}
-                isCompleted={volumeProgress.games.rebus}
-                onComplete={() => updateProgress(volumeId, 'games', 'rebus')}
+                rebus={adaptedGames.rebus}
+                isCompleted={cityProgress.games.rebus}
+                onComplete={() => updateProgress(city.id, 'games', 'rebus')}
               />
             </div>
 
@@ -146,12 +168,12 @@ const CityActivities: React.FC = () => {
             <div className="bg-white p-8 rounded-[2.5rem] shadow-sm border border-slate-100">
               <div className="flex items-center justify-between mb-6">
                 <h3 className="text-xl font-black text-slate-900">Word Scramble</h3>
-                {volumeProgress.games.scramble && <CheckCircle2 className="text-emerald-500" size={24} />}
+                {cityProgress.games.scramble && <CheckCircle2 className="text-emerald-500" size={24} />}
               </div>
               <WordScrambleGame 
-                scramble={games.scramble}
-                isCompleted={volumeProgress.games.scramble}
-                onComplete={() => updateProgress(volumeId, 'games', 'scramble')}
+                scramble={adaptedGames.scramble}
+                isCompleted={cityProgress.games.scramble}
+                onComplete={() => updateProgress(city.id, 'games', 'scramble')}
               />
             </div>
           </div>
@@ -167,11 +189,11 @@ const CityActivities: React.FC = () => {
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {Object.entries(quizzes).map(([key, quiz]) => (
+            {Object.entries(adaptedQuizzes).map(([key, quiz]) => (
               <div key={key} className="p-8 bg-white rounded-[2.5rem] border border-slate-100 shadow-sm">
                 <div className="flex items-center justify-between mb-6">
                   <h4 className="text-lg font-black text-slate-900 capitalize">{key} Quiz</h4>
-                  {volumeProgress.quiz[key as keyof typeof volumeProgress.quiz] && <CheckCircle2 className="text-emerald-500" size={20} />}
+                  {cityProgress.quiz[key as keyof typeof cityProgress.quiz] && <CheckCircle2 className="text-emerald-500" size={20} />}
                 </div>
                 <p className="font-bold text-slate-700 mb-6">{quiz.question}</p>
                 <div className="space-y-3">
@@ -180,12 +202,12 @@ const CityActivities: React.FC = () => {
                       key={idx}
                       onClick={() => {
                         if (idx === quiz.correct) {
-                          updateProgress(volumeId, 'quiz', key);
+                          updateProgress(city.id, 'quiz', key);
                         }
                       }}
-                      disabled={volumeProgress.quiz[key as keyof typeof volumeProgress.quiz]}
+                      disabled={cityProgress.quiz[key as keyof typeof cityProgress.quiz]}
                       className={`w-full p-4 text-left rounded-2xl border-2 font-bold transition-all ${
-                        volumeProgress.quiz[key as keyof typeof volumeProgress.quiz] && idx === quiz.correct
+                        cityProgress.quiz[key as keyof typeof cityProgress.quiz] && idx === quiz.correct
                           ? 'bg-emerald-50 border-emerald-500 text-emerald-700'
                           : 'bg-white border-slate-100 hover:border-orange-400'
                       }`}
@@ -199,8 +221,15 @@ const CityActivities: React.FC = () => {
           </div>
         </div>
       </div>
+
+      <CityCompletionModal 
+        isOpen={showCompletionModal} 
+        onClose={() => setShowCompletionModal(false)} 
+        cityName={city.name} 
+      />
     </div>
   );
 };
 
 export default CityActivities;
+

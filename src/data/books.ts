@@ -810,7 +810,7 @@ export const BOOKS: Book[] = [
     foxyTransport: '4x4 Jeep',
     learningFocus: ['Geology', 'Nature'],
     externalLink: 'https://tuosito.com/reykjavik',
-    coordinates: { lat: 64.1466, -21.9426 },
+    coordinates: { lat: 64.1466, lng: -21.9426 },
     category: 'city'
   },
   {

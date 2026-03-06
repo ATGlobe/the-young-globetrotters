@@ -18,7 +18,7 @@ export const CHARACTERS = [
     id: 'axel',
     name: 'Axel',
     role: 'Top Gun Pilot Falcon',
-    description: 'A confident peregrine falcon with a Top Gun pilot personality.',
+    description: 'A brave peregrine falcon who leads every adventure. Axel loves exploring new cities and discovering the world.',
     image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Axel__10_-removebg-preview.png',
     color: 'bg-blue-500'
   },
@@ -26,7 +26,7 @@ export const CHARACTERS = [
     id: 'tino',
     name: 'Tino',
     role: 'Food Lover',
-    description: 'Axel\'s curious and food-loving brother.',
+    description: "Axel's curious and cheerful brother who loves tasting food from every culture.",
     image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Generated_Image_February_09__2026_-_12_51AM-removebg-preview.png',
     color: 'bg-yellow-500'
   },
@@ -34,7 +34,7 @@ export const CHARACTERS = [
     id: 'professor-owl',
     name: 'Professor Owl',
     role: 'Cultural & Historical Expert',
-    description: 'The wise mentor who explains history and culture.',
+    description: 'The wise mentor who explains history, traditions and interesting facts about every destination.',
     image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/covers/Il_gufo_maestro_dell-removebg-preview.png',
     color: 'bg-purple-500'
   },
@@ -42,7 +42,7 @@ export const CHARACTERS = [
     id: 'chef',
     name: 'Chef',
     role: 'Culinary Master',
-    description: 'Introduces traditional local recipes from every city.',
+    description: 'Introduces traditional recipes from around the world and encourages kids to cook and discover new flavors.',
     image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Progetto_senza_titolo__1_-removebg-preview.png',
     color: 'bg-red-500'
   },
@@ -50,7 +50,7 @@ export const CHARACTERS = [
     id: 'foxy',
     name: 'Foxy',
     role: 'Comic Antagonist',
-    description: 'A comic fox character who tries to catch Axel to steal his golden aviator badge.',
+    description: "A playful fox who tries to steal Axel's winged aviator badge, creating funny chases and adventures.",
     image: 'https://raw.githubusercontent.com/ATGlobe/young-globetrotters-assets/main/Foxy_2-removebg-preview.png',
     color: 'bg-orange-500'
   }

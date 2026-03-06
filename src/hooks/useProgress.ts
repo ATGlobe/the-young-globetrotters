@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { CITIES } from '../data/cities';
 
 export interface VolumeProgress {
   quiz: {
@@ -25,19 +26,19 @@ export const useProgress = () => {
     localStorage.setItem('young-globetrotters-progress', JSON.stringify(progress));
   }, [progress]);
 
-  const updateProgress = (volumeId: string, type: 'quiz' | 'games', activity: string, completed: boolean = true) => {
+  const updateProgress = (cityId: string, type: 'quiz' | 'games', activity: string, completed: boolean = true) => {
     setProgress((prev) => {
-      const volumeProgress = prev[volumeId] || {
+      const cityProgress = prev[cityId] || {
         quiz: { geography: false, culture: false, food: false },
         games: { crossword: false, rebus: false, scramble: false }
       };
 
       return {
         ...prev,
-        [volumeId]: {
-          ...volumeProgress,
+        [cityId]: {
+          ...cityProgress,
           [type]: {
-            ...volumeProgress[type],
+            ...cityProgress[type],
             [activity]: completed
           }
         }
@@ -45,24 +46,55 @@ export const useProgress = () => {
     });
   };
 
-  const calculateBadge = (volumeId: string): 'Bronze' | 'Silver' | 'Gold' | null => {
-    const vol = progress[volumeId];
-    if (!vol) return null;
+  const isCityCompleted = useCallback((cityId: string) => {
+    const vol = progress[cityId];
+    if (!vol) return false;
 
-    const totalActivities = 6;
+    const quizzesDone = Object.values(vol.quiz).filter(Boolean).length >= 3;
+    const gamesDone = Object.values(vol.games).filter(Boolean).length >= 3;
+
+    return quizzesDone && gamesDone;
+  }, [progress]);
+
+  const isCityInProgress = useCallback((cityId: string) => {
+    const vol = progress[cityId];
+    if (!vol) return false;
+    if (isCityCompleted(cityId)) return false;
+
     const completedCount = 
       Object.values(vol.quiz).filter(Boolean).length + 
       Object.values(vol.games).filter(Boolean).length;
 
-    if (completedCount === totalActivities) return 'Gold';
-    if (completedCount >= 3) return 'Silver';
-    if (completedCount >= 1) return 'Bronze';
-    return null;
+    return completedCount > 0;
+  }, [progress, isCityCompleted]);
+
+  const getCityBadge = useCallback((cityId: string) => {
+    if (!isCityCompleted(cityId)) return null;
+    
+    const city = CITIES.find(c => c.id === cityId);
+    return city?.level || 'bronze';
+  }, [isCityCompleted]);
+
+  const getCompletedCitiesCount = useCallback(() => {
+    return Object.keys(progress).filter(id => isCityCompleted(id)).length;
+  }, [progress, isCityCompleted]);
+
+  const checkPassportLevel = (count: number) => {
+    if (count >= 50) return "Master Globetrotter";
+    if (count >= 30) return "Navigator";
+    if (count >= 15) return "Adventurer";
+    if (count >= 5) return "Junior Explorer";
+    return "Beginner";
   };
 
-  const isCityCompleted = (volumeId: string) => {
-    return calculateBadge(volumeId) === 'Gold';
+  return { 
+    progress, 
+    updateProgress, 
+    isCityCompleted, 
+    isCityInProgress,
+    getCityBadge,
+    getCompletedCitiesCount,
+    checkPassportLevel 
   };
-
-  return { progress, updateProgress, calculateBadge, isCityCompleted };
 };
+
