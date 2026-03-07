@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CITIES } from '../data/cities';
+import EducationModal from '../components/EducationModal';
+import { activityEducation } from '../data/activitiesEducation';
+import { travelEducation } from '../data/travelEducation';
 import { 
   Globe, 
   Utensils, 
@@ -69,6 +72,101 @@ export default function Activities() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
+  const [educationModal, setEducationModal] = useState<{ title: string; content: string } | null>(null);
+
+  const categoryEducation = {
+    geography: {
+      title: "Geography Explorer",
+      content: `Geography helps us understand our planet! 🌍
+
+In this challenge, young explorers discover where cities are located, how landscapes shape cultures, and how people live in different parts of the world.
+
+Did you know?
+Mountains, rivers, and oceans often influence where cities grow and how people travel.
+
+Geography helps us answer questions like:
+• Where is this city?
+• What country is it in?
+• What natural features surround it?
+
+Fun Geography Facts:
+🌍 Earth has 7 continents
+🌊 Oceans cover about 70% of our planet
+🏔 Mountains can affect weather and travel
+
+Teacher Tip:
+Ask students to locate the city on a map and identify one natural feature nearby.`
+    },
+    food: {
+      title: "Food Around the World",
+      content: `Food tells the story of a place! 🍲
+
+Every city has special dishes that come from its history, climate, and traditions.
+
+In this challenge, young travelers discover:
+• Traditional recipes
+• Local ingredients
+• Food customs from different cultures
+
+For example:
+🍕 Italy is famous for pizza and pasta
+🥐 France is known for croissants
+🍫 Switzerland is famous for chocolate
+
+Food Facts:
+🌾 Many traditional foods come from local farms
+🍜 Recipes often travel between countries
+👨🍳 Cooking traditions are passed down through families
+
+Teacher Tip:
+Ask students to share their favorite family dish and research its origin.`
+    },
+    aviation: {
+      title: "Aviation & Flight Adventures",
+      content: `Humans have always dreamed of flying! ✈️
+
+Aviation is the science and history of airplanes, pilots, and air travel.
+
+In this challenge, explorers learn about:
+• Early airplanes and famous pilots
+• Military aviation and air defense
+• How airports and airplanes work
+
+Airplanes changed the world by making travel faster and connecting distant countries.
+
+Did you know?
+The Wright brothers built the first successful airplane in 1903!
+
+Flight Facts:
+✈️ Modern airplanes can fly over 900 km per hour
+🛫 Airports help planes take off and land safely
+🧭 Pilots use navigation systems to travel across the world
+
+Teacher Tip:
+Discuss how aviation has changed the way we connect with other cultures.`
+    },
+    culture: {
+      title: "Culture & Traditions",
+      content: `Culture is what makes every place unique! 🎭
+
+It includes language, music, art, celebrations, and traditions.
+
+In this challenge, explorers discover:
+• Famous festivals
+• Local music and art
+• Historic traditions from different cities
+
+Learning about culture helps us understand people from around the world and appreciate our differences.
+
+Culture Facts:
+🎭 Festivals celebrate history and traditions
+🎵 Music styles are different around the world
+🏛 Art and architecture tell stories about the past
+
+Teacher Tip:
+Encourage students to research a festival from a city they've visited in the books.`
+    }
+  };
 
   const startQuiz = (category: string) => {
     setActiveCategory(category);
@@ -173,21 +271,28 @@ export default function Activities() {
 
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                     {[
-                      { name: 'Geography', icon: Globe, color: 'bg-blue-500', path: 'geography' },
-                      { name: 'Food', icon: Utensils, color: 'bg-emerald-500', path: 'food' },
-                      { name: 'Aviation', icon: Plane, color: 'bg-sky-500', path: 'aviation' },
-                      { name: 'Culture', icon: Music, color: 'bg-purple-500', path: 'culture' }
+                      { name: 'Geography', icon: Globe, color: 'bg-blue-500', key: 'geography' },
+                      { name: 'Food', icon: Utensils, color: 'bg-emerald-500', key: 'food' },
+                      { name: 'Aviation', icon: Plane, color: 'bg-sky-500', key: 'aviation' },
+                      { name: 'Culture', icon: Music, color: 'bg-purple-500', key: 'culture' }
                     ].map((cat) => (
-                      <Link 
-                        key={cat.name}
-                        to={`/activities/${cat.path}`}
-                        className="group flex flex-col items-center p-8 rounded-3xl border-2 border-slate-50 hover:border-orange-200 hover:bg-orange-50 transition-all"
-                      >
-                        <div className={`w-16 h-16 ${cat.color} text-white rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
-                          <cat.icon className="w-8 h-8" />
-                        </div>
-                        <span className="font-bold text-slate-700">{cat.name}</span>
-                      </Link>
+                      <div key={cat.name} className="group relative">
+                        <Link 
+                          to={`/activities/${cat.key}`}
+                          className="flex flex-col items-center p-8 rounded-3xl border-2 border-slate-50 hover:border-orange-200 hover:bg-orange-50 transition-all"
+                        >
+                          <div className={`w-16 h-16 ${cat.color} text-white rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
+                            <cat.icon className="w-8 h-8" />
+                          </div>
+                          <span className="font-bold text-slate-700">{cat.name}</span>
+                        </Link>
+                        <button 
+                          onClick={() => setEducationModal(categoryEducation[cat.key as keyof typeof categoryEducation])}
+                          className="absolute -top-2 -right-2 w-8 h-8 bg-white border-2 border-orange-100 rounded-full flex items-center justify-center text-orange-500 hover:bg-orange-500 hover:text-white transition-all shadow-sm z-10"
+                        >
+                          <Lightbulb size={16} />
+                        </button>
+                      </div>
                     ))}
                   </div>
 
@@ -296,11 +401,15 @@ export default function Activities() {
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             { [
-              { title: 'The Pilot Stretch', desc: 'Reach for the clouds! Stretch your arms high and "fly" around the room.', image: 'https://i.ibb.co/Fk1Qqwwj/Generated-Image-March-04-2026-4-50-PM-removebg-preview-1.png' },
-              { title: 'The Global Hop', desc: 'Imagine the floor is a map. Hop from "continent" to "continent"!', image: 'https://i.ibb.co/v42XC3xN/Generated-Image-March-04-2026-4-54-PM.png' },
-              { title: 'Chef\'s Dance', desc: 'Put on some global music and dance while you "stir" your imaginary pot.', image: 'https://i.ibb.co/pBPz1Tm5/Generated-Image-March-04-2026-4-55-PM-1.png' }
+              { title: 'The Pilot Stretch', desc: 'Reach for the clouds! Stretch your arms high and "fly" around the room.', image: 'https://i.ibb.co/Fk1Qqwwj/Generated-Image-March-04-2026-4-50-PM-removebg-preview-1.png', key: 'pilotStretch' },
+              { title: 'The Global Hop', desc: 'Imagine the floor is a map. Hop from "continent" to "continent"!', image: 'https://i.ibb.co/v42XC3xN/Generated-Image-March-04-2026-4-54-PM.png', key: 'globalHop' },
+              { title: 'Chef\'s Dance', desc: 'Put on some global music and dance while you "stir" your imaginary pot.', image: 'https://i.ibb.co/pBPz1Tm5/Generated-Image-March-04-2026-4-55-PM-1.png', key: 'chefsDance' }
             ].map((act, i) => (
-              <div key={i} className="p-8 rounded-[32px] bg-orange-50 border border-orange-100 hover:shadow-xl transition-all group">
+              <div 
+                key={i} 
+                className="p-8 rounded-[32px] bg-orange-50 border border-orange-100 hover:shadow-xl transition-all group cursor-pointer"
+                onClick={() => setEducationModal(activityEducation[act.key as keyof typeof activityEducation])}
+              >
                 <div className="w-48 h-48 bg-white rounded-2xl flex items-center justify-center mb-6 shadow-sm group-hover:rotate-12 transition-transform overflow-hidden mx-auto">
                   <img 
                     src={act.image} 
@@ -322,15 +431,16 @@ export default function Activities() {
         <h2 className="text-3xl font-bold text-slate-800 mb-12 text-center">How We Travel</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-6">
             { [
-            { image: 'https://i.ibb.co/nNkNGNCC/Foxy-drive-plane.png', name: 'Airplane', desc: 'Fastest way to cross oceans.' },
-            { image: 'https://i.ibb.co/20LYs180/Foxy-drive-Train.png', name: 'Train', desc: 'Scenic routes through countries.' },
-            { image: 'https://i.ibb.co/dJgv6rwq/nave-blu-removebg-preview.png', name: 'Ship', desc: 'Exploring the vast blue seas.' },
-            { image: 'https://i.ibb.co/000hkZR/auto-blu-removebg-preview.png', name: 'Car', desc: 'Road trips and local discoveries.' },
-            { image: 'https://i.ibb.co/LDh11Dw6/Foxy-in-bici.png', name: 'Bicycle', desc: 'Eco-friendly local exploration.' }
+            { image: 'https://i.ibb.co/nNkNGNCC/Foxy-drive-plane.png', name: 'Airplane', desc: 'Fastest way to cross oceans.', key: 'airplane' },
+            { image: 'https://i.ibb.co/20LYs180/Foxy-drive-Train.png', name: 'Train', desc: 'Scenic routes through countries.', key: 'train' },
+            { image: 'https://i.ibb.co/dJgv6rwq/nave-blu-removebg-preview.png', name: 'Ship', desc: 'Exploring the vast blue seas.', key: 'ship' },
+            { image: 'https://i.ibb.co/000hkZR/auto-blu-removebg-preview.png', name: 'Car', desc: 'Road trips and local discoveries.', key: 'car' },
+            { image: 'https://i.ibb.co/LDh11Dw6/Foxy-in-bici.png', name: 'Bicycle', desc: 'Eco-friendly local exploration.', key: 'bicycle' }
           ].map((method, i) => (
             <motion.div 
               key={i}
               whileHover={{ scale: 1.05 }}
+              onClick={() => setEducationModal(travelEducation[method.key as keyof typeof travelEducation])}
               className="p-6 bg-white rounded-3xl shadow-sm border border-slate-100 text-center cursor-pointer hover:shadow-md transition-all flex flex-col items-center"
             >
               <div className="w-40 h-40 bg-orange-50 rounded-2xl flex items-center justify-center mb-4 overflow-hidden">
@@ -392,6 +502,12 @@ export default function Activities() {
           </p>
         </div>
       </section>
+      <EducationModal 
+        title={educationModal?.title || ''}
+        content={educationModal?.content || ''}
+        isOpen={!!educationModal}
+        onClose={() => setEducationModal(null)}
+      />
     </div>
   );
 }
