@@ -124,6 +124,11 @@ const Contact: React.FC = () => {
       {/* FAQ CTA */}
       <section className="py-24 bg-slate-50">
         <div className="container px-4 mx-auto text-center">
+          <img 
+            src="https://i.ibb.co/chwSyvXk/Generated-Image-March-03-2026-3-31-PM.png"
+            alt="Contact Fox"
+            className="contact-fox mx-auto mb-8 block max-w-[240px]"
+          />
           <h2 className="mb-6 text-3xl font-bold text-slate-900">Looking for quick answers?</h2>
           <p className="mb-10 text-lg text-slate-600">Check our frequently asked questions for parents and teachers.</p>
           <button className="inline-flex items-center gap-2 text-blue-600 font-bold hover:gap-3 transition-all">

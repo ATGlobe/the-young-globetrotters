@@ -48,9 +48,16 @@ const ForTeachers: React.FC = () => {
       {/* Learning Objectives */}
       <section className="py-24 bg-slate-50">
         <div className="container px-4 mx-auto">
+          <div className="text-center mb-16">
+            <img 
+              src="https://i.ibb.co/8L2Rrhpm/Generated-Image-March-03-2026-3-31-PM-1.png"
+              alt="Teacher Fox"
+              className="teacher-fox mx-auto mb-8 block max-w-[260px]"
+            />
+            <h2 className="text-4xl font-bold text-slate-900">Learning Objectives</h2>
+          </div>
           <div className="flex flex-col items-center gap-16 lg:flex-row">
             <div className="flex-1">
-              <h2 className="mb-8 text-4xl font-bold text-slate-900">Learning Objectives</h2>
               <p className="mb-10 text-lg text-slate-600">
                 Our curriculum-aligned objectives ensure that every adventure contributes to a student's academic and personal growth:
               </p>
